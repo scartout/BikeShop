@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+<title></title>
+</head>
+<body>
+	
+	<div th:fragment="navbar" class="navbar">
+    <div class="navbar-inner">    
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <a href="/" class="navbar-brand">BikeShop <span><img src="https://cdn0.iconfinder.com/data/icons/transport-14/512/Bike_Green.png" height="30" width="30"></img></span></a>        
+ 
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+            <span class="glyphicon glyphicon-list"></span>
+        </button>
+         
+        <div class="collapse navbar-collapse navHeaderCollapse">
+          <ul class="nav navbar-nav navbar-right">
+            	<li th:switch="${session.isEmpty()}">
+	  			<p th:case="true">
+	  				<li><a th:href="@{/register}">Register</a></li>
+	  				<li><a th:href="@{/login}">Log in</a></li>
+	  			</p>
+  				<p th:case="false">
+				    <form action="logmeout" th:action="@{/logmeout}" method="post" name="someForm">
+					</form>
+					<li><a href="#" onclick="document.someForm.submit();">Log out</a></li>
+    			</p>
+    			</li>
+           </ul>
+        </div> 
+      </div>
+	</nav>
+
+	</div>
+	</div>
+
+</body>
+</html>
