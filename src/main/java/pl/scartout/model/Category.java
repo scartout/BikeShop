@@ -37,10 +37,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    
 	    Category() {}
 
-		public Category(String name, List<Product> products) {
+		public Category(Long id, String name) {
 			super();
+			this.id = id;
 			this.name = name;
-			this.products = products;
 		}
 
 		@Override

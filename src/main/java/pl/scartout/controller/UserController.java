@@ -21,7 +21,7 @@ public class UserController {
         this.userService = userService;
     }
     
-    @GetMapping("/register")
+    @RequestMapping("/register")
     public String home(Model model) {
     	model.addAttribute("user", new User());
         return "registerForm";

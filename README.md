@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.0.1-SNAPSHOT
+Version 0.0.2-SNAPSHOT
 
 
 ## How to use:
@@ -23,6 +23,7 @@ BikeShop has been being implemented an example of this kind of portals.
 - Spring Security
 - Hibernate
 - HTML
+- CSS
 - Thymeleaf
 - JPA
 - Bootstrap
