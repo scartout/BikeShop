@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +17,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 	@XmlRootElement
 	@Entity
@@ -43,8 +45,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @OneToOne
 	    @JoinColumn(name = "contact_id")
 	    private Contact contact;
+	    @LazyCollection(LazyCollectionOption.FALSE)
 	    @OneToMany(mappedBy = "client", 
-	            fetch = FetchType.EAGER,
 	            cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
 	            orphanRemoval = true)
 	    private List<Order> orders = new ArrayList<>();
@@ -54,6 +56,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @OneToOne
 	    @JoinColumn(name = "user_id")
 	    private User user;
+	    @LazyCollection(LazyCollectionOption.FALSE)
+	    @OneToMany(mappedBy = "client", 
+	    		cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
+	    		orphanRemoval = true)
+	    private List<Comment> comments = new ArrayList<>();
 	    
 	    public Client(){}
 

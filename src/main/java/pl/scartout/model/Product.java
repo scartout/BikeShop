@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 	@XmlRootElement
 	@Entity
@@ -39,12 +41,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    private Double price;
 	    @Column(name = "price_net")
 	    private Double priceNet;
-	    @Column
 	    private Double vat;
+	    private String url;
 	    @ManyToMany(mappedBy = "products")
 	    private List<Order> orders;
-	    @OneToMany(mappedBy = "product", 
-	    		fetch = FetchType.EAGER,
+	    @LazyCollection(LazyCollectionOption.FALSE)
+	    @OneToMany(mappedBy = "product",
 	    		cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
 	    		orphanRemoval = true)
 	    private List<Image> images = new ArrayList<>();
@@ -54,24 +56,117 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @ManyToOne
 	    @JoinColumn(name = "producer_id")
 	    private Producer producer;
+	    @LazyCollection(LazyCollectionOption.FALSE)
+	    @OneToMany(mappedBy = "product",
+	    		cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
+	    		orphanRemoval = true)
+	    private List<Comment> comments = new ArrayList<>();
 	    
-	    Product() {}
+	    public Product() {}
 
-		public Product(String name, String description, Double price, Double priceNet, Double vat, List<Order> orders,
-				List<Image> images) {
+		public Product(String name, String description, Double price, Double priceNet, Double vat, String url) {
 			super();
 			this.name = name;
 			this.description = description;
 			this.price = price;
 			this.priceNet = priceNet;
 			this.vat = vat;
+			this.url = url;
+		}
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
+		public Double getPrice() {
+			return price;
+		}
+
+		public void setPrice(Double price) {
+			this.price = price;
+		}
+
+		public Double getPriceNet() {
+			return priceNet;
+		}
+
+		public void setPriceNet(Double priceNet) {
+			this.priceNet = priceNet;
+		}
+
+		public Double getVat() {
+			return vat;
+		}
+
+		public void setVat(Double vat) {
+			this.vat = vat;
+		}
+
+		public String getUrl() {
+			return url;
+		}
+
+		public void setUrl(String url) {
+			this.url = url;
+		}
+
+		public List<Order> getOrders() {
+			return orders;
+		}
+
+		public void setOrders(List<Order> orders) {
+			this.orders = orders;
+		}
+
+		public List<Image> getImages() {
+			return images;
+		}
+
+		public void setImages(List<Image> images) {
+			this.images = images;
+		}
+
+		public Category getCategory() {
+			return category;
+		}
+
+		public void setCategory(Category category) {
+			this.category = category;
+		}
+
+		public Producer getProducer() {
+			return producer;
+		}
+
+		public void setProducer(Producer producer) {
+			this.producer = producer;
 		}
 
 		@Override
 		public String toString() {
 			return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-					+ ", priceNet=" + priceNet + ", vat=" + vat + ", orders=" + orders + ", images=" + images
-					+ ", category=" + category + ", producer=" + producer + "]";
+					+ ", priceNet=" + priceNet + ", vat=" + vat + ", url=" + url + ", orders=" + orders + ", images="
+					+ images + ", category=" + category + ", producer=" + producer + "]";
 		}
 
 		@Override
@@ -87,6 +182,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 			result = prime * result + ((price == null) ? 0 : price.hashCode());
 			result = prime * result + ((priceNet == null) ? 0 : priceNet.hashCode());
 			result = prime * result + ((producer == null) ? 0 : producer.hashCode());
+			result = prime * result + ((url == null) ? 0 : url.hashCode());
 			result = prime * result + ((vat == null) ? 0 : vat.hashCode());
 			return result;
 		}
@@ -144,6 +240,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 				if (other.producer != null)
 					return false;
 			} else if (!producer.equals(other.producer))
+				return false;
+			if (url == null) {
+				if (other.url != null)
+					return false;
+			} else if (!url.equals(other.url))
 				return false;
 			if (vat == null) {
 				if (other.vat != null)
