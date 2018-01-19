@@ -190,8 +190,12 @@
 						<p>
 							<input type="text" id="amount" readonly="readonly" style="border:0; color:#f6931f; font-weight:bold;"></input>
 						</p>
+						<form th:action="@{/filter}">
+							<input type="hidden" id="priceMin" name="priceMin" readonly="readonly" style="border:0; color:#f6931f; font-weight:bold;"></input>
+							<input type="hidden" id="priceMax" name="priceMax" readonly="readonly" style="border:0; color:#f6931f; font-weight:bold;"></input>
 						<div id="slider-range"></div>
-						<div class="filter_button"><span>filter</span></div>
+						<button class="filter_button" type="submit" value="Submit"><span>filter</span></button>
+						</form>
 					</div>
 
 					<!-- Sizes -->
@@ -293,7 +297,8 @@
 										<div class="product-item women">
 											<div class="product product_filter">
 												<div class="product_image">
-													<img th:src="${product.url}" alt=""></img>
+													
+													<!--  <img th:src="${product.url}" alt=""></img>-->
 												</div>
 												<div class="favorite"></div>
 												<div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
@@ -348,8 +353,6 @@
 		</div>
 	</div>
 
-	<!-- Benefit -->
-
 	<div class="benefit">
 		<div class="container">
 			<div class="row benefit_row">
@@ -366,8 +369,8 @@
 					<div class="benefit_item d-flex flex-row align-items-center">
 						<div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
 						<div class="benefit_content">
-							<h6>cach on delivery</h6>
-							<p>The Internet Tend To Repeat</p>
+							<h6>6 year guarantee</h6>
+							<p>Don't forget any more</p>
 						</div>
 					</div>
 				</div>
@@ -375,7 +378,7 @@
 					<div class="benefit_item d-flex flex-row align-items-center">
 						<div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
 						<div class="benefit_content">
-							<h6>45 days return</h6>
+							<h6>90 days return</h6>
 							<p>Making it Look Like Readable</p>
 						</div>
 					</div>
@@ -384,8 +387,8 @@
 					<div class="benefit_item d-flex flex-row align-items-center">
 						<div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
 						<div class="benefit_content">
-							<h6>opening all week</h6>
-							<p>8AM - 09PM</p>
+							<h6>quick delivery</h6>
+							<p>up to 30 days waiting</p>
 						</div>
 					</div>
 				</div>

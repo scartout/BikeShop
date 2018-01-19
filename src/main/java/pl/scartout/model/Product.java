@@ -34,15 +34,18 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    @NotNull
 	    @Column(name = "name", nullable = false)
 	    private String name;
-	    @Column(name = "description")
-	    private String description;
+	    @Column(name = "description_short")
+	    private String descriptionShort;
+	    @Column(name = "description_long")
+	    private String descriptionLong;
+	    @Column(name = "description_size")
+	    private String descriptionSize;
 	    @NotNull
 	    @Column(name = "price")
 	    private Double price;
 	    @Column(name = "price_net")
 	    private Double priceNet;
 	    private Double vat;
-	    private String url;
 	    @ManyToMany(mappedBy = "products")
 	    private List<Order> orders;
 	    @LazyCollection(LazyCollectionOption.FALSE)
@@ -64,14 +67,17 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    
 	    public Product() {}
 
-		public Product(String name, String description, Double price, Double priceNet, Double vat, String url) {
+		public Product(Long id, String name, String descriptionShort, String descriptionLong, String descriptionSize,
+				Double price, Double priceNet, Double vat, List<Order> orders, List<Image> images, Category category,
+				Producer producer, List<Comment> comments) {
 			super();
 			this.name = name;
-			this.description = description;
+			this.descriptionShort = descriptionShort;
+			this.descriptionLong = descriptionLong;
+			this.descriptionSize = descriptionSize;
 			this.price = price;
 			this.priceNet = priceNet;
 			this.vat = vat;
-			this.url = url;
 		}
 
 		public Long getId() {
@@ -90,12 +96,28 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.name = name;
 		}
 
-		public String getDescription() {
-			return description;
+		public String getDescriptionShort() {
+			return descriptionShort;
 		}
 
-		public void setDescription(String description) {
-			this.description = description;
+		public void setDescriptionShort(String descriptionShort) {
+			this.descriptionShort = descriptionShort;
+		}
+
+		public String getDescriptionLong() {
+			return descriptionLong;
+		}
+
+		public void setDescriptionLong(String descriptionLong) {
+			this.descriptionLong = descriptionLong;
+		}
+
+		public String getDescriptionSize() {
+			return descriptionSize;
+		}
+
+		public void setDescriptionSize(String descriptionSize) {
+			this.descriptionSize = descriptionSize;
 		}
 
 		public Double getPrice() {
@@ -120,14 +142,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 		public void setVat(Double vat) {
 			this.vat = vat;
-		}
-
-		public String getUrl() {
-			return url;
-		}
-
-		public void setUrl(String url) {
-			this.url = url;
 		}
 
 		public List<Order> getOrders() {
@@ -162,11 +176,20 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.producer = producer;
 		}
 
+		public List<Comment> getComments() {
+			return comments;
+		}
+
+		public void setComments(List<Comment> comments) {
+			this.comments = comments;
+		}
+
 		@Override
 		public String toString() {
-			return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-					+ ", priceNet=" + priceNet + ", vat=" + vat + ", url=" + url + ", orders=" + orders + ", images="
-					+ images + ", category=" + category + ", producer=" + producer + "]";
+			return "Product [id=" + id + ", name=" + name + ", descriptionShort=" + descriptionShort
+					+ ", descriptionLong=" + descriptionLong + ", descriptionSize=" + descriptionSize + ", price="
+					+ price + ", priceNet=" + priceNet + ", vat=" + vat + ", orders=" + orders + ", images=" + images
+					+ ", category=" + category + ", producer=" + producer + ", comments=" + comments + "]";
 		}
 
 		@Override
@@ -174,7 +197,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((category == null) ? 0 : category.hashCode());
-			result = prime * result + ((description == null) ? 0 : description.hashCode());
+			result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+			result = prime * result + ((descriptionLong == null) ? 0 : descriptionLong.hashCode());
+			result = prime * result + ((descriptionShort == null) ? 0 : descriptionShort.hashCode());
+			result = prime * result + ((descriptionSize == null) ? 0 : descriptionSize.hashCode());
 			result = prime * result + ((id == null) ? 0 : id.hashCode());
 			result = prime * result + ((images == null) ? 0 : images.hashCode());
 			result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -182,7 +208,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 			result = prime * result + ((price == null) ? 0 : price.hashCode());
 			result = prime * result + ((priceNet == null) ? 0 : priceNet.hashCode());
 			result = prime * result + ((producer == null) ? 0 : producer.hashCode());
-			result = prime * result + ((url == null) ? 0 : url.hashCode());
 			result = prime * result + ((vat == null) ? 0 : vat.hashCode());
 			return result;
 		}
@@ -201,10 +226,25 @@ import org.hibernate.annotations.LazyCollectionOption;
 					return false;
 			} else if (!category.equals(other.category))
 				return false;
-			if (description == null) {
-				if (other.description != null)
+			if (comments == null) {
+				if (other.comments != null)
 					return false;
-			} else if (!description.equals(other.description))
+			} else if (!comments.equals(other.comments))
+				return false;
+			if (descriptionLong == null) {
+				if (other.descriptionLong != null)
+					return false;
+			} else if (!descriptionLong.equals(other.descriptionLong))
+				return false;
+			if (descriptionShort == null) {
+				if (other.descriptionShort != null)
+					return false;
+			} else if (!descriptionShort.equals(other.descriptionShort))
+				return false;
+			if (descriptionSize == null) {
+				if (other.descriptionSize != null)
+					return false;
+			} else if (!descriptionSize.equals(other.descriptionSize))
 				return false;
 			if (id == null) {
 				if (other.id != null)
@@ -240,11 +280,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 				if (other.producer != null)
 					return false;
 			} else if (!producer.equals(other.producer))
-				return false;
-			if (url == null) {
-				if (other.url != null)
-					return false;
-			} else if (!url.equals(other.url))
 				return false;
 			if (vat == null) {
 				if (other.vat != null)

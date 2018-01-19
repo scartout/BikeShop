@@ -17,8 +17,10 @@
 	        <p>Login:<input placeholder="Login" required="required" pattern=".{3,}" title="Login must be at least 3 characters" type="text" th:field="*{username}" /></p>
 	        <p>Password: <input placeholder="Password" required="required" pattern=".{6,}" title="Password must be at least 6 characters" type="password" th:field="*{password}" /></p>
 	        <p>E-mail: <input placeholder="E-mail" type="email" th:field="*{email}" /></p>
+	        <p>First name: <input placeholder="First name" type="text" th:field="*{firstName}" /></p>
+	        <p>Last name: <input placeholder="Last name" type="text" th:field="*{lastName}" /></p>
         <input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />
-    </form>
+    	</form>
     </div>
     </div>
 </body>

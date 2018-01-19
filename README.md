@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.0.3-SNAPSHOT
+Version 0.0.4-SNAPSHOT
 
 
 ## How to use:

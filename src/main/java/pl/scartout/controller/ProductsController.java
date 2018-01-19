@@ -27,5 +27,12 @@ public class ProductsController {
     	model.addAttribute("products", products);
         return products;
     }
+    
+    @GetMapping(path = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Product> getProduct2(Model model, @RequestParam double priceMin, @RequestParam double priceMax) {
+    	List<Product> products = productRepo.findAllByPriceBetween(priceMin, priceMax);
+    	model.addAttribute("products", products);
+        return products;
+    }
 
 }

@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @Column(name = "complete_date")
 	    private Date completeDate;
 	    @ManyToOne
-	    @JoinColumn(name = "client_id")
-	    private Client client;
+	    @JoinColumn(name = "user_id")
+	    private User user;
 	    @ManyToMany
 	    @JoinTable(name = "order_products",
 	            joinColumns = { @JoinColumn(name = "order_id", referencedColumnName = "order_id") },
@@ -48,21 +48,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    
 	    public Order(){}
 
-		public Order(Date orderDate, Date approvalDate, Date shippingDate, Date completeDate, Client client,
+		public Order(Date orderDate, Date approvalDate, Date shippingDate, Date completeDate, User user,
 				List<Product> products) {
 			super();
 			this.orderDate = orderDate;
 			this.approvalDate = approvalDate;
 			this.shippingDate = shippingDate;
 			this.completeDate = completeDate;
-			this.client = client;
+			this.user = user;
 			this.products = products;
 		}
 
 		@Override
 		public String toString() {
 			return "Order [id=" + id + ", orderDate=" + orderDate + ", approvalDate=" + approvalDate + ", shippingDate="
-					+ shippingDate + ", completeDate=" + completeDate + ", client=" + client + ", products=" + products
+					+ shippingDate + ", completeDate=" + completeDate + ", user=" + user + ", products=" + products
 					+ "]";
 		}
 
@@ -71,7 +71,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((approvalDate == null) ? 0 : approvalDate.hashCode());
-			result = prime * result + ((client == null) ? 0 : client.hashCode());
+			result = prime * result + ((user == null) ? 0 : user.hashCode());
 			result = prime * result + ((completeDate == null) ? 0 : completeDate.hashCode());
 			result = prime * result + ((id == null) ? 0 : id.hashCode());
 			result = prime * result + ((orderDate == null) ? 0 : orderDate.hashCode());
@@ -94,10 +94,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 					return false;
 			} else if (!approvalDate.equals(other.approvalDate))
 				return false;
-			if (client == null) {
-				if (other.client != null)
+			if (user == null) {
+				if (other.user != null)
 					return false;
-			} else if (!client.equals(other.client))
+			} else if (!user.equals(other.user))
 				return false;
 			if (completeDate == null) {
 				if (other.completeDate != null)
