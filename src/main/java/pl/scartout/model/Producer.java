@@ -37,9 +37,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    
 	    Producer() {}
 
-		public Producer(String name, List<Product> products) {
+		public Producer(String name) {
 			super();
 			this.name = name;
+		}
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public List<Product> getProducts() {
+			return products;
+		}
+
+		public void setProducts(List<Product> products) {
 			this.products = products;
 		}
 

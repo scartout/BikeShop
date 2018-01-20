@@ -46,6 +46,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @NotNull
 	    @Column(name = "last_name")
 	    private String lastName;
+	    private String companyName;
 	    @OneToOne
 	    @JoinColumn(name = "role_id")
 	    private Role role;
@@ -63,15 +64,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    
 	    public User(){}
 
-		public User(String username, String password, String email, String firstName, String lastName, Role role,
-				Contact contact, List<Order> orders, Address address, User user) {
+		public User(Long id, String username, String password, String email, String firstName, String lastName,
+				String companyName, Role role, Contact contact, List<Order> orders, Address address) {
 			super();
+			this.id = id;
 			this.username = username;
 			this.password = password;
 			this.email = email;
 			this.firstName = firstName;
 			this.lastName = lastName;
+			this.companyName = companyName;
 			this.role = role;
+			this.contact = contact;
+			this.orders = orders;
+			this.address = address;
 		}
 
 		public Long getId() {
@@ -122,6 +128,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 			this.lastName = lastName;
 		}
 
+		public String getCompanyName() {
+			return companyName;
+		}
+
+		public void setCompanyName(String companyName) {
+			this.companyName = companyName;
+		}
+
 		public Role getRole() {
 			return role;
 		}
@@ -157,8 +171,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 		@Override
 		public String toString() {
 			return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-					+ ", firstName=" + firstName + ", lastName=" + lastName + ", role=" + role + ", contact=" + contact
-					+ ", orders=" + orders + ", address=" + address + "]";
+					+ ", firstName=" + firstName + ", lastName=" + lastName + ", companyName=" + companyName + ", role="
+					+ role + ", contact=" + contact + ", orders=" + orders + ", address=" + address + "]";
 		}
 
 		@Override
@@ -166,6 +180,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((address == null) ? 0 : address.hashCode());
+			result = prime * result + ((companyName == null) ? 0 : companyName.hashCode());
 			result = prime * result + ((contact == null) ? 0 : contact.hashCode());
 			result = prime * result + ((email == null) ? 0 : email.hashCode());
 			result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
@@ -191,6 +206,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 				if (other.address != null)
 					return false;
 			} else if (!address.equals(other.address))
+				return false;
+			if (companyName == null) {
+				if (other.companyName != null)
+					return false;
+			} else if (!companyName.equals(other.companyName))
 				return false;
 			if (contact == null) {
 				if (other.contact != null)

@@ -12,7 +12,9 @@ import pl.scartout.model.Category;
 @Repository
 public interface CategoryRepo extends JpaRepository<Category, Long> {
 
-	Object findByName(String string);
+	Category findById(Long id);
+	
+	Category findByName(String string);
 	
 	@Query("SELECT id FROM Category c WHERE c.name=:name")
 	Long idByName(@Param("name") String name);

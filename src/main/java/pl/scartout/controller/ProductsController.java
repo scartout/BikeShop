@@ -8,23 +8,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import pl.scartout.model.Category;
 import pl.scartout.model.Product;
+import pl.scartout.repo.CategoryRepo;
 import pl.scartout.repo.ProductRepo;
 
 @Controller
 public class ProductsController {
 	
 	private ProductRepo productRepo;
+	private CategoryRepo categoryRepo;
 	 
     @Autowired
-    public ProductsController(ProductRepo productRepo) {
-    	this.productRepo= productRepo;
+    public ProductsController(ProductRepo productRepo, CategoryRepo categoryRepo) {
+    	this.productRepo = productRepo;
+    	this.categoryRepo = categoryRepo;
     }
     
     @GetMapping(path = "/products", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Product> getProduct(Model model, @RequestParam long id) {
     	List<Product> products = productRepo.findAllByCategoryId(id);
     	model.addAttribute("products", products);
+    	Category category = categoryRepo.findById(id);
+    	Long countProducts = productRepo.countAllProductsByCategory(category);
+    	model.addAttribute("countProducts", countProducts);
         return products;
     }
     

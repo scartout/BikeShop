@@ -169,20 +169,16 @@
 					<div class="row">
 						<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
 							<div class="single_product_thumbnails">
-								<ul th:each="image: ${images}">
-										<li><img th:src="${image.url}" alt="" data-image='${image.url}'/></li>
-									
-																		
-									
-									<!--  <li><img th:src="${product.url}" alt="" data-image="${product.url}"/></li>
-									<li class="active"><img th:src="${product.url}" alt="" data-image="${product.url}"/></li>
-									<li><img th:src="${product.url}" alt="" data-image="${product.url}"/></li>-->
+								<ul>
+									<li class="active"><img th:src="${product.mainImage}" alt="" data-image="*{product.url}"/></li>
+									<li><img th:src="${product.imageSecond}" alt="" data-image='*{product.imageSecond}'/></li>
+									<li><img th:src="${product.imageThird}" alt="" data-image="*{product.imageThird}"/></li>
 								</ul>
 							</div>
 						</div>
 						<div class="col-lg-9 image_col order-lg-2 order-1">
 							<div class="single_product_image">
-								<div class="single_product_image_background" style="background-image:url(https://cdn.iconscout.com/public/images/icon/free/png-512/person-biking-riding-travel-bike-32ba9c65398cb07b-512x512.png)"></div>
+								<div class="single_product_image_background" style="background-image:url('#{resource[product.mainImage]}')"></div>
 							</div>
 						</div>
 					</div>
@@ -197,7 +193,7 @@
 					<div class="free_delivery d-flex flex-row align-items-center justify-content-center">
 						<span class="ti-truck"></span><span>free delivery</span>
 					</div>
-					<div class="product_price" th:text="${product.price}"></div>
+					<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 0, 2)+' PLN'}"></div>
 					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 						<span>Quantity:</span>
 						<div class="quantity_selector">
@@ -223,8 +219,8 @@
 					<div class="tabs_container">
 						<ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
 							<li class="tab active" data-active-tab="tab_1"><span>Description</span></li>
-							<li class="tab" data-active-tab="tab_2"><span>Additional Information</span></li>
-							<li class="tab" data-active-tab="tab_3"><span th:text="'Review(' + ${countComments} +')'"></span></li>
+							<li class="tab" data-active-tab="tab_2"><span>Size information</span></li>
+							<li class="tab" data-active-tab="tab_3"><span th:text="'Reviews(' + ${countComments} +')'"></span></li>
 						</ul>
 					</div>
 				</div>
@@ -240,6 +236,9 @@
 								<div class="tab_text_block">
 									<h4 th:text="${product.descriptionLong}"></h4>
 								</div>								
+								<div class="tab_image">
+									<img th:src="${product.imageSecond}" alt=""/>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -327,8 +326,6 @@
 
 	</div>
 
-	<!-- Benefit -->
-
 	<div class="benefit">
 		<div class="container">
 			<div class="row benefit_row">
@@ -345,8 +342,8 @@
 					<div class="benefit_item d-flex flex-row align-items-center">
 						<div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
 						<div class="benefit_content">
-							<h6>cach on delivery</h6>
-							<p>The Internet Tend To Repeat</p>
+							<h6>6 year guarantee</h6>
+							<p>Don't forget any more</p>
 						</div>
 					</div>
 				</div>
@@ -354,7 +351,7 @@
 					<div class="benefit_item d-flex flex-row align-items-center">
 						<div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
 						<div class="benefit_content">
-							<h6>45 days return</h6>
+							<h6>90 days return</h6>
 							<p>Making it Look Like Readable</p>
 						</div>
 					</div>
@@ -363,15 +360,15 @@
 					<div class="benefit_item d-flex flex-row align-items-center">
 						<div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
 						<div class="benefit_content">
-							<h6>opening all week</h6>
-							<p>8AM - 09PM</p>
+							<h6>quick delivery</h6>
+							<p>up to 30 days waiting</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Newsletter -->
 
 	<div class="newsletter">

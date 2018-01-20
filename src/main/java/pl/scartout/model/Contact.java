@@ -13,8 +13,6 @@ import javax.validation.constraints.NotNull;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.validator.constraints.Email;
-
 	@XmlRootElement
 	@Entity
 	@Table(name = "contacts")
@@ -25,9 +23,6 @@ import org.hibernate.validator.constraints.Email;
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "contact_id")
 	    private Long id;
-	    @Email
-	    @Column(nullable = false)
-	    private String email;
 	    @NotNull
 	    @Column(name = "phone_number_first")
 	    private String phoneNumberFirst;
@@ -37,9 +32,8 @@ import org.hibernate.validator.constraints.Email;
 	    
 	    public Contact(){}
 
-		public Contact(String email, String phoneNumberFirst, String phoneNumberSecond, String fax) {
+		public Contact(String phoneNumberFirst, String phoneNumberSecond, String fax) {
 			super();
-			this.email = email;
 			this.phoneNumberFirst = phoneNumberFirst;
 			this.phoneNumberSecond = phoneNumberSecond;
 			this.fax = fax;
@@ -51,14 +45,6 @@ import org.hibernate.validator.constraints.Email;
 
 		public void setId(Long id) {
 			this.id = id;
-		}
-
-		public String getEmail() {
-			return email;
-		}
-
-		public void setEmail(String email) {
-			this.email = email;
 		}
 
 		public String getPhoneNumberFirst() {
@@ -85,21 +71,16 @@ import org.hibernate.validator.constraints.Email;
 			this.fax = fax;
 		}
 
-		public static long getSerialversionuid() {
-			return serialVersionUID;
-		}
-
 		@Override
 		public String toString() {
-			return "Contact [id=" + id + ", email=" + email + ", phoneNumberFirst=" + phoneNumberFirst
-					+ ", phoneNumberSecond=" + phoneNumberSecond + ", fax=" + fax + "]";
+			return "Contact [id=" + id + ", phoneNumberFirst=" + phoneNumberFirst + ", phoneNumberSecond="
+					+ phoneNumberSecond + ", fax=" + fax + "]";
 		}
 
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + ((email == null) ? 0 : email.hashCode());
 			result = prime * result + ((fax == null) ? 0 : fax.hashCode());
 			result = prime * result + ((id == null) ? 0 : id.hashCode());
 			result = prime * result + ((phoneNumberFirst == null) ? 0 : phoneNumberFirst.hashCode());
@@ -116,11 +97,6 @@ import org.hibernate.validator.constraints.Email;
 			if (getClass() != obj.getClass())
 				return false;
 			Contact other = (Contact) obj;
-			if (email == null) {
-				if (other.email != null)
-					return false;
-			} else if (!email.equals(other.email))
-				return false;
 			if (fax == null) {
 				if (other.fax != null)
 					return false;

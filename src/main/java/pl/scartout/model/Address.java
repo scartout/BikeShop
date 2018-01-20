@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @NotNull
 	    private String county;
 	    @NotNull
+	    private String country;
+	    @NotNull
 	    private String street;
 	    @NotNull
 	    private String postcode;
@@ -42,23 +44,96 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    
 	    public Address(){}
 
-		public Address(String city, String voivodeship, String county, String street, String postcode,
-				String streetNumber, String localNumber) {
+		public Address(String city, String voivodeship, String county, String country, String street,
+				String postcode, String streetNumber, String localNumber) {
 			super();
 			this.city = city;
 			this.voivodeship = voivodeship;
 			this.county = county;
+			this.country = country;
 			this.street = street;
 			this.postcode = postcode;
 			this.streetNumber = streetNumber;
 			this.localNumber = localNumber;
 		}
 
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getCity() {
+			return city;
+		}
+
+		public void setCity(String city) {
+			this.city = city;
+		}
+
+		public String getVoivodeship() {
+			return voivodeship;
+		}
+
+		public void setVoivodeship(String voivodeship) {
+			this.voivodeship = voivodeship;
+		}
+
+		public String getCounty() {
+			return county;
+		}
+
+		public void setCounty(String county) {
+			this.county = county;
+		}
+
+		public String getCountry() {
+			return country;
+		}
+
+		public void setCountry(String country) {
+			this.country = country;
+		}
+
+		public String getStreet() {
+			return street;
+		}
+
+		public void setStreet(String street) {
+			this.street = street;
+		}
+
+		public String getPostcode() {
+			return postcode;
+		}
+
+		public void setPostcode(String postcode) {
+			this.postcode = postcode;
+		}
+
+		public String getStreetNumber() {
+			return streetNumber;
+		}
+
+		public void setStreetNumber(String streetNumber) {
+			this.streetNumber = streetNumber;
+		}
+
+		public String getLocalNumber() {
+			return localNumber;
+		}
+
+		public void setLocalNumber(String localNumber) {
+			this.localNumber = localNumber;
+		}
+
 		@Override
 		public String toString() {
 			return "Address [id=" + id + ", city=" + city + ", voivodeship=" + voivodeship + ", county=" + county
-					+ ", street=" + street + ", postcode=" + postcode + ", streetNumber=" + streetNumber
-					+ ", localNumber=" + localNumber + "]";
+					+ ", country=" + country + ", street=" + street + ", postcode=" + postcode + ", streetNumber="
+					+ streetNumber + ", localNumber=" + localNumber + "]";
 		}
 
 		@Override
@@ -66,6 +141,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((city == null) ? 0 : city.hashCode());
+			result = prime * result + ((country == null) ? 0 : country.hashCode());
 			result = prime * result + ((county == null) ? 0 : county.hashCode());
 			result = prime * result + ((id == null) ? 0 : id.hashCode());
 			result = prime * result + ((localNumber == null) ? 0 : localNumber.hashCode());
@@ -89,6 +165,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 				if (other.city != null)
 					return false;
 			} else if (!city.equals(other.city))
+				return false;
+			if (country == null) {
+				if (other.country != null)
+					return false;
+			} else if (!country.equals(other.country))
 				return false;
 			if (county == null) {
 				if (other.county != null)
@@ -127,5 +208,5 @@ import javax.xml.bind.annotation.XmlRootElement;
 				return false;
 			return true;
 		}
-	   
+
 }

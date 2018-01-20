@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Bike Shop</title>
@@ -156,160 +155,48 @@
 	<div class="container product_section_container">
 		<div class="row">
 			<div class="col product_section clearfix">
-
-				<!-- Breadcrumbs -->
-
-				<div class="breadcrumbs d-flex flex-row align-items-center">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li class="active"><a href="index.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
-					</ul>
-				</div>
-
-				<!-- Sidebar -->
-
-				<div class="sidebar">
-					<div class="sidebar_section">
-						<div class="sidebar_title">
-							<h5>Product Category</h5>
-						</div>
-						<ul class="sidebar_categories">
-							<li><a th:href="@{/products?id=1}">Race</a></li>
-							<li><a th:href="@{/products?id=2}">MTB</a></li>
-							<li><a th:href="@{/products?id=3}">Cross</a></li>
-							<li><a th:href="@{/products?id=4}">City</a></li>
-							<li><a th:href="@{/products?id=5}">Accesories</a></li>
-						</ul>
-					</div>
-
-					<!-- Price Range Filtering -->
-					<div class="sidebar_section">
-						<div class="sidebar_title">
-							<h5>Filter by Price</h5>
-						</div>
-						<p>
-							<input type="text" id="amount" readonly="readonly" style="border:0; color:#f6931f; font-weight:bold;"></input>
-						</p>
-						<form th:action="@{/filter}">
-							<input type="hidden" id="priceMin" name="priceMin" readonly="readonly" style="border:0; color:#f6931f; font-weight:bold;"></input>
-							<input type="hidden" id="priceMax" name="priceMax" readonly="readonly" style="border:0; color:#f6931f; font-weight:bold;"></input>
-						<div id="slider-range"></div>
-						<button class="filter_button" type="submit" value="Submit"><span>filter</span></button>
-						</form>
-					</div>
-
-				</div>
-
-				<!-- Main Content -->
-
-				<div class="main_content">
-
-					<!-- Products -->
-
-					<div class="products_iso">
-						<div class="row">
-							<div class="col">
-
-								<!-- Product Sorting -->
-
-								<div class="product_sorting_container product_sorting_container_top">
-									<ul class="product_sorting">
-										<li>
-											<span class="type_sorting_text">Default Sorting</span>
-											<i class="fa fa-angle-down"></i>
-											<ul class="sorting_type">
-												<li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default Sorting</span></li>
-												<li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
-												<li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Product Name</span></li>
-											</ul>
-										</li>
-										<li>
-											<span>Show</span>
-											<span class="num_sorting_text">6</span>
-											<i class="fa fa-angle-down"></i>
-											<ul class="sorting_num">
-												<li class="num_sorting_btn"><span>6</span></li>
-												<li class="num_sorting_btn"><span>12</span></li>
-												<li class="num_sorting_btn"><span>24</span></li>
-											</ul>
-										</li>
-									</ul>
-									<div class="pages d-flex flex-row align-items-center">
-										<div class="page_current">
-											<span>1</span>
-											<ul class="page_selection">
-												<li><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-											</ul>
-										</div>
-										<div class="page_total"><span>of</span> 3</div>
-										<div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
-									</div>
-
-								</div>
-
-								<!-- Product Grid -->
-
-								<div class="product-grid">
-
-									<!-- Products -->
-									
-									<div th:each="product: ${products}">
-	
-										<div class="product-item women">
-											<div class="product product_filter">
-												<div class="product_image">
-													<img th:src="${product.mainImage}" alt=""></img>
-												</div>
-												<div class="favorite"></div>
-												<div class="product_info">
-													<h6 class="product_name"><a th:href="@{product?id=}+${product.id}"><p th:text="${product.name}"/></a></h6>
-													<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 0, 2)+' PLN'}"></div>
-												</div>
-											</div>
-											<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-										</div>
-										
-									</div>
-								</div>
-
-								<!-- Product Sorting -->
-
-								<div class="product_sorting_container product_sorting_container_bottom clearfix">
-									<ul class="product_sorting">
-										<li>
-											<span>Show:</span>
-											<span class="num_sorting_text">04</span>
-											<i class="fa fa-angle-down"></i>
-											<ul class="sorting_num">
-												<li class="num_sorting_btn"><span>01</span></li>
-												<li class="num_sorting_btn"><span>02</span></li>
-												<li class="num_sorting_btn"><span>03</span></li>
-												<li class="num_sorting_btn"><span>04</span></li>
-											</ul>
-										</li>
-									</ul>
-									<span class="showing_results" th:text="'Showing '+${countProducts}+' results'"></span>
-									<div class="pages d-flex flex-row align-items-center">
-										<div class="page_current">
-											<span>1</span>
-											<ul class="page_selection">
-												<li><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-											</ul>
-										</div>
-										<div class="page_total"><span>of</span> 3</div>
-										<div id="next_page_1" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
-									</div>
-
-								</div>
-
+			<div class="user_review_container d-flex flex-column flex-sm-row">
+			<form class="form-signin" action="#" method="post" th:action="@{/updateProduct}">
+		        	<h5 class="form-signin-heading">Add product</h5>
+			        <p>Name:<input placeholder="Name" required="required" type="text" name="name" th:value="${product.name}"/></p>
+			        <p>Description short:<input placeholder="Description short" required="required" type="text" name="descriptionShort" th:value="${product.descriptionShort}"/></p>
+			        <p>Description long:<input placeholder="Description short:" required="required" type="text" name="descriptionLong" th:value="${product.descriptionLong}"/></p>
+			        <p>Size information<input placeholder="Size information" required="required" type="text" name="descriptionSize" th:value="${product.descriptionSize}"/></p>
+			        <p>Price:<input placeholder="Price" required="required" type="number" name="price" th:value="${product.price}"/></p>
+			        <p>Vat [%]:<input placeholder="e.g. 23%" required="required" type="number" name="vat" th:value="${product.vat}"/></p>
+			        <p>Main image:<input placeholder="Main image:" required="required" type="text" name="mainImage" th:value="${product.mainImage}"/></p>
+			        <p>Image 2:<input placeholder="Image 2:" type="text" name="imageSecond" th:value="${product.imageSecond}"/></p>
+			        <p>Image 3:<input placeholder="Image 3:" type="text" name="imageThird" th:value="${product.imageThird}"/></p>
+			        <input type="hidden" name="id" th:value="${product.id}"/>
+			        <p>Category</p>
+			        <select name="categoryName">
+			        	<div th:each="category: ${categories}">
+  							<div th:switch="${category.name}"> 
+  							<p th:case="${product.category.name}">
+  								<option selected="selected" th:text="*{category.name}"></option>
+  							</p>	
+  							<p th:case="*">
+								<option th:text="*{category.name}"></option>
+							</p>
 							</div>
 						</div>
-					</div>
-				</div>
+					</select>
+			        <p>Producer</p>
+			        <select name="producerName">
+			        	<div th:each="producer: ${producers}">
+  							<div th:switch="${producer.name}"> 
+  							<p th:case="${product.producer.name}">
+  								<option selected="selected" th:text="*{producer.name}"></option>
+  							</p>	
+  							<p th:case="*">
+								<option th:text="*{producer.name}"></option>
+							</p>
+							</div>
+						</div>
+					</select>
+		        	<button class="filter_button" type="submit" value="Submit"><span>Update</span></button>
+	    		</form>
+			</div>
 			</div>
 		</div>
 	</div>

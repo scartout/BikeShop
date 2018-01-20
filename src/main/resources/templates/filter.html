@@ -200,7 +200,7 @@
 							<div class="col">
 
 								<!-- Product Sorting -->
-
+							
 								<div class="product_sorting_container product_sorting_container_top">
 									<ul class="product_sorting">
 										<li>
@@ -249,13 +249,12 @@
 										<div class="product-item women">
 											<div class="product product_filter">
 												<div class="product_image">
-													<!-- <img th:src="${product.url}" alt=""></img>-->
+													<img th:src="${product.mainImage}" alt=""></img>
 												</div>
 												<div class="favorite"></div>
-												<div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
 												<div class="product_info">
 													<h6 class="product_name"><a th:href="@{product?id=}+${product.id}"><p th:text="${product.name}"/></a></h6>
-													<div class="product_price" th:text="${product.price + ' PLN'}"></div>
+													<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 0, 2)+' PLN'}"></div>
 												</div>
 											</div>
 											<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
@@ -281,7 +280,7 @@
 											</ul>
 										</li>
 									</ul>
-									<span class="showing_results">Showing 1–3 of 12 results</span>
+									<span class="showing_results" th:text="'Showing '+${countProducts}+' results'"></span>
 									<div class="pages d-flex flex-row align-items-center">
 										<div class="page_current">
 											<span>1</span>

@@ -9,4 +9,6 @@ import pl.scartout.model.Producer;
 @Transactional
 @Repository
 public interface ProducerRepo extends JpaRepository<Producer, Long> {
+
+	Producer findByName(String producerName);
 }

@@ -42,7 +42,7 @@ public class CommentController {
     	comment.setProduct(product);
     	comment.setUser(user);
     	commentRepo.save(comment);
-        return "redirect:/";
+        return "redirect:/product?id="+productId;
     }
 
 }

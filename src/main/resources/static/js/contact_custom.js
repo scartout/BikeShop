@@ -153,22 +153,22 @@ jQuery(document).ready(function($)
 
 	function initGoogleMap()
 	{
-		var myLatlng = new google.maps.LatLng(42.373122,-71.112387);
+		var myLatlng = new google.maps.LatLng(51.759269, 19.456575);
     	var mapOptions = 
     	{
     		center: myLatlng,
-	       	zoom: 16,
+	       	zoom: 14,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			draggable: true,
-			scrollwheel: false,
+			scrollwheel: true,
 			zoomControl: true,
 			zoomControlOptions:
 			{
 				position: google.maps.ControlPosition.RIGHT_CENTER
 			},
 			mapTypeControl: false,
-			scaleControl: false,
-			streetViewControl: false,
+			scaleControl: true,
+			streetViewControl: true,
 			rotateControl: false,
 			fullscreenControl: true,
 			styles:

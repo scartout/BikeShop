@@ -46,13 +46,11 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    @Column(name = "price_net")
 	    private Double priceNet;
 	    private Double vat;
+	    private String mainImage;
+	    private String imageSecond;
+	    private String imageThird;
 	    @ManyToMany(mappedBy = "products")
 	    private List<Order> orders;
-	    @LazyCollection(LazyCollectionOption.FALSE)
-	    @OneToMany(mappedBy = "product",
-	    		cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
-	    		orphanRemoval = true)
-	    private List<Image> images = new ArrayList<>();
 	    @ManyToOne
 	    @JoinColumn(name = "category_id")
 	    private Category category;
@@ -67,9 +65,8 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    
 	    public Product() {}
 
-		public Product(Long id, String name, String descriptionShort, String descriptionLong, String descriptionSize,
-				Double price, Double priceNet, Double vat, List<Order> orders, List<Image> images, Category category,
-				Producer producer, List<Comment> comments) {
+		public Product(String name, String descriptionShort, String descriptionLong, String descriptionSize,
+				Double price, Double priceNet, Double vat, String mainImage, String imageSecond, String imageThird) {
 			super();
 			this.name = name;
 			this.descriptionShort = descriptionShort;
@@ -78,6 +75,9 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.price = price;
 			this.priceNet = priceNet;
 			this.vat = vat;
+			this.mainImage = mainImage;
+			this.imageSecond = imageSecond;
+			this.imageThird = imageThird;
 		}
 
 		public Long getId() {
@@ -144,20 +144,36 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.vat = vat;
 		}
 
+		public String getMainImage() {
+			return mainImage;
+		}
+
+		public void setMainImage(String mainImage) {
+			this.mainImage = mainImage;
+		}
+
+		public String getImageSecond() {
+			return imageSecond;
+		}
+
+		public void setImageSecond(String imageSecond) {
+			this.imageSecond = imageSecond;
+		}
+
+		public String getImageThird() {
+			return imageThird;
+		}
+
+		public void setImageThird(String imageThird) {
+			this.imageThird = imageThird;
+		}
+
 		public List<Order> getOrders() {
 			return orders;
 		}
 
 		public void setOrders(List<Order> orders) {
 			this.orders = orders;
-		}
-
-		public List<Image> getImages() {
-			return images;
-		}
-
-		public void setImages(List<Image> images) {
-			this.images = images;
 		}
 
 		public Category getCategory() {
@@ -186,10 +202,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 		@Override
 		public String toString() {
-			return "Product [id=" + id + ", name=" + name + ", descriptionShort=" + descriptionShort
-					+ ", descriptionLong=" + descriptionLong + ", descriptionSize=" + descriptionSize + ", price="
-					+ price + ", priceNet=" + priceNet + ", vat=" + vat + ", orders=" + orders + ", images=" + images
-					+ ", category=" + category + ", producer=" + producer + ", comments=" + comments + "]";
+			return "Product [id=" + id + ", name=" + name;
 		}
 
 		@Override
@@ -202,7 +215,9 @@ import org.hibernate.annotations.LazyCollectionOption;
 			result = prime * result + ((descriptionShort == null) ? 0 : descriptionShort.hashCode());
 			result = prime * result + ((descriptionSize == null) ? 0 : descriptionSize.hashCode());
 			result = prime * result + ((id == null) ? 0 : id.hashCode());
-			result = prime * result + ((images == null) ? 0 : images.hashCode());
+			result = prime * result + ((imageSecond == null) ? 0 : imageSecond.hashCode());
+			result = prime * result + ((imageThird == null) ? 0 : imageThird.hashCode());
+			result = prime * result + ((mainImage == null) ? 0 : mainImage.hashCode());
 			result = prime * result + ((name == null) ? 0 : name.hashCode());
 			result = prime * result + ((orders == null) ? 0 : orders.hashCode());
 			result = prime * result + ((price == null) ? 0 : price.hashCode());
@@ -251,10 +266,20 @@ import org.hibernate.annotations.LazyCollectionOption;
 					return false;
 			} else if (!id.equals(other.id))
 				return false;
-			if (images == null) {
-				if (other.images != null)
+			if (imageSecond == null) {
+				if (other.imageSecond != null)
 					return false;
-			} else if (!images.equals(other.images))
+			} else if (!imageSecond.equals(other.imageSecond))
+				return false;
+			if (imageThird == null) {
+				if (other.imageThird != null)
+					return false;
+			} else if (!imageThird.equals(other.imageThird))
+				return false;
+			if (mainImage == null) {
+				if (other.mainImage != null)
+					return false;
+			} else if (!mainImage.equals(other.mainImage))
 				return false;
 			if (name == null) {
 				if (other.name != null)
