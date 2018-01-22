@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.1.3-SNAPSHOT
+Version 0.2.0
 
 
 ## How to use:
@@ -13,13 +13,12 @@ Version 0.1.3-SNAPSHOT
 
 ## About version:
 
-1. Some buttons might be inactive.
-2. Temporarily "user" has the same privileges as "admin".
+Some buttons might be inactive.
 
 
 ## Admin panel:
 
-Look path "localhost:8080/admin".
+Look path "localhost:8080/admin". You have to change your default role from "user" to "admin" in MySql after registration.
 
 
 ## Invoices:

@@ -2,6 +2,7 @@ package pl.scartout.controller;
 
 import java.util.List;
 
+import org.springframework.aop.AopInvocationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -33,8 +34,12 @@ public class ProductController {
     	model.addAttribute("comments", comments);
     	long countComments = commentRepo.countCommentsByProduct(product);
     	model.addAttribute("countComments", countComments);
-    	double avgComments = commentRepo.avgCommentsByProduct(product);
-    	model.addAttribute("avgComments", avgComments);
+    	try{
+    		double avgComments = commentRepo.avgCommentsByProduct(product);
+    		model.addAttribute("avgComments", avgComments);
+    	}catch(AopInvocationException e) {
+    		model.addAttribute("avgComments", 0);
+    	}
         return "product";
     }
 

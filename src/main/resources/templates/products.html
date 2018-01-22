@@ -268,7 +268,7 @@
 												<div class="favorite"></div>
 												<div class="product_info">
 													<h6 class="product_name"><a th:href="@{product?id=}+${product.id}"><p th:text="${product.name}"/></a></h6>
-													<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 0, 2)+' PLN'}"></div>
+													<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 1, 2)+' PLN'}"></div>
 												</div>
 											</div>
 											<form th:action="@{/addtocart}" method="post">

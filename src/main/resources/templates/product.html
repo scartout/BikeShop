@@ -180,9 +180,9 @@
 						<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
 							<div class="single_product_thumbnails">
 								<ul>
-									<li class="active"><img th:src="${product.mainImage}" alt="" data-image="*{product.url}"/></li>
+									<li class="active"><img th:src="${product.mainImage}" alt="" data-image='${product.mainImage}'/></li>
 									<li><img th:src="${product.imageSecond}" alt="" data-image='*{product.imageSecond}'/></li>
-									<li><img th:src="${product.imageThird}" alt="" data-image="*{product.imageThird}"/></li>
+									<li><img th:src="${product.imageThird}" alt="" data-image='#{resource[product.imageThird]}'/></li>
 								</ul>
 							</div>
 						</div>
@@ -203,8 +203,8 @@
 					<div class="free_delivery d-flex flex-row align-items-center justify-content-center">
 						<span class="ti-truck"></span><span>free delivery</span>
 					</div>
-					<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 0, 2)+' PLN'}"></div>
-					<h5 th:text="'Product rate '+${#numbers.formatDecimal(avgComments, 0, 2)}+'/5'"></h5>
+					<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 1, 2)+' PLN'}"></div>
+					<h5 th:text="'Product rate '+${#numbers.formatDecimal(avgComments, 1, 2)}+'/5'"></h5>
 					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 						<span>Quantity:</span>
 						<form th:action="@{/addtocart}" method="post">
@@ -283,7 +283,7 @@
 
 							<!-- User Review -->
 							
-								<h5 th:text="'Product rate '+${#numbers.formatDecimal(avgComments, 0, 2)}+'/5'"></h5>
+								<h5 th:text="'Product rate '+${#numbers.formatDecimal(avgComments, 1, 2)}+'/5'"></h5>
 							
 								<div th:each="comment: ${comments}">
 									<div class="user_review_container d-flex flex-column flex-sm-row">
@@ -329,13 +329,13 @@
 											<p>Your vote:</p>
 											<select name="vote">
 												<option value="1">1</option>
-												<option value="1">1,5</option>
+												<option value="1.5">1,5</option>
 												<option value="2">2</option>
-												<option value="5">2,5</option>
+												<option value="2.5">2,5</option>
 												<option value="3">3</option>
-												<option value="5">3,5</option>
+												<option value="3.5">3,5</option>
 												<option value="4">4</option>
-												<option value="5">4,5</option>
+												<option value="4.5">4,5</option>
 												<option value="5">5</option>
 											</select> 
 											<textarea id="review_message" class="input_review" name="description"  placeholder="Your Review" rows="4" required="required" data-error="Please, leave us a review."></textarea>

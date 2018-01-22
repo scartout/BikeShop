@@ -169,8 +169,8 @@
 			        	<td th:text="${order.id}"></td>
 			        	<td th:text="${order.product.name}"></td>
 			        	<td th:text="${order.quantity}"></td>
-			        	<td th:text="${#numbers.formatDecimal(order.product.price, 0, 2)+' PLN'}"></td>
-			        	<td th:text="${order.total}"></td>
+			        	<td th:text="${#numbers.formatDecimal(order.product.price, 1, 2)+' PLN'}"></td>
+			        	<td th:text="${#numbers.formatDecimal(order.total, 1, 2)+' PLN'}"></td>
 					    <td><form action="completeitem" th:action="@{/confirmApproval}" method="post" >
     						<input type="hidden" name="id" th:value="${order.id}"/>
     						<button class="filter_button" type="submit" value="Confirm approval"><span>Confirm approval</span></button>
@@ -182,6 +182,10 @@
     					<td><form action="completeitem" th:action="@{/confirmComplete}" method="post" >
     						<input type="hidden" name="id" th:value="${order.id}"/>
     						<button class="filter_button" type="submit" value="Confirm complete"><span>Confirm complete</span></button>
+    					</form></td>
+    					<td><form action="completeitem" th:action="@{/cancelOrder}" method="post" >
+    						<input type="hidden" name="id" th:value="${order.id}"/>
+    						<button class="filter_button" type="submit" value="Cancel order"><span>Cancel order</span></button>
     					</form></td>
     					<td><form action="completeitem" th:action="@{/printInvoice}" method="post" >
     						<input type="hidden" name="id" th:value="${order.id}"/>
