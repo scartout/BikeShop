@@ -80,7 +80,7 @@
 								<li><a th:href="@{/contact}">Contact</a></li>
 							</ul>
 							<ul class="navbar_user">
-								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+								<li><a th:href="@{/search}"><i class="fa fa-search" aria-hidden="true"></i></a></li>
 								<li><a th:href="@{/orders}"><i class="fa fa-truck" aria-hidden="true"></i></a></li>
 								<li class="checkout">
 									<a th:href="@{/cart}">
@@ -160,6 +160,10 @@
 
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
+						<form th:action="@{/search}">
+							<li><input name="string" type="text"></input></li>
+							<li><button class="filter_button" type="submit" value="Search"><span>Search</span></button></li>
+						</form>
 					</ul>
 				</div>
 

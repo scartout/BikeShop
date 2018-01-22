@@ -33,7 +33,16 @@
 					<div class="col-md-6"></div>
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
-							<ul class="account_selection">
+							<ul class="top_nav_menu">
+
+								<!-- My Account -->
+								
+								<li class="account">
+									<a href="#">
+										My Account
+										<i class="fa fa-angle-down"></i>
+									</a>
+									<ul class="account_selection">
 										<li th:switch="${session.isEmpty()}">
 	  									<p th:case="true">
 											<li><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
@@ -74,7 +83,7 @@
 								<li><a th:href="@{/contact}">Contact</a></li>
 							</ul>
 							<ul class="navbar_user">
-								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+								<li><a th:href="@{/search}"><i class="fa fa-search" aria-hidden="true"></i></a></li>
 								<li><a th:href="@{/orders}"><i class="fa fa-truck" aria-hidden="true"></i></a></li>
 								<li class="checkout">
 									<a th:href="@{/cart}">
@@ -154,6 +163,10 @@
 
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
+						<form th:action="@{/search}">
+							<li><input name="string" type="text"></input></li>
+							<li><button class="filter_button" type="submit" value="Search"><span>Search</span></button></li>
+						</form>
 					</ul>
 				</div>
 
