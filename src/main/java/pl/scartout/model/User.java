@@ -50,14 +50,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @OneToOne
 	    @JoinColumn(name = "role_id")
 	    private Role role;
-	    @OneToOne
-	    @JoinColumn(name = "contact_id")
-	    private Contact contact;
 	    @LazyCollection(LazyCollectionOption.FALSE)
 	    @OneToMany(mappedBy = "user", 
 	            cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
 	            orphanRemoval = true)
 	    private List<Order> orders = new ArrayList<>();
+	    @OneToOne
+	    @JoinColumn(name = "contact_id")
+	    private Contact contact;
 	    @OneToOne
 	    @JoinColumn(name = "address_id")
 	    private Address address;

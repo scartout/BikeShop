@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.1.0
+Version 0.1.1
 
 
 ## How to use:
@@ -14,8 +14,7 @@ Version 0.1.0
 ## About version:
 
 1. Some buttons might be inactive.
-2. User settings will be fully implemented in the next version.
-3. Temporarily "user" has the same privileges as "admin".
+2. Temporarily "user" has the same privileges as "admin".
 
 
 ## Admin panel:
