@@ -164,7 +164,6 @@
 				        <th>Quantity</th>
 				        <th>Price</th>
 				        <th>Total</th>
-				        <th>Proceed</th>
 			        </tr>
 			        <tr th:each="order: ${orders}">
 			        	<td th:text="${order.id}"></td>
@@ -183,6 +182,10 @@
     					<td><form action="completeitem" th:action="@{/confirmComplete}" method="post" >
     						<input type="hidden" name="id" th:value="${order.id}"/>
     						<button class="filter_button" type="submit" value="Confirm complete"><span>Confirm complete</span></button>
+    					</form></td>
+    					<td><form action="completeitem" th:action="@{/printInvoice}" method="post" >
+    						<input type="hidden" name="id" th:value="${order.id}"/>
+    						<button class="filter_button" type="submit" value="Print invoice to file"><span>Print invoice to file</span></button>
     					</form></td>
 			        </tr>
 		        	</table>

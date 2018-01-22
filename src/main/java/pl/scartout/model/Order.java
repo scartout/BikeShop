@@ -27,6 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    private Long id;
 	    private int quantity;
 	    private double total;
+	    @Column(name = "invoice_number")
+	    private String invoiceNumber;
 	    @Column(name = "order_date")
 	    private Date orderDate;
 	    @Column(name = "approval_date")
@@ -71,6 +73,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		public void setTotal(double total) {
 			this.total = total;
+		}
+
+		public String getInvoiceNumber() {
+			return invoiceNumber;
+		}
+
+		public void setInvoiceNumber(String invoiceNumber) {
+			this.invoiceNumber = invoiceNumber;
 		}
 
 		public Date getOrderDate() {
@@ -123,7 +133,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "Order [id=" + id + "]";
+			return "Order [id=" + id + ", quantity=" + quantity + ", total=" + total + ", invoiceNumber="
+					+ invoiceNumber + ", orderDate=" + orderDate + ", approvalDate=" + approvalDate + ", shippingDate="
+					+ shippingDate + ", completeDate=" + completeDate + ", user=" + user + ", product=" + product + "]";
 		}
 
 		@Override
@@ -133,6 +145,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 			result = prime * result + ((approvalDate == null) ? 0 : approvalDate.hashCode());
 			result = prime * result + ((completeDate == null) ? 0 : completeDate.hashCode());
 			result = prime * result + ((id == null) ? 0 : id.hashCode());
+			result = prime * result + ((invoiceNumber == null) ? 0 : invoiceNumber.hashCode());
 			result = prime * result + ((orderDate == null) ? 0 : orderDate.hashCode());
 			result = prime * result + ((product == null) ? 0 : product.hashCode());
 			result = prime * result + quantity;
@@ -167,6 +180,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 				if (other.id != null)
 					return false;
 			} else if (!id.equals(other.id))
+				return false;
+			if (invoiceNumber == null) {
+				if (other.invoiceNumber != null)
+					return false;
+			} else if (!invoiceNumber.equals(other.invoiceNumber))
 				return false;
 			if (orderDate == null) {
 				if (other.orderDate != null)

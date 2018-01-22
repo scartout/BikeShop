@@ -17,6 +17,8 @@ import pl.scartout.model.User;
 @Repository
 public interface OrderRepo extends JpaRepository<Order, Long> {
 	
+	Order findById(Long id);
+	
 	List<Order> findByUser(User user);
 
 	List<Order> findByUserId(User user);
@@ -27,8 +29,8 @@ public interface OrderRepo extends JpaRepository<Order, Long> {
     		@Param("total") double total);
 	
 	@Modifying
-	@Query("UPDATE Order c SET c.approvalDate=:approvalDate WHERE c.id = :id")
-    int confirmApproval(@Param("id") Long id, @Param("approvalDate") Date approval_date);
+	@Query("UPDATE Order c SET c.invoiceNumber=:invoiceNumber, c.approvalDate=:approvalDate WHERE c.id = :id")
+    int confirmApproval(@Param("id") Long id, @Param("invoiceNumber") String invoiceNumber, @Param("approvalDate") Date approval_date);
 	
 	@Modifying
 	@Query("UPDATE Order c SET c.shippingDate=:shippingDate WHERE c.id = :id")

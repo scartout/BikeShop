@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.1.2
+Version 0.1.3-SNAPSHOT
 
 
 ## How to use:
@@ -22,6 +22,11 @@ Version 0.1.2
 Look path "localhost:8080/admin".
 
 
+## Invoices:
+
+Invoices default folder is "D:/". You might change it in OrderController.java class (constant INVOICE_FOLDER).
+
+
 ## Business goal:
 
 BikeShop has been being implemented an example of this kind of portals.
@@ -39,4 +44,5 @@ BikeShop has been being implemented an example of this kind of portals.
 - JPA
 - Bootstrap
 - Javascript
+- ITextPDF
 - Maven
