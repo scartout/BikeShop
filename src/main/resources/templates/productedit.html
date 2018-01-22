@@ -162,9 +162,9 @@
 			        <p>Name:<input placeholder="Name" required="required" type="text" name="name" th:value="${product.name}"/></p>
 			        <p>Description short:<input placeholder="Description short" required="required" type="text" name="descriptionShort" th:value="${product.descriptionShort}"/></p>
 			        <p>Description long:<input placeholder="Description short:" required="required" type="text" name="descriptionLong" th:value="${product.descriptionLong}"/></p>
-			        <p>Size information<input placeholder="Size information" required="required" type="text" name="descriptionSize" th:value="${product.descriptionSize}"/></p>
-			        <p>Price:<input placeholder="Price" required="required" type="number" name="price" th:value="${product.price}"/></p>
-			        <p>Vat [%]:<input placeholder="e.g. 23%" required="required" type="number" name="vat" th:value="${product.vat}"/></p>
+			        <p>Size information<input placeholder="M, S, L, XL, XLL" required="required" type="text" name="descriptionSize" th:value="${product.descriptionSize}"/></p>
+			        <p>Price:<input placeholder="Price" required="required" type="number" name="price" min="0" th:value="${product.price}"/></p>
+			        <p>Vat [%]:<input placeholder="e.g. 23%" required="required" type="number" name="vat" min="0" th:value="${product.vat}"/></p>
 			        <p>Main image:<input placeholder="Main image:" required="required" type="text" name="mainImage" th:value="${product.mainImage}"/></p>
 			        <p>Image 2:<input placeholder="Image 2:" type="text" name="imageSecond" th:value="${product.imageSecond}"/></p>
 			        <p>Image 3:<input placeholder="Image 3:" type="text" name="imageThird" th:value="${product.imageThird}"/></p>

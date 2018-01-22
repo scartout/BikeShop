@@ -42,6 +42,7 @@ public class SpringJpaBootApplication{
         
         if (categoryRepo.findByName("Accesories") == null) {
         	Category category5 = new Category(5L, "Accesories");
-        	categoryRepo.save(category5);}  
+        	categoryRepo.save(category5);}        
+        
     }
 }

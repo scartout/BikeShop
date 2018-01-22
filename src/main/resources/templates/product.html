@@ -174,27 +174,27 @@
 		</div>
 
 		<div class="row">
-			<div class="col-lg-7">
+			<div class="col-lg-10">
 				<div class="single_product_pics">
 					<div class="row">
-						<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
+						<div class="col-lg-2 thumbnails_col order-lg-0 order-2">
 							<div class="single_product_thumbnails">
 								<ul>
-									<li class="active"><img th:src="${product.mainImage}" alt="" data-image='${product.mainImage}'/></li>
-									<li><img th:src="${product.imageSecond}" alt="" data-image='*{product.imageSecond}'/></li>
-									<li><img th:src="${product.imageThird}" alt="" data-image='#{resource[product.imageThird]}'/></li>
+									<li class="active"><img th:src="${product.mainImage}" alt="" th:attr="data-image=${product.mainImage}"/></li>
+									<li><img th:src="${product.imageSecond}" alt="" th:attr="data-image=${product.imageSecond}"/></li>
+									<li><img th:src="${product.imageThird}" alt="" th:attr="data-image=${product.imageThird}"/></li>
 								</ul>
 							</div>
 						</div>
-						<div class="col-lg-9 image_col order-lg-2 order-1">
+						<div class="col-lg-10 image_col order-lg-2 order-0">
 							<div class="single_product_image">
-								<div class="single_product_image_background" style="background-image:url('#{resource[product.mainImage]}')"></div>
+								<div class="single_product_image_background" style="background-image:url(http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-transport-travel/041288-ultra-glossy-silver-button-icon-transport-travel-transportation-bicycle9-sc43.png)"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-5">
+			<div class="col-lg-2">
 				<div class="product_details">
 					<div class="product_details_title">
 						<h2 th:text="${product.name}"></h2>
