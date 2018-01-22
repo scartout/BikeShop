@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.0.5-SNAPSHOT
+Version 0.1.0
 
 
 ## How to use:
@@ -9,6 +9,13 @@ Version 0.0.5-SNAPSHOT
 1. Install MySQLWorkbench. Create new empty schema "bikeshop".
 2. Install Spring Tool Suite or IntelliJ IDEA Ultimate.
 3. Run the application as Spring Boot App.
+
+
+## About version:
+
+1. Some buttons might be inactive.
+2. User settings will be fully implemented in the next version.
+3. Temporarily "user" has the same privileges as "admin".
 
 
 ## Admin panel:

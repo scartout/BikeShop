@@ -54,7 +54,8 @@ public class ProductEditController {
 			@RequestParam String imageSecond, @RequestParam String imageThird) {
 		Category category = categoryRepo.findByName(categoryName);
 		Producer producer = producerRepo.findByName(producerName);
-    	productRepo.updateProduct(id, name, descriptionShort, descriptionLong, descriptionSize, price, vat, mainImage, imageSecond, imageThird, category, producer);
+		double priceNet = price*(1-vat/100);
+    	productRepo.updateProduct(id, name, descriptionShort, descriptionLong, descriptionSize, price, vat, priceNet, mainImage, imageSecond, imageThird, category, producer);
 		return "redirect:/admin";
 	}
 

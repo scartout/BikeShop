@@ -33,8 +33,8 @@ public class CommentController {
     }
     
     @PostMapping(path = "/addcomment", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String addComment(Model model, @RequestParam String description, @RequestParam long productId) {
-    	Comment comment = new Comment(description, new Date());
+    public String addComment(Model model, @RequestParam String description, @RequestParam long productId, @RequestParam double vote) {
+    	Comment comment = new Comment(description, new Date(), vote);
     	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	String username = userDetails.getUsername();
     	User user = userRepo.findByUsername(username);

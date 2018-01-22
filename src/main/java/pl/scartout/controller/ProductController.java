@@ -33,6 +33,8 @@ public class ProductController {
     	model.addAttribute("comments", comments);
     	long countComments = commentRepo.countCommentsByProduct(product);
     	model.addAttribute("countComments", countComments);
+    	double avgComments = commentRepo.avgCommentsByProduct(product);
+    	model.addAttribute("avgComments", avgComments);
         return "product";
     }
 

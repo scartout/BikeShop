@@ -19,4 +19,7 @@ public interface CommentRepo extends JpaRepository<Comment, Long> {
 	
 	@Query("SELECT count(c) FROM Comment c WHERE c.product=:product")
 	Long countCommentsByProduct(@Param("product") Product product);
+	
+	@Query("SELECT avg(c.vote) FROM Comment c WHERE c.product=:product")
+	double avgCommentsByProduct(@Param("product") Product product);
 }

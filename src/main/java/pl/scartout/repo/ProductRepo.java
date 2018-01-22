@@ -25,12 +25,12 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
 	
 	@Modifying(clearAutomatically = true)
     @Query("UPDATE Product c SET c.name=:name, c.descriptionShort=:descriptionShort, c.descriptionLong=:descriptionLong, "
-    		+ "c.descriptionSize=:descriptionSize, c.price=:price, c.vat=:vat, "
-    		+ "c.mainImage=:mainImage,c.imageSecond=:imageSecond,"
+    		+ "c.descriptionSize=:descriptionSize, c.price=:price, c.vat=:vat, c.priceNet=:priceNet,"
+    		+ "c.mainImage=:mainImage, c.imageSecond=:imageSecond,"
     		+ "c.imageThird=:imageThird, c.category=:category, c.producer=:producer WHERE c.id = :id")
     int updateProduct(@Param("id") Long id, @Param("name") String name, @Param("descriptionShort") String descriptionShort, 
     		@Param("descriptionLong") String descriptionLong, @Param("descriptionSize") String descriptionSize, 
-    		@Param("price") double price, @Param("vat") double vat, @Param("mainImage") String mainImage, 
+    		@Param("price") double price, @Param("vat") double vat, @Param("priceNet") double priceNet, @Param("mainImage") String mainImage, 
     		@Param("imageSecond") String imageSecond, @Param("imageThird") String imageThird,
     		@Param("category") Category category, @Param("producer") Producer producer);
 	

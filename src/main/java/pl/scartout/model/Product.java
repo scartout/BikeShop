@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -49,8 +48,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    private String mainImage;
 	    private String imageSecond;
 	    private String imageThird;
-	    @ManyToMany(mappedBy = "products")
-	    private List<Order> orders;
 	    @ManyToOne
 	    @JoinColumn(name = "category_id")
 	    private Category category;
@@ -168,14 +165,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.imageThird = imageThird;
 		}
 
-		public List<Order> getOrders() {
-			return orders;
-		}
-
-		public void setOrders(List<Order> orders) {
-			this.orders = orders;
-		}
-
 		public Category getCategory() {
 			return category;
 		}
@@ -219,7 +208,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 			result = prime * result + ((imageThird == null) ? 0 : imageThird.hashCode());
 			result = prime * result + ((mainImage == null) ? 0 : mainImage.hashCode());
 			result = prime * result + ((name == null) ? 0 : name.hashCode());
-			result = prime * result + ((orders == null) ? 0 : orders.hashCode());
 			result = prime * result + ((price == null) ? 0 : price.hashCode());
 			result = prime * result + ((priceNet == null) ? 0 : priceNet.hashCode());
 			result = prime * result + ((producer == null) ? 0 : producer.hashCode());
@@ -285,11 +273,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 				if (other.name != null)
 					return false;
 			} else if (!name.equals(other.name))
-				return false;
-			if (orders == null) {
-				if (other.orders != null)
-					return false;
-			} else if (!orders.equals(other.orders))
 				return false;
 			if (price == null) {
 				if (other.price != null)

@@ -33,18 +33,19 @@
 					<div class="col-md-6"></div>
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
-							<ul class="top_nav_menu">
-
-								<!-- My Account -->
-								
-								<li class="account">
-									<a href="#">
-										My Account
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="account_selection">
-										<li><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-										<li><a th:href="@{/register}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+							<ul class="account_selection">
+										<li th:switch="${session.isEmpty()}">
+	  									<p th:case="true">
+											<li><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+											<li><a th:href="@{/register}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+										</p>
+  										<p th:case="false">
+  											<form action="logmeout" th:action="@{/logout}" method="post" name="someForm">
+											</form>
+											<li><a href="#" onclick="document.someForm.submit();"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a></li>
+    										<li><a th:href="@{/settings}"><i class="fa fa-sign-out" aria-hidden="true"></i>Settings</a></li>
+    									</p>
+    									</li>
 									</ul>
 								</li>
 							</ul>
@@ -65,7 +66,6 @@
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
-								<li><a th:href="@{/}">Home</a></li>
 								<li><a th:href="@{/products?id=1}">Race</a></li>
 								<li><a th:href="@{/products?id=2}">MTB</a></li>
 								<li><a th:href="@{/products?id=3}">Cross</a></li>
@@ -75,11 +75,11 @@
 							</ul>
 							<ul class="navbar_user">
 								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+								<li><a th:href="@{/orders}"><i class="fa fa-truck" aria-hidden="true"></i></a></li>
 								<li class="checkout">
-									<a href="#">
+									<a th:href="@{/cart}">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items">2</span>
+										<span id="checkout_items" class="checkout_items"></span>
 									</a>
 								</li>
 							</ul>
@@ -154,9 +154,6 @@
 
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="categories.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
-						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product</a></li>
 					</ul>
 				</div>
 
@@ -194,14 +191,20 @@
 						<span class="ti-truck"></span><span>free delivery</span>
 					</div>
 					<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 0, 2)+' PLN'}"></div>
+					<h5 th:text="'Product rate '+${#numbers.formatDecimal(avgComments, 0, 2)}+'/5'"></h5>
 					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 						<span>Quantity:</span>
+						<form th:action="@{/addtocart}" method="post">
 						<div class="quantity_selector">
-							<span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
-							<span id="quantity_value">1</span>
-							<span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
+							<!--  <span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>-->
+							<!--  <span id="quantity_value">1</span>-->
+							<input id="quantity_value" name="quantity" min="1" value="1" type="number"/>
+							<!--  <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>-->
 						</div>
-						<div class="red_button add_to_cart_button"><a th:href="@{/cart}">Add to cart</a></div>
+						  <input type="hidden" name="productId" th:value="${product.id}"/>
+						  <input class="red_button add_to_cart_button" type="submit" value="Submit"></input>
+						</form>
+						<!--<div class="red_button add_to_cart_button"><a th:href="@{/cart}">Add to cart</a></div>-->
 					</div>
 				</div>
 			</div>
@@ -220,7 +223,7 @@
 						<ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
 							<li class="tab active" data-active-tab="tab_1"><span>Description</span></li>
 							<li class="tab" data-active-tab="tab_2"><span>Size information</span></li>
-							<li class="tab" data-active-tab="tab_3"><span th:text="'Reviews(' + ${countComments} +')'"></span></li>
+							<li class="tab" data-active-tab="tab_3"><span th:text="'Reviews (' + ${countComments} +')'"></span></li>
 						</ul>
 					</div>
 				</div>
@@ -267,23 +270,27 @@
 
 							<!-- User Review -->
 							
+								<h5 th:text="'Product rate '+${#numbers.formatDecimal(avgComments, 0, 2)}+'/5'"></h5>
+							
 								<div th:each="comment: ${comments}">
 									<div class="user_review_container d-flex flex-column flex-sm-row">
 										<div class="user">
 											<div class="user_pic"></div>
 											<div class="user_rating">
+										        
 												<ul class="star_rating">
+												<!--<li><i class="fa fa-star" aria-hidden="true"></i></li>
 													<li><i class="fa fa-star" aria-hidden="true"></i></li>
 													<li><i class="fa fa-star" aria-hidden="true"></i></li>
 													<li><i class="fa fa-star" aria-hidden="true"></i></li>
-													<li><i class="fa fa-star" aria-hidden="true"></i></li>
-													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>-->
 												</ul>
 											</div>
 										</div>
 										<div class="review">
 											<div class="review_date" th:text="${#dates.format(comment.date, 'dd-MM-yyyy HH:mm')}"></div>
 											<div class="user_name" th:text="${comment.user.username}"></div>
+											<div class="user_name" th:text="${#numbers.formatDecimal(avgComments, 0, 1)}+'/5'"></div>
 											<p th:text="${comment.description}"/>
 										</div>
 									</div>
@@ -299,13 +306,25 @@
 									<form id="review_form" th:action="@{/addcomment}" method="post">
 										<div>
 											<h1>Add Review</h1>
-											<ul class="user_star_rating">
+											<!--  <ul class="user_star_rating">
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
 												<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-											</ul>
+											</ul>-->
+											<p>Your vote:</p>
+											<select name="vote">
+												<option value="1">1</option>
+												<option value="1">1,5</option>
+												<option value="2">2</option>
+												<option value="5">2,5</option>
+												<option value="3">3</option>
+												<option value="5">3,5</option>
+												<option value="4">4</option>
+												<option value="5">4,5</option>
+												<option value="5">5</option>
+											</select> 
 											<textarea id="review_message" class="input_review" name="description"  placeholder="Your Review" rows="4" required="required" data-error="Please, leave us a review."></textarea>
 											<input type="hidden" th:value="${product.id}" name="productId" />
 										</div>

@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    private String description;
 	    @NotNull
 	    private Date date;
+	    @NotNull
+	    private double vote;
 	    @ManyToOne
 	    @JoinColumn(name = "user_id")
 	    private User user;
@@ -39,10 +41,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    
 	    public Comment(){}
 
-		public Comment(String description, Date date) {
+		public Comment(String description, Date date, double vote) {
 			super();
 			this.description = description;
 			this.date = date;
+			this.vote = vote;
 		}
 
 		public Long getId() {
@@ -69,6 +72,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 			this.date = date;
 		}
 
+		public double getVote() {
+			return vote;
+		}
+
+		public void setVote(double vote) {
+			this.vote = vote;
+		}
+
 		public User getUser() {
 			return user;
 		}
@@ -87,19 +98,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "Comment [id=" + id + ", description=" + description + ", date=" + date + ", user=" + user + ", product="
-					+ product + "]";
+			return "Comment [id=" + id + ", description=" + description + ", date=" + date + ", vote=" + vote
+					+ ", user=" + user + ", product=" + product + "]";
 		}
 
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + ((user == null) ? 0 : user.hashCode());
-			result = prime * result + ((description == null) ? 0 : description.hashCode());
 			result = prime * result + ((date == null) ? 0 : date.hashCode());
+			result = prime * result + ((description == null) ? 0 : description.hashCode());
 			result = prime * result + ((id == null) ? 0 : id.hashCode());
 			result = prime * result + ((product == null) ? 0 : product.hashCode());
+			result = prime * result + ((user == null) ? 0 : user.hashCode());
+			long temp;
+			temp = Double.doubleToLongBits(vote);
+			result = prime * result + (int) (temp ^ (temp >>> 32));
 			return result;
 		}
 
@@ -112,20 +126,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 			if (getClass() != obj.getClass())
 				return false;
 			Comment other = (Comment) obj;
-			if (user == null) {
-				if (other.user != null)
+			if (date == null) {
+				if (other.date != null)
 					return false;
-			} else if (!user.equals(other.user))
+			} else if (!date.equals(other.date))
 				return false;
 			if (description == null) {
 				if (other.description != null)
 					return false;
 			} else if (!description.equals(other.description))
-				return false;
-			if (date == null) {
-				if (other.date != null)
-					return false;
-			} else if (!date.equals(other.date))
 				return false;
 			if (id == null) {
 				if (other.id != null)
@@ -137,7 +146,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 					return false;
 			} else if (!product.equals(other.product))
 				return false;
+			if (user == null) {
+				if (other.user != null)
+					return false;
+			} else if (!user.equals(other.user))
+				return false;
+			if (Double.doubleToLongBits(vote) != Double.doubleToLongBits(other.vote))
+				return false;
 			return true;
 		}
-
+		
 }

@@ -2,7 +2,6 @@ package pl.scartout.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,11 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,7 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "order_id")
 	    private Long id;
-	    @NotNull
+	    private int quantity;
+	    private double total;
 	    @Column(name = "order_date")
 	    private Date orderDate;
 	    @Column(name = "approval_date")
@@ -40,30 +38,92 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @ManyToOne
 	    @JoinColumn(name = "user_id")
 	    private User user;
-	    @ManyToMany
-	    @JoinTable(name = "order_products",
-	            joinColumns = { @JoinColumn(name = "order_id", referencedColumnName = "order_id") },
-	            inverseJoinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "product_id") })
-	    private List<Product> products;
+	    @OneToOne
+	    @JoinColumn(name = "product_id")
+	    private Product product;
 	    
 	    public Order(){}
 
-		public Order(Date orderDate, Date approvalDate, Date shippingDate, Date completeDate, User user,
-				List<Product> products) {
+		public Order(int quantity) {
 			super();
+			this.quantity = quantity;
+		}
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public int getQuantity() {
+			return quantity;
+		}
+
+		public void setQuantity(int quantity) {
+			this.quantity = quantity;
+		}
+
+		public double getTotal() {
+			return total;
+		}
+
+		public void setTotal(double total) {
+			this.total = total;
+		}
+
+		public Date getOrderDate() {
+			return orderDate;
+		}
+
+		public void setOrderDate(Date orderDate) {
 			this.orderDate = orderDate;
+		}
+
+		public Date getApprovalDate() {
+			return approvalDate;
+		}
+
+		public void setApprovalDate(Date approvalDate) {
 			this.approvalDate = approvalDate;
+		}
+
+		public Date getShippingDate() {
+			return shippingDate;
+		}
+
+		public void setShippingDate(Date shippingDate) {
 			this.shippingDate = shippingDate;
+		}
+
+		public Date getCompleteDate() {
+			return completeDate;
+		}
+
+		public void setCompleteDate(Date completeDate) {
 			this.completeDate = completeDate;
+		}
+
+		public User getUser() {
+			return user;
+		}
+
+		public void setUser(User user) {
 			this.user = user;
-			this.products = products;
+		}
+
+		public Product getProduct() {
+			return product;
+		}
+
+		public void setProduct(Product product) {
+			this.product = product;
 		}
 
 		@Override
 		public String toString() {
-			return "Order [id=" + id + ", orderDate=" + orderDate + ", approvalDate=" + approvalDate + ", shippingDate="
-					+ shippingDate + ", completeDate=" + completeDate + ", user=" + user + ", products=" + products
-					+ "]";
+			return "Order [id=" + id + "]";
 		}
 
 		@Override
@@ -71,12 +131,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((approvalDate == null) ? 0 : approvalDate.hashCode());
-			result = prime * result + ((user == null) ? 0 : user.hashCode());
 			result = prime * result + ((completeDate == null) ? 0 : completeDate.hashCode());
 			result = prime * result + ((id == null) ? 0 : id.hashCode());
 			result = prime * result + ((orderDate == null) ? 0 : orderDate.hashCode());
-			result = prime * result + ((products == null) ? 0 : products.hashCode());
+			result = prime * result + ((product == null) ? 0 : product.hashCode());
+			result = prime * result + quantity;
 			result = prime * result + ((shippingDate == null) ? 0 : shippingDate.hashCode());
+			long temp;
+			temp = Double.doubleToLongBits(total);
+			result = prime * result + (int) (temp ^ (temp >>> 32));
+			result = prime * result + ((user == null) ? 0 : user.hashCode());
 			return result;
 		}
 
@@ -94,11 +158,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 					return false;
 			} else if (!approvalDate.equals(other.approvalDate))
 				return false;
-			if (user == null) {
-				if (other.user != null)
-					return false;
-			} else if (!user.equals(other.user))
-				return false;
 			if (completeDate == null) {
 				if (other.completeDate != null)
 					return false;
@@ -114,17 +173,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 					return false;
 			} else if (!orderDate.equals(other.orderDate))
 				return false;
-			if (products == null) {
-				if (other.products != null)
+			if (product == null) {
+				if (other.product != null)
 					return false;
-			} else if (!products.equals(other.products))
+			} else if (!product.equals(other.product))
+				return false;
+			if (quantity != other.quantity)
 				return false;
 			if (shippingDate == null) {
 				if (other.shippingDate != null)
 					return false;
 			} else if (!shippingDate.equals(other.shippingDate))
 				return false;
+			if (Double.doubleToLongBits(total) != Double.doubleToLongBits(other.total))
+				return false;
+			if (user == null) {
+				if (other.user != null)
+					return false;
+			} else if (!user.equals(other.user))
+				return false;
 			return true;
 		}
-		
+
 }
