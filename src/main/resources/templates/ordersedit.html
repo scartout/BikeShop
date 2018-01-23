@@ -164,6 +164,12 @@
 				        <th>Quantity</th>
 				        <th>Price</th>
 				        <th>Total</th>
+				        <th>Print invoice to PDF</th>
+				        <th>Order date</th>
+				        <th>Approval date</th>
+				        <th>Shipping date</th>
+				        <th>Complete date</th>
+				        <th>Cancel order</th>
 			        </tr>
 			        <tr th:each="order: ${orders}">
 			        	<td th:text="${order.id}"></td>
@@ -171,26 +177,42 @@
 			        	<td th:text="${order.quantity}"></td>
 			        	<td th:text="${#numbers.formatDecimal(order.product.price, 1, 2)+' PLN'}"></td>
 			        	<td th:text="${#numbers.formatDecimal(order.total, 1, 2)+' PLN'}"></td>
+					    <td><form action="printInvoice" th:action="@{/printInvoice}" method="post" >
+    						<input type="hidden" name="id" th:value="${order.id}"/>
+    						<button class="filter_button" type="submit" value="Print invoice to file"><span>Invoice</span></button>
+    					</form></td>
+					    <td th:text="${#dates.format(order.orderDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+					    <div th:if="${order.approvalDate}">
+   							<td th:text="${#dates.format(order.approvalDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+						</div>
+						<div th:unless="${order.approvalDate}">
 					    <td><form action="completeitem" th:action="@{/confirmApproval}" method="post" >
     						<input type="hidden" name="id" th:value="${order.id}"/>
     						<button class="filter_button" type="submit" value="Confirm approval"><span>Confirm approval</span></button>
     					</form></td>
-    					<td><form action="completeitem" th:action="@{/confirmShipping}" method="post" >
+    					</div>
+    					<div th:if="${order.shippingDate}">
+   							<td th:text="${#dates.format(order.shippingDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+						</div>
+						<div th:unless="${order.shippingDate}">
+							<td><form action="confirmShipping" th:action="@{/confirmShipping}" method="post" >
     						<input type="hidden" name="id" th:value="${order.id}"/>
     						<button class="filter_button" type="submit" value="Confirm approval"><span>Confirm shipping</span></button>
     					</form></td>
-    					<td><form action="completeitem" th:action="@{/confirmComplete}" method="post" >
+						</div>
+    					<div th:if="${order.completeDate}">
+    						<td th:text="${#dates.format(order.completeDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+						</div>
+						<div th:unless="${order.completeDate}">
+							<td><form action="completeitem" th:action="@{/confirmComplete}" method="post" >
     						<input type="hidden" name="id" th:value="${order.id}"/>
     						<button class="filter_button" type="submit" value="Confirm complete"><span>Confirm complete</span></button>
     					</form></td>
-    					<td><form action="completeitem" th:action="@{/cancelOrder}" method="post" >
+						<td><form action="cancelOrder" th:action="@{/cancelOrder}" method="post" >
     						<input type="hidden" name="id" th:value="${order.id}"/>
     						<button class="filter_button" type="submit" value="Cancel order"><span>Cancel order</span></button>
     					</form></td>
-    					<td><form action="completeitem" th:action="@{/printInvoice}" method="post" >
-    						<input type="hidden" name="id" th:value="${order.id}"/>
-    						<button class="filter_button" type="submit" value="Print invoice to file"><span>Print invoice to file</span></button>
-    					</form></td>
+						</div>
 			        </tr>
 		        	</table>
 			</div>
