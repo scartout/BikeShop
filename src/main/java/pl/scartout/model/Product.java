@@ -77,6 +77,25 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.imageThird = imageThird;
 		}
 
+		public Product(Long id, String name, String descriptionShort, String descriptionLong, String descriptionSize,
+				Double price, Double priceNet, Double vat, String mainImage, String imageSecond, String imageThird,
+				Category category, Producer producer) {
+			super();
+			this.id = id;
+			this.name = name;
+			this.descriptionShort = descriptionShort;
+			this.descriptionLong = descriptionLong;
+			this.descriptionSize = descriptionSize;
+			this.price = price;
+			this.priceNet = priceNet;
+			this.vat = vat;
+			this.mainImage = mainImage;
+			this.imageSecond = imageSecond;
+			this.imageThird = imageThird;
+			this.category = category;
+			this.producer = producer;
+		}
+
 		public Long getId() {
 			return id;
 		}

@@ -41,6 +41,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 			super();
 			this.name = name;
 		}
+		
+		public Producer(Long id, String name) {
+			super();
+			this.id = id;
+			this.name = name;
+		}
 
 		public Long getId() {
 			return id;

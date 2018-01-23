@@ -367,7 +367,7 @@ jQuery(document).ready(function($)
 		            	var priceRange = $('#amount').val();
 			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('$', ''));
 			        	var priceMax = parseFloat(priceRange.split('-')[1].replace('$', ''));
-			        	var itemPrice = $(this).find('.product_price').clone().children().remove().end().text().replace( '$', '' );
+			        	var itemPrice = $(this).find('.product_price').clone().children().remove().end().text().replace( ' PLN', '' );
 
 			        	return (itemPrice > priceMin) && (itemPrice < priceMax);
 		            },
@@ -403,7 +403,7 @@ jQuery(document).ready(function($)
 			}
 		});
 			
-		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+		$( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + " - " + $( "#slider-range" ).slider( "values", 1 ) + ' PLN');
 		$( "#priceMin" ).val($( "#slider-range" ).slider( "values", 0 ));
 		$( "#priceMax" ).val($( "#slider-range" ).slider( "values", 1 ));
     }
