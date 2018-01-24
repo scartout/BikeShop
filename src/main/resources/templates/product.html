@@ -301,7 +301,7 @@
 											</div>
 										</div>
 										<div class="review">
-											<div class="review_date" th:text="${#dates.format(comment.date, 'dd-MM-yyyy HH:mm')}"></div>
+											<div class="review_date" th:text="${#dates.format(comment.date, 'dd.MM.yyyy HH:mm')}"></div>
 											<div class="user_name" th:text="${comment.user.username}"></div>
 											<div class="user_name" th:text="${#numbers.formatDecimal(avgComments, 0, 1)}+'/5'"></div>
 											<p th:text="${comment.description}"/>

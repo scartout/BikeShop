@@ -26,8 +26,12 @@ public class ProductsController {
     }
     
     @GetMapping(path = "/products", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Product> getProduct(Model model, @RequestParam long id) {
-    	List<Product> products = productRepo.findAllByCategoryId(id);
+    public List<Product> getProduct(Model model, @RequestParam(required=false) Long id) {
+    	List<Product> products;
+    	if (id != null) {
+    	products = productRepo.findAllByCategoryId(id);
+    	}
+    	else products = productRepo.findAll();
     	model.addAttribute("products", products);
     	Category category = categoryRepo.findById(id);
     	Long countProducts = productRepo.countAllProductsByCategory(category);

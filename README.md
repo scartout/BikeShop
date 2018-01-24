@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.3.0
+Version 0.3.1
 
 
 ## How to use:
@@ -13,7 +13,7 @@ Version 0.3.0
 
 ## About version:
 
-Some buttons might be inactive (filtering by price and name, record limiter).
+Some buttons might be inactive due to JavaScript parsing problems in methods (filtering by price and name, record limiter). Problem will be solved soon.
 
 
 ## Admin panel:

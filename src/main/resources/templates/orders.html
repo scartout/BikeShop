@@ -177,21 +177,21 @@
 			        	<td th:text="${order.quantity}"></td>
 			        	<td th:text="${#numbers.formatDecimal(order.product.price, 0, 2)+' PLN'}"></td>
 			        	<td th:text="${#numbers.formatDecimal(order.total, 0, 2)+' PLN'}"></td>
-			        	<td th:text="${#dates.format(order.orderDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+			        	<td th:text="${#dates.format(order.orderDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
 					    <div th:if="${order.approvalDate}">
-   							<td th:text="${#dates.format(order.approvalDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+   							<td th:text="${#dates.format(order.approvalDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
 						</div>
 						<div th:unless="${order.approvalDate}">
 					    <td></td>
     					</div>
     					<div th:if="${order.shippingDate}">
-   							<td th:text="${#dates.format(order.shippingDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+   							<td th:text="${#dates.format(order.shippingDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
 						</div>
 						<div th:unless="${order.shippingDate}">
 							<td></td>
 						</div>
     					<div th:if="${order.completeDate}">
-    						<td th:text="${#dates.format(order.completeDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+    						<td th:text="${#dates.format(order.completeDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
 						</div>
 						<div th:unless="${order.completeDate}">
 							<td></td>

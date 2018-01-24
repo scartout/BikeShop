@@ -181,9 +181,9 @@
     						<input type="hidden" name="id" th:value="${order.id}"/>
     						<button class="filter_button" type="submit" value="Print invoice to file"><span>Invoice</span></button>
     					</form></td>
-					    <td th:text="${#dates.format(order.orderDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+					    <td th:text="${#dates.format(order.orderDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
 					    <div th:if="${order.approvalDate}">
-   							<td th:text="${#dates.format(order.approvalDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+   							<td th:text="${#dates.format(order.approvalDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
 						</div>
 						<div th:unless="${order.approvalDate}">
 					    <td><form action="completeitem" th:action="@{/confirmApproval}" method="post" >
@@ -192,7 +192,7 @@
     					</form></td>
     					</div>
     					<div th:if="${order.shippingDate}">
-   							<td th:text="${#dates.format(order.shippingDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+   							<td th:text="${#dates.format(order.shippingDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
 						</div>
 						<div th:unless="${order.shippingDate}">
 							<td><form action="confirmShipping" th:action="@{/confirmShipping}" method="post" >
@@ -201,7 +201,7 @@
     					</form></td>
 						</div>
     					<div th:if="${order.completeDate}">
-    						<td th:text="${#dates.format(order.completeDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+    						<td th:text="${#dates.format(order.completeDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
 						</div>
 						<div th:unless="${order.completeDate}">
 							<td><form action="completeitem" th:action="@{/confirmComplete}" method="post" >
