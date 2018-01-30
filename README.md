@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.3.1
+Version 0.3.2
 
 
 ## How to use:
@@ -45,3 +45,4 @@ BikeShop has been being implemented an example of this kind of portals.
 - Javascript
 - ITextPDF
 - Maven
+- JUnit

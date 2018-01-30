@@ -71,7 +71,7 @@ public class SpringJpaBootApplication{
         	Producer producer = producerRepo.findByName("Canyon");
         	Category category = categoryRepo.findByName("Road");
         	Product product1 = new Product(1L, "Canyon Endurace 7.0 Al", "Shimano 105 Aluminium Bike", "Canyon Endurace 7.0 Al", 
-        			"S,M,L,XL,XLL",	4999.00, 3849.23, 23.00, "http://cdn.mos.bikeradar.imdserve.com/images/bikes-and-gear/bikes/road/1450354270219-ob3hv3e725rn-630-80.jpg", 
+        			"S, M, L, XL, XLL",	4999.00, 23.00, "http://cdn.mos.bikeradar.imdserve.com/images/bikes-and-gear/bikes/road/1450354270219-ob3hv3e725rn-630-80.jpg", 
         			"https://i.pinimg.com/736x/11/4e/11/114e115a0a8005449d1ea616dbfc19f5--search-wheels.jpg", 
         			"http://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/2/2017/06/Canyon-Endurace-AL-7.0.jpg", category, producer);
         	productRepo.save(product1);}
@@ -80,7 +80,7 @@ public class SpringJpaBootApplication{
         	Producer producer = producerRepo.findByName("Rose");
         	Category category = categoryRepo.findByName("Road");
         	Product product2 = new Product(2L, "Rose Pro SL 105", "Shimano 105 Aluminium Bike", "Rose Pro SL 105", 
-        			"S,M,L,XL,XLL",	4899.00, 3772.23, 23.00, "https://media1.rosebikes.de/drehmomente/2147244_6p5l46zavw_800_580/data/spinpict/004.jpg", 
+        			"S, M, L, XL, XLL",	4899.00, 23.00, "https://media1.rosebikes.de/drehmomente/2147244_6p5l46zavw_800_580/data/spinpict/004.jpg", 
         			"http://road.cc/sites/default/files/styles/main_width/public/rose-pro-sl-105.jpg?itok=atfFenQP", 
         			"https://media1.rosebikes.de/drehmomente/2147837_gmwy8kteux_800_580/data/spinpict/004.jpg", category, producer);
         	productRepo.save(product2);}
@@ -88,8 +88,8 @@ public class SpringJpaBootApplication{
         if (productRepo.findByName("Unibike Viper") == null) {
         	Producer producer = producerRepo.findByName("Unibike");
         	Category category = categoryRepo.findByName("Cross/Trekking");
-        	Product product3 = new Product(3L, "Unibike Viper", "Shimano Alivio Aluminium Bike", "Rose Pro SL 105", 
-        			"S,M,L,XL,XLL",	2399.00, 1847.23, 23.00, "http://www.bikekatalog.pl/2012/ppg_fotki/foto_max/8_81733_28_02_12.jpg", 
+        	Product product3 = new Product(3L, "Unibike Viper", "Shimano Alivio Aluminium Bike", "Unibike Viper", 
+        			"S, M, L, XL, XLL",	2399.00, 23.00, "http://www.bikekatalog.pl/2012/ppg_fotki/foto_max/8_81733_28_02_12.jpg", 
         			"http://st2.static.bikestats.pl/55/b5655-u7699_orig.jpg?1387525943", 
         			"http://www.unibike.pl/images/cross/vipergts7.jpg", category, producer);
         	productRepo.save(product3);}

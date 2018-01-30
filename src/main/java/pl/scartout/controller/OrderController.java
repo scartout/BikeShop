@@ -199,18 +199,22 @@ public class OrderController {
 		      
 		addEmptyLine(preface, 2);
 		
-		PdfPTable table = new PdfPTable(4);
+		PdfPTable table = new PdfPTable(6);
 		table.setWidthPercentage(100);
 		table.addCell("Product");
 		table.addCell("Price");
+		table.addCell("Price net");
+		table.addCell("Vat");
 		table.addCell("Quantity");
 		table.addCell("Amount");
-		PdfPTable table2 = new PdfPTable(4);
+		PdfPTable table2 = new PdfPTable(6);
 		table2.setWidthPercentage(100);
 		table2.addCell(product.getName());
-		table2.addCell(Double.toString(product.getPrice()));
+		table2.addCell(Double.toString(product.getPrice())+" PLN");
+		table2.addCell(Double.toString(product.getPriceNet())+" PLN");
+		table2.addCell(Double.toString(product.getVat())+" %");
 		table2.addCell(Integer.toString(order.getQuantity()));
-		table2.addCell(Double.toString(order.getTotal()));
+		table2.addCell(Double.toString(order.getTotal())+" PLN");
 		        
 		try {
 			document.add(preface);

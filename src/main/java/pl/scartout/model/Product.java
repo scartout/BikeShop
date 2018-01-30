@@ -63,8 +63,9 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    public Product() {}
 
 		public Product(String name, String descriptionShort, String descriptionLong, String descriptionSize,
-				Double price, Double priceNet, Double vat, String mainImage, String imageSecond, String imageThird) {
-			super();
+				Double price, Double vat, String mainImage, String imageSecond, String imageThird) {
+			double priceNet = price/(1+(vat/100.0));
+	    	priceNet = Math.round(priceNet*100.0)/100.0;
 			this.name = name;
 			this.descriptionShort = descriptionShort;
 			this.descriptionLong = descriptionLong;
@@ -78,9 +79,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 		}
 
 		public Product(Long id, String name, String descriptionShort, String descriptionLong, String descriptionSize,
-				Double price, Double priceNet, Double vat, String mainImage, String imageSecond, String imageThird,
+				Double price, Double vat, String mainImage, String imageSecond, String imageThird,
 				Category category, Producer producer) {
-			super();
+			double priceNet = price/(1+(vat/100.0));
+	    	priceNet = Math.round(priceNet*100.0)/100.0;
 			this.id = id;
 			this.name = name;
 			this.descriptionShort = descriptionShort;

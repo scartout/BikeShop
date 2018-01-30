@@ -26,8 +26,8 @@ public class ProductNewController {
         this.categoryRepo = categoryRepo;
         this.producerRepo = producerRepo;
         this.productRepo = productRepo;
-    }
-
+    }    
+    
     @RequestMapping("/productnew")
     public String home(Model model) {
     	List <Category> categories = categoryRepo.findAll();
@@ -42,10 +42,7 @@ public class ProductNewController {
 			@RequestParam String descriptionSize, @RequestParam double price, @RequestParam double vat,
 			@RequestParam String categoryName, @RequestParam String producerName, @RequestParam String mainImage,
 			@RequestParam String imageSecond, @RequestParam String imageThird) {
-		double priceNet = price*(1-vat/100);
-		Product product = new Product(name, descriptionShort, descriptionLong, descriptionSize, price, priceNet, vat, mainImage, imageSecond, imageThird);
-		System.out.println(categoryName);
-		System.out.println(producerName);
+		Product product = new Product(name, descriptionShort, descriptionLong, descriptionSize, price, vat, mainImage, imageSecond, imageThird);
 		Category category = categoryRepo.findByName(categoryName);
 		Producer producer = producerRepo.findByName(producerName);
 		product.setCategory(category);

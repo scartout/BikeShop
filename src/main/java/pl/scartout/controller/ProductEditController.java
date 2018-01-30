@@ -25,8 +25,15 @@ public class ProductEditController {
     @Autowired
     public ProductEditController(CategoryRepo categoryRepo, ProducerRepo producerRepo, ProductRepo productRepo) {
         this.categoryRepo = categoryRepo;
-        this.producerRepo= producerRepo;
-        this.productRepo= productRepo;
+        this.producerRepo = producerRepo;
+        this.productRepo = productRepo;
+    }
+    
+    public ProductEditController() {}
+
+	public double netCounter(double price, double vat) {
+    	double priceNet = price/(1+(vat/100.0));
+    	return Math.round(priceNet*100.0)/100.0;
     }
     
     @GetMapping(path = "/productlist", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -54,8 +61,7 @@ public class ProductEditController {
 			@RequestParam String imageSecond, @RequestParam String imageThird) {
 		Category category = categoryRepo.findByName(categoryName);
 		Producer producer = producerRepo.findByName(producerName);
-		double priceNet = price*(1-vat/100);
-    	productRepo.updateProduct(id, name, descriptionShort, descriptionLong, descriptionSize, price, vat, priceNet, mainImage, imageSecond, imageThird, category, producer);
+		productRepo.updateProduct(id, name, descriptionShort, descriptionLong, descriptionSize, price, vat, netCounter(price, vat), mainImage, imageSecond, imageThird, category, producer);
 		return "redirect:/admin";
 	}
 
