@@ -32,8 +32,9 @@ public class ProductEditController {
     public ProductEditController() {}
 
 	public double netCounter(double price, double vat) {
-    	double priceNet = price/(1+(vat/100.0));
-    	return Math.round(priceNet*100.0)/100.0;
+		if (vat > 100.0 || vat < 0.0) throw new IllegalArgumentException();
+			double priceNet = price/(1+(vat/100.0));
+			return Math.round(priceNet*100.0)/100.0;
     }
     
     @GetMapping(path = "/productlist", produces = MediaType.APPLICATION_JSON_VALUE)

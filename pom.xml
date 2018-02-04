@@ -5,7 +5,7 @@
 
 	<groupId>pl.scartout</groupId>
 	<artifactId>BikeShop</artifactId>
-	<version>0.3.2</version>
+	<version>0.3.3</version>
 
 	<name>BikeShop</name>
 
@@ -21,6 +21,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<javax-servlet.version>2.5</javax-servlet.version>
+		<itext-pdf.version>5.0.6</itext-pdf.version>
 	</properties>
 
 	<dependencies>
@@ -76,7 +77,7 @@
 		<dependency>
     		<groupId>com.itextpdf</groupId>
     		<artifactId>itextpdf</artifactId>
-    		<version>5.0.6</version>
+    		<version>${itext-pdf.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
