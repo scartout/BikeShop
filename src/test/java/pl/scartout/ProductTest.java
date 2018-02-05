@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 import static org.hamcrest.CoreMatchers.is;
 
 import pl.scartout.model.Product;
@@ -17,6 +20,11 @@ public class ProductTest {
 	@Test
 	public void create() {
 		Product product = new Product();
+	}
+	
+	@Test
+	public void equalsContract() {
+	    EqualsVerifier.forClass(Product.class).verify();
 	}
 	
 	@Test

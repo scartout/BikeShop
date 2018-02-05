@@ -5,7 +5,7 @@
 
 	<groupId>pl.scartout</groupId>
 	<artifactId>BikeShop</artifactId>
-	<version>0.3.3</version>
+	<version>0.3.4</version>
 
 	<name>BikeShop</name>
 
@@ -22,6 +22,7 @@
 		<java.version>1.8</java.version>
 		<javax-servlet.version>2.5</javax-servlet.version>
 		<itext-pdf.version>5.0.6</itext-pdf.version>
+		<equalsverifier-version>1.0.2</equalsverifier-version>
 	</properties>
 
 	<dependencies>
@@ -79,6 +80,13 @@
     		<artifactId>itextpdf</artifactId>
     		<version>${itext-pdf.version}</version>
 		</dependency>
+		
+		<dependency>
+    		<groupId>nl.jqno.equalsverifier</groupId>
+    		<artifactId>equalsverifier</artifactId>
+    		<version>${equalsverifier-version}</version>
+    		<scope>test</scope>
+</dependency>
 	</dependencies>
 	<build>
 		<plugins>

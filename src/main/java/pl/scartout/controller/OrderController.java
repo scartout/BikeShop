@@ -35,12 +35,6 @@ import pl.scartout.repo.OrderRepo;
 @Controller
 public class OrderController {
 	
-	private static void addEmptyLine(Paragraph paragraph, int number) {
-	    for (int i = 0; i < number; i++) {
-	      paragraph.add(new Paragraph(" "));
-	    }
-	  }
-	
 	final String INVOICE_FOLDER = "D:/";
 	
 	private ProductRepo productRepo;
@@ -227,6 +221,12 @@ public class OrderController {
 		document.close();
 		return "redirect:/ordersedit";
 	}
+    
+	private static void addEmptyLine(Paragraph paragraph, int number) {
+	    for (int i = 0; i < number; i++) {
+	      paragraph.add(new Paragraph(" "));
+	    }
+	  }
     
 }
     

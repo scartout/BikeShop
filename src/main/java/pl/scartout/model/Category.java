@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@XmlRootElement
 	@Entity
 	@Table(name = "categories")
-	public class Category implements Serializable {
+	final public class Category implements Serializable {
 	    private static final long serialVersionUID = 1L;
 	    
 	    @Id
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    		orphanRemoval = true)
 	    private List<Product> products = new ArrayList<>();
 	    
-	    Category() {}
+	    public Category() {}
 
 		public Category(Long id, String name) {
 			super();

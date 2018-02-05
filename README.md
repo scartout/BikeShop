@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.3.3
+Version 0.3.4
 
 
 ## How to use:
@@ -23,7 +23,7 @@ Look path "localhost:8080/admin". You have to change your default role from "use
 
 ## Invoices:
 
-Invoices default folder is "D:/". You might change it in OrderController.java class (constant INVOICE_FOLDER).
+Invoices default folder is "D:/". You might change it in pl.scartout.controller.OrderController.java class (constant INVOICE_FOLDER).
 
 
 ## Business goal:
@@ -46,3 +46,4 @@ BikeShop has been being implemented an example of this kind of portals.
 - ITextPDF
 - Maven
 - JUnit
+- EqualsVerifier

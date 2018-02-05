@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@XmlRootElement
 	@Entity
 	@Table(name = "producers")
-	public class Producer implements Serializable {
+	final public class Producer implements Serializable {
 	    private static final long serialVersionUID = 1L;
 	    
 	    @Id
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    		orphanRemoval = true)
 	    private List<Product> products = new ArrayList<>();
 	    
-	    Producer() {}
+	    public Producer() {}
 
 		public Producer(String name) {
 			super();
