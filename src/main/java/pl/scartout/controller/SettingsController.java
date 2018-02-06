@@ -38,7 +38,7 @@ public class SettingsController {
         return "settings";
     }
     
-    @PostMapping("/updateUser")
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	public String updateUser(
 				@RequestParam Long id, 
 				@RequestParam String password, 

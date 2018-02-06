@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-import pl.scartout.model.Contact;
+import pl.scartout.model.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -15,12 +15,12 @@ public class UserTest {
 
 	@Test
 	public void create() {
-		Contact contact = new Contact();
+		User user = new User();
 	}
 	
 	@Test
 	public void equalsContract() {
-	    EqualsVerifier.forClass(Contact.class).verify();
+	    EqualsVerifier.forClass(User.class).verify();
 	}
 	
 }

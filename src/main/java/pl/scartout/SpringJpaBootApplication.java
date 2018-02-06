@@ -16,7 +16,7 @@ import pl.scartout.repo.RoleRepo;
 @SpringBootApplication
 public class SpringJpaBootApplication{
 	
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException{
         ConfigurableApplicationContext ctx = SpringApplication.run(SpringJpaBootApplication.class, args);
 
         RoleRepo roleRepo = ctx.getBean(RoleRepo.class);
@@ -89,7 +89,7 @@ public class SpringJpaBootApplication{
         	Producer producer = producerRepo.findByName("Unibike");
         	Category category = categoryRepo.findByName("Cross/Trekking");
         	Product product3 = new Product(3L, "Unibike Viper", "Shimano Alivio Aluminium Bike", "Unibike Viper", 
-        			"S, M, L, XL, XLL",	2399.00, 23.00, "http://www.bikekatalog.pl/2012/ppg_fotki/foto_max/8_81733_28_02_12.jpg", 
+        			"S, M, L, XL, XLL",	2499.00, 23.00, "http://www.bikekatalog.pl/2012/ppg_fotki/foto_max/8_81733_28_02_12.jpg", 
         			"http://st2.static.bikestats.pl/55/b5655-u7699_orig.jpg?1387525943", 
         			"http://www.unibike.pl/images/cross/vipergts7.jpg", category, producer);
         	productRepo.save(product3);}

@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -35,7 +37,9 @@ import pl.scartout.repo.OrderRepo;
 @Controller
 public class OrderController {
 	
-	final String INVOICE_FOLDER = "D:/";
+	static final String INVOICE_FOLDER = "D:/";
+	
+	Logger LOGGER = Logger.getAnonymousLogger();
 	
 	private ProductRepo productRepo;
 	private UserRepo userRepo;
@@ -146,8 +150,8 @@ public class OrderController {
 		Document document = new Document();
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(FILE));
-		} catch (FileNotFoundException | DocumentException e1) {
-			e1.printStackTrace();
+		} catch (FileNotFoundException | DocumentException e) {
+			LOGGER.log( Level.SEVERE, e.toString(), e );
 		}
 		document.open();
 		      
@@ -164,7 +168,7 @@ public class OrderController {
 		try {
 			document.add(p);
 		} catch (DocumentException e) {
-				e.printStackTrace();
+			LOGGER.log( Level.SEVERE, e.toString(), e );
 		}
 		      
 		Paragraph preface = new Paragraph();
@@ -214,8 +218,8 @@ public class OrderController {
 			document.add(preface);
 			document.add(table);
 			document.add(table2);
-		} catch (DocumentException e1) {
-			e1.printStackTrace();
+		} catch (DocumentException e) {
+			LOGGER.log( Level.SEVERE, e.toString(), e );
 		}
 		      
 		document.close();

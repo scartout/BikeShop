@@ -33,8 +33,10 @@ public class ProductEditController {
 
 	public double netCounter(double price, double vat) {
 		if (vat > 100.0 || vat < 0.0) throw new IllegalArgumentException();
+		else {
 			double priceNet = price/(1+(vat/100.0));
 			return Math.round(priceNet*100.0)/100.0;
+		}
     }
     
     @GetMapping(path = "/productlist", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -55,7 +57,7 @@ public class ProductEditController {
 		return "productedit";
     }
     
-    @PostMapping("/updateProduct")
+    @RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
 	public String addProduct(@RequestParam Long id, @RequestParam String name, @RequestParam String descriptionShort, @RequestParam String descriptionLong,
 			@RequestParam String descriptionSize, @RequestParam double price, @RequestParam double vat,
 			@RequestParam String categoryName, @RequestParam String producerName, @RequestParam String mainImage,

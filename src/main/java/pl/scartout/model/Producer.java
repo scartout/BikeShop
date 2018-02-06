@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@XmlRootElement
 	@Entity
 	@Table(name = "producers")
-	final public class Producer implements Serializable {
+	public final class Producer implements Serializable {
 	    private static final long serialVersionUID = 1L;
 	    
 	    @Id

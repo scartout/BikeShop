@@ -13,18 +13,21 @@ import pl.scartout.model.Contact;
 import pl.scartout.model.User;
 import pl.scartout.repo.AddressRepo;
 import pl.scartout.repo.ContactRepo;
+import pl.scartout.repo.UserRepo;
 import pl.scartout.service.UserService;
 	 
 @Controller
 public class UserController {
 	
 	private UserService userService;
+	private UserRepo userRepo;
 	private AddressRepo addressRepo;
 	private ContactRepo contactRepo;
     
     @Autowired
-    public void setUserService(UserService userService, AddressRepo addressRepo, ContactRepo contactRepo) {
+    public void setUserService(UserService userService, UserRepo userRepo, AddressRepo addressRepo, ContactRepo contactRepo) {
         this.userService = userService;
+        this.userRepo = userRepo;
         this.addressRepo = addressRepo;
         this.contactRepo = contactRepo;
     }
@@ -41,7 +44,7 @@ public class UserController {
         return "login";
     }
 	
-	@PostMapping("/register")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String addUser(@ModelAttribute @Valid User user,
 			BindingResult bindResult,
 			@RequestParam String city,
@@ -58,14 +61,17 @@ public class UserController {
 		if(bindResult.hasErrors())
 			return "registerForm";
 		else {
-			Address address = new Address(city, voivodeship, county, country, street, postcode, streetNumber, localNumber);
-			addressRepo.save(address);
-			user.setAddress(address);
-			Contact contact = new Contact(phoneNumberFirst, phoneNumberSecond, fax);
-			contactRepo.save(contact);
-			user.setContact(contact);
-			userService.addWithDefaultRole(user);
-			return "registerSuccess";
+			if (userRepo.findByUsername(user.getUsername())==null) {
+				Address address = new Address(city, voivodeship, county, country, street, postcode, streetNumber, localNumber);
+				addressRepo.save(address);
+				user.setAddress(address);
+				Contact contact = new Contact(phoneNumberFirst, phoneNumberSecond, fax);
+				contactRepo.save(contact);
+				user.setContact(contact);
+				userService.addWithDefaultRole(user);
+				return "registerSuccess";
+			}
+			else return "registerForm";
 		}
 	}
 	

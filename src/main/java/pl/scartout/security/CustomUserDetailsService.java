@@ -14,7 +14,7 @@ import pl.scartout.model.User;
 import pl.scartout.model.Role;
 import pl.scartout.repo.UserRepo;
 
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {	
 	
 	private UserRepo userRepo;
 	

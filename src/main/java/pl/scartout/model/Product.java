@@ -23,7 +23,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 	@XmlRootElement
 	@Entity
 	@Table(name = "products")
-	final public class Product implements Serializable {
+	public final class Product implements Serializable {
 	    private static final long serialVersionUID = 1L;
 	    
 	    @Id
@@ -65,14 +65,14 @@ import org.hibernate.annotations.LazyCollectionOption;
 		public Product(String name, String descriptionShort, String descriptionLong, String descriptionSize,
 				Double price, Double vat, String mainImage, String imageSecond, String imageThird) {
 			if (vat > 100.0 || vat < 0.0) throw new IllegalArgumentException();
-			double priceNet = price/(1+(vat/100.0));
-			priceNet = Math.round(priceNet*100.0)/100.0;
+			double countPriceNet = price/(1+(vat/100.0));
+			countPriceNet = Math.round(countPriceNet*100.0)/100.0;
 			this.name = name;
 			this.descriptionShort = descriptionShort;
 			this.descriptionLong = descriptionLong;
 			this.descriptionSize = descriptionSize;
 			this.price = price;
-			this.priceNet = priceNet;
+			this.priceNet = countPriceNet;
 			this.vat = vat;
 			this.mainImage = mainImage;
 			this.imageSecond = imageSecond;
@@ -83,15 +83,15 @@ import org.hibernate.annotations.LazyCollectionOption;
 				Double price, Double vat, String mainImage, String imageSecond, String imageThird,
 				Category category, Producer producer) {
 			if (vat > 100.0 || vat < 0.0) throw new IllegalArgumentException();
-			double priceNet = price/(1+(vat/100.0));
-	    	priceNet = Math.round(priceNet*100.0)/100.0;
+			double countPriceNet = price/(1+(vat/100.0));
+			countPriceNet = Math.round(countPriceNet*100.0)/100.0;
 			this.id = id;
 			this.name = name;
 			this.descriptionShort = descriptionShort;
 			this.descriptionLong = descriptionLong;
 			this.descriptionSize = descriptionSize;
 			this.price = price;
-			this.priceNet = priceNet;
+			this.priceNet = countPriceNet;
 			this.vat = vat;
 			this.mainImage = mainImage;
 			this.imageSecond = imageSecond;

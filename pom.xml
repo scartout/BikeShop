@@ -5,7 +5,8 @@
 
 	<groupId>pl.scartout</groupId>
 	<artifactId>BikeShop</artifactId>
-	<version>0.3.4</version>
+	<description>Developed by Pawel Dudek</description>
+	<version>0.4.0</version>
 
 	<name>BikeShop</name>
 
@@ -86,7 +87,7 @@
     		<artifactId>equalsverifier</artifactId>
     		<version>${equalsverifier-version}</version>
     		<scope>test</scope>
-</dependency>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -96,6 +97,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<description>Developed by Pawel Dudek</description>
+	
 </project>

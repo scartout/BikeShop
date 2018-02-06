@@ -1,6 +1,8 @@
 package pl.scartout.controller;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,6 +20,8 @@ import pl.scartout.repo.UserRepo;
  
 @Controller
 public class HomeController {
+	
+	Logger LOGGER = Logger.getAnonymousLogger();
 	
 	private ProductRepo productRepo;
 	private UserRepo userRepo;
@@ -42,7 +46,9 @@ public class HomeController {
 	    	String username = userDetails.getUsername();
 	    	User user = userRepo.findByUsername(username);
 	    	countOrders = orderRepo.countOrdersByUserId(user);
-    	}catch (ClassCastException e){};
+    	}catch (ClassCastException e){
+    		LOGGER.log( Level.SEVERE, e.toString(), e );
+    	}
     	model.addAttribute("countOrders", countOrders);
         return "home";
     }

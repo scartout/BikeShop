@@ -37,7 +37,7 @@ public class ProductNewController {
         return "productnew";
     }
     
-	@PostMapping("/addProduct")
+	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
 	public String addProduct(@RequestParam String name, @RequestParam String descriptionShort, @RequestParam String descriptionLong,
 			@RequestParam String descriptionSize, @RequestParam double price, @RequestParam double vat,
 			@RequestParam String categoryName, @RequestParam String producerName, @RequestParam String mainImage,

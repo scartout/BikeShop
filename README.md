@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.3.4
+Version 0.4.0
 
 
 ## How to use:
@@ -42,8 +42,9 @@ BikeShop has been being implemented an example of this kind of portals.
 - Thymeleaf
 - JPA
 - Bootstrap
-- Javascript
+- JavaScript
 - ITextPDF
+- SHA
 - Maven
 - JUnit
 - EqualsVerifier
