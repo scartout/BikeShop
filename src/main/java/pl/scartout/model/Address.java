@@ -131,9 +131,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "Address [id=" + id + ", city=" + city + ", voivodeship=" + voivodeship + ", county=" + county
-					+ ", country=" + country + ", street=" + street + ", postcode=" + postcode + ", streetNumber="
-					+ streetNumber + ", localNumber=" + localNumber + "]";
+			return "Address - " + id;
 		}
 
 		@Override

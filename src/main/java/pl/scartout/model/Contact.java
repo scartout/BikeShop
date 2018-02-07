@@ -73,8 +73,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "Contact [id=" + id + ", phoneNumberFirst=" + phoneNumberFirst + ", phoneNumberSecond="
-					+ phoneNumberSecond + ", fax=" + fax + "]";
+			return "Contact - " + id;
 		}
 
 		@Override

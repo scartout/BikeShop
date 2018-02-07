@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
 import pl.scartout.model.Product;
@@ -28,7 +29,15 @@ public class ProductTest {
 	}
 	
 	@Test
-    public void shouldReturnNetPriceNewProduct() {
+	public void verifyToString() {
+		Product product = new Product();
+		product.setId(9999999L);
+		product.setName("Product_name");
+		assertThat(product.toString()).isEqualTo("Product - 9999999 - Product_name");
+	}
+	
+	@Test
+    public void shouldReturnNetPrice() {
 		
 		//given
 		Product product = new Product(null, null, null,	null, 2300.00, 23.00, null, null, null);
@@ -41,7 +50,7 @@ public class ProductTest {
 	}
 	
 	@Test
-    public void shouldReturnNetPriceNewProductWithoutVat() {
+    public void shouldReturnNetPriceWithoutVat() {
 		
 		//given
 		Product product = new Product(null, null, null,	null, 2300.00, 0.00, null, null, null);
@@ -54,7 +63,7 @@ public class ProductTest {
 	}
 	
 	@Test
-    public void shouldReturnNetPriceNewProductWithUpperLimit() {
+    public void shouldReturnNetPriceWithUpperLimit() {
 		
 		//given
 		Product product = new Product(null, null, null,	null, 2300.00, 99.99, null, null, null);
@@ -67,19 +76,31 @@ public class ProductTest {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-    public void shouldReturnNetPriceNewProductWithIncorrectVatValue() {
+    public void shouldNotReturnNetPriceWithIncorrectVat() {
 		
 		Product product = new Product(null, null, null,	null, 2300.00, 100.01, null, null, null);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-    public void shouldReturnNetPriceNewProductWithNegativeVatValue() {
+    public void shouldNotReturnNetPricetWithNegativeVat() {
 		
 		Product product = new Product(null, null, null,	null, 2300.00, -0.01, null, null, null);
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+    public void shouldNotReturnNetPriceWithNegativePrice() {
+		
+		Product product = new Product(null, null, null,null, -2300.00, 23.00, null, null, null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+    public void shouldNotReturnNetPriceWithNegativePriceAndNegativeVat() {
+		
+		Product product = new Product(null, null, null,null, -2300.00, -23.00, null, null, null);
+	}
+	
 	@Test
-    public void shouldReturnNetPriceNewProductWithId() {
+    public void shouldReturnNetPriceWithId() {
 		
 		//given
 		Product product = new Product(9999999L, null, null, null,null, 2300.00, 23.00, null, null, null, null, null);
@@ -92,7 +113,7 @@ public class ProductTest {
 	}
 	
 	@Test
-    public void shouldReturnNetPriceNewProductWithIdWithoutVat() {
+    public void shouldReturnNetPriceWithIdWithoutVat() {
 		
 		//given
 		Product product = new Product(9999999L, null, null, null,null, 2300.00, 0.00, null, null, null, null, null);
@@ -105,7 +126,7 @@ public class ProductTest {
 	}
 	
 	@Test
-    public void shouldReturnNetPriceNewProductWithIdUpperLimit() {
+    public void shouldReturnNetPriceWithIdUpperLimit() {
 		
 		//given
 		Product product = new Product(9999999L, null, null, null,null, 2300.00, 99.99, null, null, null, null, null);
@@ -118,15 +139,27 @@ public class ProductTest {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-    public void shouldReturnNetPriceNewProductWithIdWithIncorrectVatValue() {
+    public void shouldNotReturnNetPriceWithIdAndIncorrectVat() {
 		
-		Product product = new Product(9999999L, null, null, null,null, 2300.00, 100.01, null, null, null, null, null);
+		Product product = new Product(9999999L, null, null, null, null, 2300.00, 100.01, null, null, null, null, null);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-    public void shouldReturnNetPriceNewProductWithIdWithNegativeVatValue() {
+    public void shouldReturnNetPriceWithIdAndNegativeVat() {
 		
-		Product product = new Product(9999999L, null, null, null,null, 2300.00, -0.01, null, null, null, null, null);
+		Product product = new Product(9999999L, null, null, null, null, 2300.00, -0.01, null, null, null, null, null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+    public void shouldNotReturnNetPriceWithIdAndNegativePrice() {
+		
+		Product product = new Product(9999999L, null, null, null, null, -2300.00, 23.00, null, null, null, null, null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+    public void shouldNotReturnNetPriceWithIdAndNegativePriceValueAndNegativeVatValue() {
+		
+		Product product = new Product(9999999L, null, null, null, null, -2300.00, -23.00, null, null, null, null, null);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package pl.scartout;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +23,13 @@ public class OrderTest {
 	@Test
 	public void equalsContract() {
 	    EqualsVerifier.forClass(Order.class).verify();
+	}
+	
+	@Test
+	public void verifyToString() {
+		Order order = new Order();
+		order.setId(9999999L);
+		assertThat(order.toString()).isEqualTo("Order - 9999999");
 	}
 	
 }

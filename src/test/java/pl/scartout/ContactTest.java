@@ -1,5 +1,7 @@
 package pl.scartout;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +23,13 @@ public class ContactTest {
 	@Test
 	public void equalsContract() {
 	    EqualsVerifier.forClass(Contact.class).verify();
+	}
+	
+	@Test
+	public void verifyToString() {
+		Contact contact = new Contact();
+		contact.setId(9999999L);
+		assertThat(contact.toString()).isEqualTo("Contact - 9999999");
 	}
 	
 }

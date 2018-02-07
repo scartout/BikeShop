@@ -74,7 +74,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "Producer [id=" + id + ", name=" + name + ", products=" + products + "]";
+			return "Producer - " + id + " - " + name;
 		}
 
 		@Override

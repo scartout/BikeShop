@@ -133,9 +133,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "Order [id=" + id + ", quantity=" + quantity + ", total=" + total + ", invoiceNumber="
-					+ invoiceNumber + ", orderDate=" + orderDate + ", approvalDate=" + approvalDate + ", shippingDate="
-					+ shippingDate + ", completeDate=" + completeDate + ", user=" + user + ", product=" + product + "]";
+			return "Order - " + id;
 		}
 
 		@Override

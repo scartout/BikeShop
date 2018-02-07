@@ -2,6 +2,7 @@ package pl.scartout.controller;
 
 import java.util.List;
 
+import org.assertj.core.util.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -32,11 +33,14 @@ public class ProductEditController {
     public ProductEditController() {}
 
 	public double netCounter(double price, double vat) {
-		if (vat > 100.0 || vat < 0.0) throw new IllegalArgumentException();
-		else {
-			double priceNet = price/(1+(vat/100.0));
-			return Math.round(priceNet*100.0)/100.0;
-		}
+		Preconditions.checkArgument(price>=0, "Price cannot be negative");
+		Preconditions.checkArgument(vat>=0, "Price cannot be negative");
+		Preconditions.checkArgument(vat<=100, "Price cannot be greater than 99.99");
+		double priceNet = price/(1+(vat/100.0));
+		Preconditions.checkArgument(priceNet>0, "Price net cannot be negative");
+		Preconditions.checkArgument(priceNet<=price, "Price net cannot be greater than price gross");
+		return Math.round(priceNet*100.0)/100.0;
+		
     }
     
     @GetMapping(path = "/productlist", produces = MediaType.APPLICATION_JSON_VALUE)

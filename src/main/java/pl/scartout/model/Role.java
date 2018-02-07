@@ -46,7 +46,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "Role [id=" + id + ", role=" + role + "]";
+			return "Role - " + id + " - " + role;
 		}
 
 		@Override

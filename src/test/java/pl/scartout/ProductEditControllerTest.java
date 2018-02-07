@@ -15,7 +15,7 @@ import pl.scartout.controller.ProductEditController;
 public class ProductEditControllerTest {
 	
     @Test
-    public void shouldReturnNetPriceEditProduct() {
+    public void shouldReturnNetPrice() {
 
         // given
     	double price = 2300.00;
@@ -45,7 +45,7 @@ public class ProductEditControllerTest {
     }
     
     @Test
-    public void shouldReturnNetPriceEditProductUpperLimit() {
+    public void shouldReturnNetPriceWithUpperLimit() {
 
         // given
     	double price = 2300.00;
@@ -60,7 +60,7 @@ public class ProductEditControllerTest {
     }
     
     @Test(expected = IllegalArgumentException.class)
-    public void shouldReturnNetPriceEditProductWithIncorrectVat() {
+    public void shouldNotReturnNetPriceWithIncorrectVat() {
 
         // given
     	double price = 2300.00;
@@ -73,10 +73,49 @@ public class ProductEditControllerTest {
     }
     
     @Test(expected = IllegalArgumentException.class)
-    public void shouldReturnNetPriceEditProductWithNegativeVat() {
+    public void shouldNotReturnNetPriceWithNegativePriceAndIncorrectVat() {
+
+        // given
+    	double price = -2300.00;
+    	double vat = 100.01;
+
+        // when
+    	ProductEditController productEditController = new ProductEditController();
+        productEditController.netCounter(price, vat);
+
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotReturnNetPriceWithNegativeVat() {
 
         // given
     	double price = 2300.00;
+    	double vat = -0.01;
+
+        // when
+    	ProductEditController productEditController = new ProductEditController();
+        productEditController.netCounter(price, vat);
+
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotReturnNetPriceWithNegativePrice() {
+
+        // given
+    	double price = -2300.00;
+    	double vat = 23.00;
+
+        // when
+    	ProductEditController productEditController = new ProductEditController();
+        productEditController.netCounter(price, vat);
+
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotReturnNetPriceWithNegaticePriceAndNegativeVat() {
+
+        // given
+    	double price = -2300.00;
     	double vat = -0.01;
 
         // when

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.assertj.core.util.Preconditions;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -64,9 +65,13 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 		public Product(String name, String descriptionShort, String descriptionLong, String descriptionSize,
 				Double price, Double vat, String mainImage, String imageSecond, String imageThird) {
-			if (vat > 100.0 || vat < 0.0) throw new IllegalArgumentException();
+			Preconditions.checkArgument(price>=0, "Price cannot be negative");
+			Preconditions.checkArgument(vat>=0, "Price cannot be negative");
+			Preconditions.checkArgument(vat<=100, "Price cannot be greater than 99.99");
 			double countPriceNet = price/(1+(vat/100.0));
 			countPriceNet = Math.round(countPriceNet*100.0)/100.0;
+			Preconditions.checkArgument(countPriceNet>0, "Price net cannot be negative");
+			Preconditions.checkArgument(countPriceNet<=price, "Price net cannot be greater than price gross");
 			this.name = name;
 			this.descriptionShort = descriptionShort;
 			this.descriptionLong = descriptionLong;
@@ -82,9 +87,13 @@ import org.hibernate.annotations.LazyCollectionOption;
 		public Product(Long id, String name, String descriptionShort, String descriptionLong, String descriptionSize,
 				Double price, Double vat, String mainImage, String imageSecond, String imageThird,
 				Category category, Producer producer) {
-			if (vat > 100.0 || vat < 0.0) throw new IllegalArgumentException();
+			Preconditions.checkArgument(price>=0, "Price cannot be negative");
+			Preconditions.checkArgument(vat>=0, "Price cannot be negative");
+			Preconditions.checkArgument(vat<=100, "Price cannot be greater than 99.99");
 			double countPriceNet = price/(1+(vat/100.0));
 			countPriceNet = Math.round(countPriceNet*100.0)/100.0;
+			Preconditions.checkArgument(countPriceNet>0, "Price net cannot be negative");
+			Preconditions.checkArgument(countPriceNet<=price, "Price net cannot be greater than price gross");
 			this.id = id;
 			this.name = name;
 			this.descriptionShort = descriptionShort;
@@ -214,7 +223,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 		@Override
 		public String toString() {
-			return "Product [id=" + id + ", name=" + name;
+			return "Product - " + id + " - " + name;
 		}
 
 		@Override

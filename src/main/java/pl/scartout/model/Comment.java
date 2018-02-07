@@ -98,8 +98,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "Comment [id=" + id + ", description=" + description + ", date=" + date + ", vote=" + vote
-					+ ", user=" + user + ", product=" + product + "]";
+			return "Comment - " + id;
 		}
 
 		@Override

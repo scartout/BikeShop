@@ -170,9 +170,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-					+ ", firstName=" + firstName + ", lastName=" + lastName + ", companyName=" + companyName + ", role="
-					+ role + ", contact=" + contact + ", orders=" + orders + ", address=" + address + "]";
+			return "User - " + id + " - " + username;
 		}
 
 		@Override
