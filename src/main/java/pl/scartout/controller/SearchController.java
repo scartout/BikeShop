@@ -30,8 +30,6 @@ public class SearchController {
     	}
     	else products = productRepo.findAll();
     	model.addAttribute("products", products);
-    	Long countProducts = productRepo.countAllProducts();
-    	model.addAttribute("countProducts", countProducts);
         return "search";
     }
     

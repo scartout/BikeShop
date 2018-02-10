@@ -6,7 +6,7 @@
 	<groupId>pl.scartout</groupId>
 	<artifactId>BikeShop</artifactId>
 	<description>Developed by Pawel Dudek</description>
-	<version>0.4.1</version>
+	<version>0.5.0</version>
 
 	<name>BikeShop</name>
 
@@ -24,6 +24,8 @@
 		<javax-servlet.version>2.5</javax-servlet.version>
 		<itext-pdf.version>5.0.6</itext-pdf.version>
 		<equalsverifier-version>1.0.2</equalsverifier-version>
+		<derby-version>10.14.1.0</derby-version>
+		<guava-version>19.0</guava-version>
 	</properties>
 
 	<dependencies>
@@ -87,6 +89,23 @@
     		<artifactId>equalsverifier</artifactId>
     		<version>${equalsverifier-version}</version>
     		<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.apache.derby</groupId>
+   		 	<artifactId>derby</artifactId>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.google.guava</groupId>
+    		<artifactId>guava</artifactId>
+    		<version>${guava-version}</version>
+		</dependency>
+				
+		<dependency>
+    		<groupId>org.apache.derby</groupId>
+   		 	<artifactId>derbyclient</artifactId>
+    		<version>${derby-version}</version>
 		</dependency>
 
 	</dependencies>

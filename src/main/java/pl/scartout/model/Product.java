@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.assertj.core.util.Preconditions;
+import com.google.common.base.Preconditions;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -70,8 +70,8 @@ import org.hibernate.annotations.LazyCollectionOption;
 			Preconditions.checkArgument(vat<=100, "Price cannot be greater than 99.99");
 			double countPriceNet = price/(1+(vat/100.0));
 			countPriceNet = Math.round(countPriceNet*100.0)/100.0;
-			Preconditions.checkArgument(countPriceNet>0, "Price net cannot be negative");
-			Preconditions.checkArgument(countPriceNet<=price, "Price net cannot be greater than price gross");
+			Preconditions.checkState(countPriceNet>0, "Price net cannot be negative");
+			Preconditions.checkState(countPriceNet<=price, "Price net cannot be greater than price gross");
 			this.name = name;
 			this.descriptionShort = descriptionShort;
 			this.descriptionLong = descriptionLong;

@@ -36,12 +36,6 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
     		@Param("imageSecond") String imageSecond, @Param("imageThird") String imageThird,
     		@Param("category") Category category, @Param("producer") Producer producer);
 	
-	@Query("SELECT count(c) FROM Product c")
-	Long countAllProducts();
-	
-	@Query("SELECT count(c) FROM Product c WHERE c.category=:category")
-	Long countAllProductsByCategory(@Param("category") Category category);
-	
 	@Query("SELECT c FROM Product c WHERE c.name like "+"%"+":string"+"% OR c.descriptionShort like "+"%"+":string"+"%")
 	List<Product> searchProducts(@Param("string") String string);
 

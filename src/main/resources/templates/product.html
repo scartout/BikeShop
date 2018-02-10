@@ -88,7 +88,7 @@
 								<li class="checkout">
 									<a th:href="@{/cart}">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items"></span>
+										<span id="checkout_items" class="checkout_items" th:text="${session.countOrders}"></span>
 									</a>
 								</li>
 							</ul>
@@ -127,20 +127,21 @@
 						<div class="col-lg-2 thumbnails_col order-lg-0 order-2">
 							<div class="single_product_thumbnails">
 								<ul>
-									<li class="active"><img th:src="${product.mainImage}" alt="" th:attr="data-image=${product.mainImage}"/></li>
 									<li><img th:src="${product.imageSecond}" alt="" th:attr="data-image=${product.imageSecond}"/></li>
 									<li><img th:src="${product.imageThird}" alt="" th:attr="data-image=${product.imageThird}"/></li>
+									<li class="active"><img th:src="${product.mainImage}" alt="" th:attr="data-image=${product.mainImage}"/></li>
 								</ul>
 							</div>
 						</div>
 						<div class="col-lg-10 image_col order-lg-2 order-0">
 							<div class="single_product_image">
-								<div class="single_product_image_background" style="background-image:url(http://blogs.sciences-po.fr/hipsterdom/files/2014/10/Bianchi.jpg)" /></div>
-							
+								<div class="single_product_image_background"></div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>			
+			
 			<div class="col-lg-2">
 				<div class="product_details">
 					<div class="product_details_title">
@@ -157,15 +158,12 @@
 						<span>Quantity:</span>
 						<form th:action="@{/addtocart}" method="post">
 						<div class="quantity_selector">
-							<!--  <span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>-->
-							<!--  <span id="quantity_value">1</span>-->
 							<input id="quantity_value" name="quantity" min="1" value="1" type="number"/>
 							<!--  <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>-->
 						</div>
 						  <input type="hidden" name="productId" th:value="${product.id}"/>
 						  <input class="red_button add_to_cart_button" type="submit" value="Add to cart"></input>
 						</form>
-						<!--<div class="red_button add_to_cart_button"><a th:href="@{/cart}">Add to cart</a></div>-->
 					</div>
 				</div>
 			</div>
@@ -267,13 +265,6 @@
 									<form id="review_form" th:action="@{/addcomment}" method="post">
 										<div>
 											<h1>Add Review</h1>
-											<!--  <ul class="user_star_rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-											</ul>-->
 											<p>Your vote:</p>
 											<select name="vote">
 												<option value="1">1</option>

@@ -2,12 +2,13 @@ package pl.scartout.controller;
 
 import java.util.List;
 
-import org.assertj.core.util.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import com.google.common.base.Preconditions;
 
 import pl.scartout.model.Category;
 import pl.scartout.model.Producer;
@@ -37,8 +38,8 @@ public class ProductEditController {
 		Preconditions.checkArgument(vat>=0, "Price cannot be negative");
 		Preconditions.checkArgument(vat<=100, "Price cannot be greater than 99.99");
 		double priceNet = price/(1+(vat/100.0));
-		Preconditions.checkArgument(priceNet>0, "Price net cannot be negative");
-		Preconditions.checkArgument(priceNet<=price, "Price net cannot be greater than price gross");
+		Preconditions.checkState(priceNet>0, "Price net cannot be negative");
+		Preconditions.checkState(priceNet<=price, "Price net cannot be greater than price gross");
 		return Math.round(priceNet*100.0)/100.0;
 		
     }

@@ -53,7 +53,7 @@ jQuery(document).ready(function($)
 	initStarRating();
 	initFavorite();
 	initTabs();
-
+	
 	/* 
 
 	2. Set Header
@@ -181,6 +181,7 @@ jQuery(document).ready(function($)
 
 	function initThumbnail()
 	{
+		
 		if($('.single_product_thumbnails ul li').length)
 		{
 			var thumbs = $('.single_product_thumbnails ul li');
@@ -189,6 +190,8 @@ jQuery(document).ready(function($)
 			thumbs.each(function()
 			{
 				var item = $(this);
+				var img = item.find('img').data('image');
+				singleImage.css('background-image', 'url(' + img + ')');
 				item.on('click', function()
 				{
 					thumbs.removeClass('active');

@@ -65,6 +65,10 @@ public class SpringJpaBootApplication{
         	Producer producer3 = new Producer(3L, "Unibike");
         	producerRepo.save(producer3);}
         
+        if (producerRepo.findByName("Crank Brothers") == null) {
+        	Producer producer4 = new Producer(4L, "Crank Brothers");
+        	producerRepo.save(producer4);}
+        
         ProductRepo productRepo = ctx.getBean(ProductRepo.class);
   
         if (productRepo.findByName("Canyon Endurace 7.0 Al") == null) {
@@ -93,7 +97,17 @@ public class SpringJpaBootApplication{
         			"http://st2.static.bikestats.pl/55/b5655-u7699_orig.jpg?1387525943", 
         			"http://www.unibike.pl/images/cross/vipergts7.jpg", category, producer);
         	productRepo.save(product3);}
-    }
+    
+	    if (productRepo.findByName("Crank Brothers M17") == null) {
+	    	Producer producer = producerRepo.findByName("Crank Brothers");
+	    	Category category = categoryRepo.findByName("Accesories");
+	    	Product product4 = new Product(4L, "Crank Brothers M17", "Bike multitool", "Bike multitool", 
+	    			"The m17 combines an aluminum frame that gives superb grip with 17 of the most essential tools a mountain biker will ever need. It features 2-, 2.5-, 3-, 4-, 5-, 6- and 8-millimeter hex wrenches, Philips and flathead screwdrivers and a Torx T25.",	
+	    			94.90, 23.00, "https://www.sbike.pl/public/cache/img/resources/private/offer/1/00009687/14759/bhBPPKGBgAZbHZVPPagG/650x650.jpg", 
+	    			"http://team29er.pl/images/2016/Multitool_Crank_Brothers/Test_Multitool_Crank_Brothers_M17.jpg", 
+	    			"http://road.cc/sites/default/files/images/Crank%20Bros%20M17%20multitool%202.preview_500.jpg", category, producer);
+	    	productRepo.save(product4);}
+	}
     
     	
 }

@@ -1,8 +1,9 @@
 package pl.scartout.controller;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,8 +22,6 @@ import pl.scartout.repo.UserRepo;
 @Controller
 public class HomeController {
 	
-	Logger LOGGER = Logger.getAnonymousLogger();
-	
 	private ProductRepo productRepo;
 	private UserRepo userRepo;
 	private OrderRepo orderRepo;
@@ -35,22 +34,23 @@ public class HomeController {
     }
     
     @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getProduct(Model model) {
+    public String getProduct(Model model, HttpServletRequest request) {
     	List<Product> products = productRepo.findAll();
     	model.addAttribute("products", products);
-    	Long countProducts = productRepo.countAllProducts();
-    	model.addAttribute("countProducts", countProducts);
-    	int countOrders = 0;
-    	try {
-	    	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	orderCounter(request);
+        return "home";
+    }
+    
+	private void orderCounter(HttpServletRequest request) {
+		int countOrders = 0;
+		try {
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	    	String username = userDetails.getUsername();
 	    	User user = userRepo.findByUsername(username);
 	    	countOrders = orderRepo.countOrdersByUserId(user);
-    	}catch (ClassCastException e){
-    		LOGGER.log( Level.SEVERE, e.toString(), e );
-    	}
-    	model.addAttribute("countOrders", countOrders);
-        return "home";
-    }
+		}catch (ClassCastException e){}
+		HttpSession session = request.getSession();
+		session.setAttribute("countOrders", countOrders);
+	}
     
 }

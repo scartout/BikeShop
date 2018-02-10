@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -47,7 +50,7 @@ public class OrderController {
 	 
     @Autowired
     public OrderController(ProductRepo productRepo, UserRepo userRepo, OrderRepo orderRepo) {
-        this.productRepo= productRepo;
+        this.productRepo = productRepo;
         this.userRepo = userRepo;
         this.orderRepo = orderRepo;
     }
@@ -80,7 +83,7 @@ public class OrderController {
     }
     
     @PostMapping(path = "/addtocart", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String addToCart(Model model, @RequestParam Long productId, @RequestParam int quantity) {
+    public String addToCart(Model model, HttpServletRequest request, @RequestParam Long productId, @RequestParam int quantity) {
     	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	String username = userDetails.getUsername();
     	User user = userRepo.findByUsername(username);
@@ -89,19 +92,22 @@ public class OrderController {
     	order.setProduct(product);
     	order.setUser(user);
     	orderRepo.save(order);
+    	orderCounter(request);
         return "redirect:/product?id="+productId;
     }
     
     @PostMapping("/confirmOrder")
-	public String confirmOrder(@RequestParam Long id, @RequestParam int quantity, @RequestParam double price) {
+	public String confirmOrder(HttpServletRequest request, @RequestParam Long id, @RequestParam int quantity, @RequestParam double price) {
     	double total = price*quantity;
     	orderRepo.confirmOrder(id, new Date(), quantity, total);
+    	orderCounter(request);
 		return "redirect:/cart";
 	}
     
     @PostMapping("/deleteOrder")
-	public String confirmOrder(@RequestParam Long id) {
+	public String confirmOrder(HttpServletRequest request, @RequestParam Long id) {
     	orderRepo.deleteOrder(id);
+    	orderCounter(request);
 		return "redirect:/cart";
 	}
     
@@ -231,7 +237,19 @@ public class OrderController {
 	      paragraph.add(new Paragraph(" "));
 	    }
 	  }
-    
+	
+	private void orderCounter(HttpServletRequest request) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	String username = userDetails.getUsername();
+    	User user = userRepo.findByUsername(username);
+		int countOrders = 0;
+		try {
+	    	countOrders = orderRepo.countOrdersByUserId(user);
+		}catch (ClassCastException e){}
+		HttpSession session = request.getSession();
+		session.setAttribute("countOrders", countOrders);
+	}
+	
 }
     
     

@@ -946,7 +946,6 @@ section
 	height: 100%;
 	border: solid 1px #fe4c50;
 	content: '';
-	visibility: hidden;
 }
 .single_product_thumbnails ul li.active::after,
 .single_product_thumbnails ul li:hover::after
@@ -956,6 +955,8 @@ section
 .single_product_thumbnails ul li img
 {
 	width: 100%;
+	padding-top: 20%;
+	padding-bottom: 20%;
 }
 .image_col
 {
@@ -964,7 +965,10 @@ section
 .single_product_image
 {
 	width: 100%;
-	height: 527px;
+	height: 500px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .single_product_image_background
 {
@@ -1596,4 +1600,30 @@ section
 .footer_social ul li a:hover
 {
 	color: #fe4c50;
+}
+.filter_button
+{
+	width: 100%;
+	height: 30px;
+	background: #1e1e27;
+	text-align: center;
+	margin-top: 25px;
+	cursor: pointer;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+.filter_button:hover
+{
+	background: #34343f;
+}
+.filter_button span
+{
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	line-height: 30px;
+	color: #FFFFFF;
 }
