@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 0.5.1
+Version 1.0.1
 
 
 ## How to use:
@@ -9,7 +9,7 @@ Version 0.5.1
 1. Install MySQLWorkbench. Create new empty schemas "bikeshop" and "bikeshoptest".
 2. Install Spring Tool Suite or IntelliJ IDEA Ultimate.
 3. Run the application as Spring Boot App.
-4. Application might not work properly with JDK9.
+4. Application might not work properly with installed JDK9.
 
 
 ## Admin panel:
@@ -44,4 +44,5 @@ BikeShop has been being implemented an example of this kind of portals.
 - Maven
 - JUnit
 - AssertJ
+- Google Guava
 - EqualsVerifier

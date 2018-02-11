@@ -365,8 +365,8 @@ jQuery(document).ready(function($)
 		            filter: function()
 		            {
 		            	var priceRange = $('#amount').val();
-			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('PLN', ''));
-			        	var priceMax = parseFloat(priceRange.split('-')[1].replace('PLN', ''));
+			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('$', ''));
+			        	var priceMax = parseFloat(priceRange.split('-')[1].replace('$', ''));
 			        	var itemPrice = $(this).find('.product_price').clone().children().remove().end().text().replace( ' PLN', '' ).replace(',','.');
 
 			        	return (itemPrice > priceMin) && (itemPrice < priceMax);
@@ -397,7 +397,7 @@ jQuery(document).ready(function($)
 			values: [ 0, 5000 ],
 			slide: function( event, ui )
 			{
-				$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				$( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] + " PLN");
 				$( "#priceMin" ).val(ui.values[ 0 ]);
 				$( "#priceMax" ).val(ui.values[ 1 ]);
 			}
