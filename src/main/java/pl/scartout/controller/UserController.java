@@ -3,6 +3,7 @@ package pl.scartout.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,15 +19,17 @@ import pl.scartout.service.UserService;
 	 
 @Controller
 public class UserController {
-	
+
+	private PasswordEncoder passwordEncoder;
 	private UserService userService;
 	private UserRepo userRepo;
 	private AddressRepo addressRepo;
 	private ContactRepo contactRepo;
     
     @Autowired
-    public void setUserService(UserService userService, UserRepo userRepo, AddressRepo addressRepo, ContactRepo contactRepo) {
-        this.userService = userService;
+    public void setUserService(PasswordEncoder passwordEncoder, UserService userService, UserRepo userRepo, AddressRepo addressRepo, ContactRepo contactRepo) {
+        this.passwordEncoder = passwordEncoder;
+    	this.userService = userService;
         this.userRepo = userRepo;
         this.addressRepo = addressRepo;
         this.contactRepo = contactRepo;
@@ -49,7 +52,6 @@ public class UserController {
 			BindingResult bindResult,
 			@RequestParam String city,
 			@RequestParam String voivodeship,
-			@RequestParam String county,
 			@RequestParam String country,
 			@RequestParam String street,
 			@RequestParam String postcode,
@@ -62,9 +64,10 @@ public class UserController {
 			return "registerForm";
 		else {
 			if (userRepo.findByUsername(user.getUsername())==null) {
-				Address address = new Address(city, voivodeship, county, country, street, postcode, streetNumber, localNumber);
+				Address address = new Address(city, voivodeship, country, street, postcode, streetNumber, localNumber);
 				addressRepo.save(address);
 				user.setAddress(address);
+				user.setPassword(passwordEncoder.encode(user.getPassword()));
 				Contact contact = new Contact(phoneNumberFirst, phoneNumberSecond, fax);
 				contactRepo.save(contact);
 				user.setContact(contact);

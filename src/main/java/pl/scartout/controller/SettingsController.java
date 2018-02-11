@@ -1,9 +1,12 @@
 package pl.scartout.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +21,21 @@ import pl.scartout.repo.UserRepo;
 @Controller
 public class SettingsController {
 
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+	    return new BCryptPasswordEncoder();
+	}
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	private UserRepo userRepo;
 	private AddressRepo addressRepo;
 	private ContactRepo contactRepo;
     
     @Autowired
     public SettingsController(UserRepo userRepo, AddressRepo addressRepo, ContactRepo contactRepo) {
-        this.userRepo = userRepo;
+    	this.userRepo = userRepo;
         this.addressRepo = addressRepo;
         this.contactRepo = contactRepo;
     }
@@ -47,7 +58,6 @@ public class SettingsController {
 	    		@RequestParam String lastName,
 				@RequestParam String city,
 				@RequestParam String voivodeship,
-				@RequestParam String county,
 				@RequestParam String country,
 				@RequestParam String street,
 				@RequestParam String postcode,
@@ -56,6 +66,7 @@ public class SettingsController {
 				@RequestParam String phoneNumberFirst,
 				@RequestParam String phoneNumberSecond,
 				@RequestParam String fax) {
+    		password = passwordEncoder.encode(password);
     		userRepo.updateUser(id, password, email, firstName, lastName);
     		User user = userRepo.findById(id);
     		Contact contact = user.getContact();
@@ -64,7 +75,7 @@ public class SettingsController {
     		Long addressId = address.getId();
     		
     		contactRepo.updateContact(contactId, phoneNumberFirst, phoneNumberSecond, fax);
-    		addressRepo.updateAddress(addressId, city, voivodeship, county, country, street, postcode, streetNumber, localNumber);
+    		addressRepo.updateAddress(addressId, city, voivodeship, country, street, postcode, streetNumber, localNumber);
 			return "redirect:/";
 		}
 	

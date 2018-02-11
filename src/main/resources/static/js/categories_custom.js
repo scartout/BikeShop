@@ -322,7 +322,7 @@ jQuery(document).ready(function($)
 	            getSortData: {
 	            	price: function(itemElement)
 	            	{
-	            		var priceEle = $(itemElement).find('.product_price').text().replace( '$', '' );
+	            		var priceEle = $(itemElement).find('.product_price').text().replace( 'PLN', '' );
 	            		return parseFloat(priceEle);
 	            	},
 	            	name: '.product_name'
@@ -352,7 +352,7 @@ jQuery(document).ready(function($)
 	        	$(this).on('click', function()
 	        	{
 	        		var numSortingText = $(this).text();
-					var numFilter = ':nth-child(-n+' + numSortingText + ')';
+					var numFilter = ':nth-child(-n+' + 3 * numSortingText + ')';
 	        		$('.num_sorting_text').text($(this).text());
     				$('.product-grid').isotope({filter: numFilter });
 	        	});
@@ -365,8 +365,8 @@ jQuery(document).ready(function($)
 		            filter: function()
 		            {
 		            	var priceRange = $('#amount').val();
-			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('$', ''));
-			        	var priceMax = parseFloat(priceRange.split('-')[1].replace('$', ''));
+			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('PLN', ''));
+			        	var priceMax = parseFloat(priceRange.split('-')[1].replace('PLN', ''));
 			        	var itemPrice = $(this).find('.product_price').clone().children().remove().end().text().replace( ' PLN', '' ).replace(',','.');
 
 			        	return (itemPrice > priceMin) && (itemPrice < priceMax);

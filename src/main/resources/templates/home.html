@@ -42,18 +42,18 @@
 										<i class="fa fa-angle-down"></i>
 									</a>
 									<ul class="account_selection">
-										<li th:switch="${session.isEmpty()}">
-	  									<p th:case="true">
+									<!--  	<li th:switch="${session.isEmpty()}">
+	  									<p th:case="true">-->
 											<li><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
 											<li><a th:href="@{/register}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
-										</p>
-  										<p th:case="false">
+										<!--</p>
+  										<p th:case="false">-->
   											<form action="logmeout" th:action="@{/logout}" method="post" name="someForm">
 											</form>
 											<li><a href="#" onclick="document.someForm.submit();"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a></li>
     										<li><a th:href="@{/settings}"><i class="fa fa-sign-out" aria-hidden="true"></i>Settings</a></li>
-    									</p>
-    									</li>
+    									<!--</p>
+    									</li>-->
 									</ul>
 								</li>
 							</ul>
@@ -173,11 +173,13 @@
 										</li>
 										<li>
 											<span>Show</span>
-											<span class="num_sorting_text">6</span>
+											<span class="num_sorting_text">8</span>
 											<i class="fa fa-angle-down"></i>
 											<ul class="sorting_num">
-												<li class="num_sorting_btn"><span>6</span></li>
-												<li class="num_sorting_btn"><span>12</span></li>
+												<li class="num_sorting_btn"><span>4</span></li>
+												<li class="num_sorting_btn"><span>8</span></li>
+												<li class="num_sorting_btn"><span>16</span></li>
+												<li class="num_sorting_btn"><span>20</span></li>
 												<li class="num_sorting_btn"><span>24</span></li>
 											</ul>
 										</li>
@@ -191,7 +193,7 @@
 
 									<!-- Products -->
 									
-									<div th:each="product: ${products}">
+									<p th:each="product: ${products}">
 	
 										<div class="product-item women">
 											<div class="product product_filter">
@@ -211,8 +213,8 @@
 											</form>
 											
 										</div>
-										
-									</div>
+									
+									</p>
 									
 								</div>
 

@@ -159,7 +159,6 @@
 						<form th:action="@{/addtocart}" method="post">
 						<div class="quantity_selector">
 							<input id="quantity_value" name="quantity" min="1" value="1" type="number"/>
-							<!--  <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>-->
 						</div>
 						  <input type="hidden" name="productId" th:value="${product.id}"/>
 						  <input class="red_button add_to_cart_button" type="submit" value="Add to cart"></input>
@@ -236,20 +235,14 @@
 										<div class="user">
 											<div class="user_pic"></div>
 											<div class="user_rating">
-										        
 												<ul class="star_rating">
-												<!--<li><i class="fa fa-star" aria-hidden="true"></i></li>
-													<li><i class="fa fa-star" aria-hidden="true"></i></li>
-													<li><i class="fa fa-star" aria-hidden="true"></i></li>
-													<li><i class="fa fa-star" aria-hidden="true"></i></li>
-													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>-->
 												</ul>
 											</div>
 										</div>
 										<div class="review">
 											<div class="review_date" th:text="${#dates.format(comment.date, 'dd.MM.yyyy HH:mm')}"></div>
 											<div class="user_name" th:text="${comment.user.username}"></div>
-											<div class="user_name" th:text="${#numbers.formatDecimal(avgComments, 0, 1)}+'/5'"></div>
+											<div class="user_name" th:text="${#numbers.formatDecimal(comment.vote, 0, 1)}+'/5'"></div>
 											<p th:text="${comment.description}"/>
 										</div>
 									</div>

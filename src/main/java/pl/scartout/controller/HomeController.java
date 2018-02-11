@@ -35,7 +35,7 @@ public class HomeController {
     
     @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getProduct(Model model, HttpServletRequest request) {
-    	List<Product> products = productRepo.findAll();
+    	List<Product> products = productRepo.findAllTheNewest();
     	model.addAttribute("products", products);
     	orderCounter(request);
         return "home";

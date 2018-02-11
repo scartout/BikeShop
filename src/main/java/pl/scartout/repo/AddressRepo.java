@@ -13,12 +13,14 @@ import pl.scartout.model.Address;
 @Repository
 public interface AddressRepo extends JpaRepository<Address, Long> {
 	
+	Address findById(Long id);
+	
 	@Modifying(clearAutomatically = true)
-    @Query("UPDATE Address c SET c.city=:city, c.voivodeship=:voivodeship, c.county=:county, "
+    @Query("UPDATE Address c SET c.city=:city, c.voivodeship=:voivodeship, "
     		+ "c.country=:country, c.street=:street, c.postcode=:postcode, c.streetNumber=:streetNumber, "
     		+ "c.localNumber=:localNumber WHERE c.id=:id")
     int updateAddress(@Param ("id") Long id, @Param ("city") String city, @Param ("voivodeship") String voivodeship,
-    		@Param ("county") String county, @Param ("country") String country, @Param ("street") String street,
-    		@Param ("postcode") String postcode, @Param ("streetNumber") String streetNumber, @Param ("localNumber") String localNumber);
+    		@Param ("country") String country, @Param ("street") String street, @Param ("postcode") String postcode, 
+    		@Param ("streetNumber") String streetNumber, @Param ("localNumber") String localNumber);
 	
 }

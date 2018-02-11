@@ -29,7 +29,7 @@ public class AddressRepoTest {
 	@BeforeClass
 	public static void before() {
 		addressNull = new Address();
-		address = new Address("city", "voivodeship", "county", "country", "street",
+		address = new Address("city", "voivodeship", "country", "street",
 				"postcode", "streetNumber", "localNumber");
 	}
 
@@ -45,8 +45,11 @@ public class AddressRepoTest {
 	
 	@Test
 	public void t3shouldUpdate() {
-		addressRepo.updateAddress(1L, "city", "voivodeship", "county", "country", "street",
+		addressRepo.updateAddress(1L, "cityUpdated", "voivodeshipUpdated", "country", "street",
 				"postcode", "streetNumber", "localNumber");
+		Address address = addressRepo.findById(1L);
+		assertThat(address.getCity()).isEqualTo("cityUpdated");
+		assertThat(address.getVoivodeship()).isEqualTo("voivodeshipUpdated");
 	}
 	
 	@Test

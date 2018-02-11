@@ -28,8 +28,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @NotNull
 	    private String voivodeship;
 	    @NotNull
-	    private String county;
-	    @NotNull
 	    private String country;
 	    @NotNull
 	    private String street;
@@ -44,12 +42,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    
 	    public Address() {}
 
-		public Address(String city, String voivodeship, String county, String country, String street,
+		public Address(String city, String voivodeship, String country, String street,
 				String postcode, String streetNumber, String localNumber) {
 			super();
 			this.city = city;
 			this.voivodeship = voivodeship;
-			this.county = county;
 			this.country = country;
 			this.street = street;
 			this.postcode = postcode;
@@ -79,14 +76,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		public void setVoivodeship(String voivodeship) {
 			this.voivodeship = voivodeship;
-		}
-
-		public String getCounty() {
-			return county;
-		}
-
-		public void setCounty(String county) {
-			this.county = county;
 		}
 
 		public String getCountry() {
@@ -140,7 +129,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 			int result = 1;
 			result = prime * result + ((city == null) ? 0 : city.hashCode());
 			result = prime * result + ((country == null) ? 0 : country.hashCode());
-			result = prime * result + ((county == null) ? 0 : county.hashCode());
 			result = prime * result + ((id == null) ? 0 : id.hashCode());
 			result = prime * result + ((localNumber == null) ? 0 : localNumber.hashCode());
 			result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
@@ -168,11 +156,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 				if (other.country != null)
 					return false;
 			} else if (!country.equals(other.country))
-				return false;
-			if (county == null) {
-				if (other.county != null)
-					return false;
-			} else if (!county.equals(other.county))
 				return false;
 			if (id == null) {
 				if (other.id != null)

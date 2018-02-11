@@ -13,6 +13,8 @@ import pl.scartout.model.Contact;
 @Repository
 public interface ContactRepo extends JpaRepository<Contact, Long> {
 	
+	Contact findById(Long id);
+	
 	@Modifying(clearAutomatically = true)
     @Query("UPDATE Contact c SET c.phoneNumberFirst=:phoneNumberFirst, c.phoneNumberSecond=:phoneNumberSecond, c.fax=:fax "
     		+ "WHERE c.id=:id")

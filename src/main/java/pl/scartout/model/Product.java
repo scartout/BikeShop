@@ -2,6 +2,7 @@ package pl.scartout.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -49,6 +50,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    private String mainImage;
 	    private String imageSecond;
 	    private String imageThird;
+	    private Date dateAdded;
 	    @ManyToOne
 	    @JoinColumn(name = "category_id")
 	    private Category category;
@@ -82,6 +84,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.mainImage = mainImage;
 			this.imageSecond = imageSecond;
 			this.imageThird = imageThird;
+			this.dateAdded = new Date();
 		}
 
 		public Product(Long id, String name, String descriptionShort, String descriptionLong, String descriptionSize,
@@ -92,8 +95,8 @@ import org.hibernate.annotations.LazyCollectionOption;
 			Preconditions.checkArgument(vat<=100, "Price cannot be greater than 99.99");
 			double countPriceNet = price/(1+(vat/100.0));
 			countPriceNet = Math.round(countPriceNet*100.0)/100.0;
-			Preconditions.checkArgument(countPriceNet>0, "Price net cannot be negative");
-			Preconditions.checkArgument(countPriceNet<=price, "Price net cannot be greater than price gross");
+			Preconditions.checkState(countPriceNet>0, "Price net cannot be negative");
+			Preconditions.checkState(countPriceNet<=price, "Price net cannot be greater than price gross");
 			this.id = id;
 			this.name = name;
 			this.descriptionShort = descriptionShort;
@@ -105,6 +108,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.mainImage = mainImage;
 			this.imageSecond = imageSecond;
 			this.imageThird = imageThird;
+			this.dateAdded = new Date();
 			this.category = category;
 			this.producer = producer;
 		}
@@ -197,6 +201,14 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.imageThird = imageThird;
 		}
 
+		public Date getDateAdded() {
+			return dateAdded;
+		}
+
+		public void setDateAdded(Date dateAdded) {
+			this.dateAdded = dateAdded;
+		}
+
 		public Category getCategory() {
 			return category;
 		}
@@ -232,6 +244,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 			int result = 1;
 			result = prime * result + ((category == null) ? 0 : category.hashCode());
 			result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+			result = prime * result + ((dateAdded == null) ? 0 : dateAdded.hashCode());
 			result = prime * result + ((descriptionLong == null) ? 0 : descriptionLong.hashCode());
 			result = prime * result + ((descriptionShort == null) ? 0 : descriptionShort.hashCode());
 			result = prime * result + ((descriptionSize == null) ? 0 : descriptionSize.hashCode());
@@ -265,6 +278,11 @@ import org.hibernate.annotations.LazyCollectionOption;
 				if (other.comments != null)
 					return false;
 			} else if (!comments.equals(other.comments))
+				return false;
+			if (dateAdded == null) {
+				if (other.dateAdded != null)
+					return false;
+			} else if (!dateAdded.equals(other.dateAdded))
 				return false;
 			if (descriptionLong == null) {
 				if (other.descriptionLong != null)

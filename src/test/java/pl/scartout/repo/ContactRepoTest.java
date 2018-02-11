@@ -7,33 +7,48 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import javax.validation.ConstraintViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import org.junit.runners.MethodSorters;
 
-import pl.scartout.model.User;
-import pl.scartout.repo.UserRepo;
+import pl.scartout.model.Contact;
+import pl.scartout.repo.ContactRepo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class UserRepoTest {
+public class ContactRepoTest {
 
 	@Autowired
-	UserRepo userRepo;
+	ContactRepo contactRepo;
 	
-	static User userNull;
-	static User user;
+	static Contact contactNull;
+	static Contact contact;
 	
 	@BeforeClass
 	public static void before() {
-		userNull = new User();
+		contactNull = new Contact();
+		contact = new Contact("555-555-555", null, null);
 	}
 	
 	@Test(expected = ConstraintViolationException.class)
 	public void t1shouldNotCreateWithValidation() {
-		userRepo.save(userNull);
+		contactRepo.save(contactNull);
+	}
+	
+	@Test
+	public void t2shouldCreate() {
+		contactRepo.save(contact);
+	}
+	
+	@Test
+	public void t3shouldUpdate() {
+		contactRepo.updateContact(1L, "666-666-666", null, null);
+		Contact contact = contactRepo.findById(1L);
+		assertThat(contact.getPhoneNumberFirst()).isEqualTo("666-666-666");
 	}
 
 }

@@ -23,6 +23,9 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
 	
 	List<Product> findAllByCategoryId(Long categoryId);
 	
+	@Query("SELECT c FROM Product c ORDER BY dateAdded DESC")
+	List<Product> findAllTheNewest();
+	
 	@Query("SELECT c FROM Product c WHERE c.name like "+"%"+":string"+"% OR c.descriptionShort like "+"%"+":string"+"%")
 	List<Product> searchProducts(@Param("string") String string);
 
