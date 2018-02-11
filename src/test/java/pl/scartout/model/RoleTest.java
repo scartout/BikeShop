@@ -1,4 +1,4 @@
-package pl.scartout;
+package pl.scartout.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,28 +9,27 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-import pl.scartout.model.Producer;
+import pl.scartout.model.Role;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProducerTest {
+public class RoleTest {
 
 	@Test
 	public void create() {
-		Producer producer = new Producer();
+		Role role = new Role();
 	}
 	
 	@Test
 	public void equalsContract() {
-	    EqualsVerifier.forClass(Producer.class).verify();
+	    EqualsVerifier.forClass(Role.class).verify();
 	}
 	
 	@Test
 	public void verifyToString() {
-		Producer producer = new Producer();
-		producer.setId(9999999L);
-		producer.setName("Rose");
-		assertThat(producer.toString()).isEqualTo("Producer - 9999999 - Rose");
+		Role role = new Role();
+		role.setId(9999999L);
+		role.setRole("user");
+		assertThat(role.toString()).isEqualTo("Role - 9999999 - user");
 	}
-	
 }

@@ -1,4 +1,4 @@
-package pl.scartout;
+package pl.scartout.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,28 +9,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-import pl.scartout.model.Category;
+import pl.scartout.model.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CategoryTest {
+public class UserTest {
 
 	@Test
 	public void create() {
-		Category category = new Category();
+		User user = new User();
 	}
 	
 	@Test
 	public void equalsContract() {
-	    EqualsVerifier.forClass(Category.class).verify();
+	    EqualsVerifier.forClass(User.class).verify();
 	}
 	
 	@Test
 	public void verifyToString() {
-		Category category = new Category();
-		category.setId(9999999L);
-		category.setName("Road");
-		assertThat(category.toString()).isEqualTo("Category - 9999999 - Road");
+		User user = new User();
+		user.setId(9999999L);
+		user.setUsername("username");
+		assertThat(user.toString()).isEqualTo("User - 9999999 - username");
 	}
 	
 }

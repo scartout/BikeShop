@@ -1,4 +1,4 @@
-package pl.scartout;
+package pl.scartout.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,27 +9,27 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-import pl.scartout.model.Order;
+import pl.scartout.model.Address;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrderTest {
-
+public class AddressTest {
+	
 	@Test
 	public void create() {
-		Order order = new Order();
+		Address address = new Address();
 	}
 	
 	@Test
 	public void equalsContract() {
-	    EqualsVerifier.forClass(Order.class).verify();
+	    EqualsVerifier.forClass(Address.class).verify();
 	}
 	
 	@Test
 	public void verifyToString() {
-		Order order = new Order();
-		order.setId(9999999L);
-		assertThat(order.toString()).isEqualTo("Order - 9999999");
+	    Address address = new Address();
+	    address.setId(9999999L);
+	    assertThat(address.toString()).isEqualTo("Address - 9999999");
 	}
 	
 }

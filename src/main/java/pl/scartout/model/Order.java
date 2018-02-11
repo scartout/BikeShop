@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 	@XmlRootElement
@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "order_id")
 	    private Long id;
+	    @NotNull
 	    private int quantity;
 	    private double total;
 	    @Column(name = "invoice_number")

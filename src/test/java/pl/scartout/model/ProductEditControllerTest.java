@@ -1,4 +1,4 @@
-package pl.scartout;
+package pl.scartout.model;
 
 import static org.junit.Assert.assertThat;
 
@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
 import pl.scartout.controller.ProductEditController;
@@ -26,7 +28,7 @@ public class ProductEditControllerTest {
         double priceNet = productEditController.netCounter(price, vat);
 
         // then
-        assertThat(priceNet, is(1869.92));
+        assertThat(priceNet).isEqualTo(1869.92);
     }
     
     @Test
@@ -41,7 +43,7 @@ public class ProductEditControllerTest {
         double priceNet = productEditController.netCounter(price, vat);
 
         // then
-        assertThat(priceNet, is(2300.00));
+        assertThat(priceNet).isEqualTo(2300.00);
     }
     
     @Test
@@ -56,7 +58,7 @@ public class ProductEditControllerTest {
         double priceNet = productEditController.netCounter(price, vat);
 
         // then
-        assertThat(priceNet, is(1150.06));
+        assertThat(priceNet).isEqualTo(1150.06);
     }
     
     @Test(expected = IllegalArgumentException.class)

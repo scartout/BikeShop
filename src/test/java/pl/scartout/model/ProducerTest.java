@@ -1,4 +1,4 @@
-package pl.scartout;
+package pl.scartout.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,27 +9,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-import pl.scartout.model.Comment;
+import pl.scartout.model.Producer;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CommentTest {
+public class ProducerTest {
 
 	@Test
 	public void create() {
-		Comment comment = new Comment();
+		Producer producer = new Producer();
 	}
 	
 	@Test
 	public void equalsContract() {
-	    EqualsVerifier.forClass(Comment.class).verify();
+	    EqualsVerifier.forClass(Producer.class).verify();
 	}
 	
 	@Test
 	public void verifyToString() {
-		Comment comment = new Comment();
-		comment.setId(9999999L);
-		assertThat(comment.toString()).isEqualTo("Comment - 9999999");
+		Producer producer = new Producer();
+		producer.setId(9999999L);
+		producer.setName("Rose");
+		assertThat(producer.toString()).isEqualTo("Producer - 9999999 - Rose");
 	}
 	
 }

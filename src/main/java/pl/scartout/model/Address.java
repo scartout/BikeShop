@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @Column(name = "local_number")
 	    private String localNumber;
 	    
-	    public Address(){}
+	    public Address() {}
 
 		public Address(String city, String voivodeship, String county, String country, String street,
 				String postcode, String streetNumber, String localNumber) {

@@ -17,14 +17,15 @@ import pl.scartout.model.Product;
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Long> {
 
-	List<Product> findAllByCategoryId(Long categoryId);
-
 	Product findById(Long id);
 	
 	Product findByName(String string);
-
-	List<Product> findAllByPriceBetween(double priceMin, double priceMax);
 	
+	List<Product> findAllByCategoryId(Long categoryId);
+	
+	@Query("SELECT c FROM Product c WHERE c.name like "+"%"+":string"+"% OR c.descriptionShort like "+"%"+":string"+"%")
+	List<Product> searchProducts(@Param("string") String string);
+
 	@Modifying(clearAutomatically = true)
     @Query("UPDATE Product c SET c.name=:name, c.descriptionShort=:descriptionShort, c.descriptionLong=:descriptionLong, "
     		+ "c.descriptionSize=:descriptionSize, c.price=:price, c.vat=:vat, c.priceNet=:priceNet,"
@@ -35,8 +36,5 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
     		@Param("price") double price, @Param("vat") double vat, @Param("priceNet") double priceNet, @Param("mainImage") String mainImage, 
     		@Param("imageSecond") String imageSecond, @Param("imageThird") String imageThird,
     		@Param("category") Category category, @Param("producer") Producer producer);
-	
-	@Query("SELECT c FROM Product c WHERE c.name like "+"%"+":string"+"% OR c.descriptionShort like "+"%"+":string"+"%")
-	List<Product> searchProducts(@Param("string") String string);
 
 }

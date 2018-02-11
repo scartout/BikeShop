@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.common.base.Preconditions;
+
 	@XmlRootElement
 	@Entity
 	@Table(name = "comments")
@@ -43,6 +45,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		public Comment(String description, Date date, double vote) {
 			super();
+			Preconditions.checkArgument(vote>=1, "Vote cannot be less than 1");
+			Preconditions.checkArgument(vote<=5, "Vote cannot be greater than 5");
 			this.description = description;
 			this.date = date;
 			this.vote = vote;

@@ -1,4 +1,4 @@
-package pl.scartout;
+package pl.scartout.model;
 
 import static org.junit.Assert.assertThat;
 
@@ -46,7 +46,7 @@ public class ProductTest {
 		double priceNet = product.getPriceNet();
 		
 		//then
-		assertThat(priceNet, is(1869.92));
+		assertThat(priceNet).isEqualTo(1869.92);
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class ProductTest {
 		double priceNet = product.getPriceNet();
 		
 		//then
-		assertThat(priceNet, is(2300.00));
+		assertThat(priceNet).isEqualTo(2300.00);
 	}
 	
 	@Test
@@ -72,7 +72,7 @@ public class ProductTest {
 		double priceNet = product.getPriceNet();
 		
 		//then
-		assertThat(priceNet, is(1150.06));
+		assertThat(priceNet).isEqualTo(1150.06);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -109,7 +109,7 @@ public class ProductTest {
 		double priceNet = product.getPriceNet();
 		
 		//then
-		assertThat(priceNet, is(1869.92));
+		assertThat(priceNet).isEqualTo(1869.92);
 	}
 	
 	@Test
@@ -122,7 +122,7 @@ public class ProductTest {
 		double priceNet = product.getPriceNet();
 		
 		//then
-		assertThat(priceNet, is(2300.00));
+		assertThat(priceNet).isEqualTo(2300.00);
 	}
 	
 	@Test
@@ -135,7 +135,7 @@ public class ProductTest {
 		double priceNet = product.getPriceNet();
 		
 		//then
-		assertThat(priceNet, is(1150.06));
+		assertThat(priceNet).isEqualTo(1150.06);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)

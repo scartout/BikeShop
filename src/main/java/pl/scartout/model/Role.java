@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 	@XmlRootElement
@@ -17,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    @Id
 	    @Column(name = "role_id")
 	    private Long id;
-	    @Column(nullable = false)
+	    @NotNull
 	    private String role;
 	    
 	    public Role(){}
