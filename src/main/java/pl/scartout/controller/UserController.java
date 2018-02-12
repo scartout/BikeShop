@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
 import pl.scartout.model.Address;
 import pl.scartout.model.Contact;
@@ -36,19 +37,22 @@ public class UserController {
     }
     
     @RequestMapping("/register")
+    @ResponseStatus(HttpStatus.OK)
     public String home(Model model) {
     	model.addAttribute("user", new User());
         return "registerForm";
     }
     
     @GetMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
     public String homeLogin(Model model) {
     	model.addAttribute("user", new User());
         return "login";
     }
 	
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute @Valid User user,
+    @ResponseStatus(HttpStatus.CREATED)
+	public String createUser(@ModelAttribute @Valid User user,
 			BindingResult bindResult,
 			@RequestParam String city,
 			@RequestParam String voivodeship,
