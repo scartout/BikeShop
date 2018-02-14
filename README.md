@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 1.0.2
+Version 1.0.3
 
 
 ## How to use:
@@ -20,7 +20,7 @@ Go to URL "https://localhost:8443/admin". You have to change your default role f
 
 ## Invoices:
 
-Invoices default folder is "D:/". You might change it in pl.scartout.controller.OrderController.java class (constant INVOICE_FOLDER).
+Invoices default folder is "C:/Users/{Current User}/Desktop". You might change it in pl.scartout.controller.OrderController.java class (constant INVOICE_FOLDER).
 
 
 ## Business goal:

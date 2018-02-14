@@ -40,7 +40,7 @@ import pl.scartout.repo.OrderRepo;
 @Controller
 public class OrderController {
 	
-	static final String INVOICE_FOLDER = "D:/";
+	static final String INVOICE_FOLDER = System.getProperty("user.home") + "/Desktop/";
 	
 	Logger LOGGER = Logger.getAnonymousLogger();
 	
