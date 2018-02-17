@@ -55,6 +55,23 @@ jQuery(document).ready(function($)
 	initIsotopeFiltering();
 	initPriceSlider();
 	initCheckboxes();
+	productItemCounter();
+	
+	/*
+	 
+	 1a. Custom functions
+	 
+	 */
+	
+	 function productItemCounter(){
+		var counter = $('.product_image').length;
+		if (counter!=1){
+		document.getElementById("productItemCounter").innerHTML = counter+" products";
+		}
+		else {
+			document.getElementById("productItemCounter").innerHTML = counter+" product";
+		}
+	}
 
 	/* 
 
@@ -377,6 +394,7 @@ jQuery(document).ready(function($)
 		                queue: false
 		            }
 		        });
+	            
 	        });
     	}
     }
