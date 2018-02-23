@@ -108,10 +108,10 @@
 				<form class="form-signin" action="#" method="post" th:action="@{/updateUser}">
 		        	<h5 class="form-signin-heading">User settings</h5>
 		        	<input type="hidden" name="id" th:value="${user.id}"/>
-			        <p>Password: <input placeholder="Password" required="required" pattern=".{6,}" title="Password must be at least 6 characters" type="password" name="password"/></p>
+			        <p>Password: <input placeholder="Password" required="required" pattern="[^!@#$%^*+-=]{6,}" title="Password must be at least 6 characters" type="password" name="password"/></p>
 			        <p>E-mail: <input placeholder="E-mail" required="required" type="email" name="email" th:value="${user.email}"/></p>
-			        <p>First name: <input placeholder="First name" required="required" type="text" name="firstName" th:value="${user.firstName}"/></p>
-			        <p>Last name: <input placeholder="Last name" required="required" type="text" name="lastName" th:value="${user.lastName}"/></p>
+			        <p>First name: <input placeholder="First name" required="required" pattern="([A-Z]{1})[a-z][^!@#$%^*+-=]{2,}" type="text" name="firstName" th:value="${user.firstName}"/></p>
+			        <p>Last name: <input placeholder="Last name" required="required" pattern="([A-Z]{1})[a-z][^!@#$%^*+-=]{2,}" type="text" name="lastName" th:value="${user.lastName}"/></p>
 			        <p>City: <input placeholder="City" required="required" type="text" name="city" th:value="${user.address.city}"/></p>
 			        <p>Voivodeship: 
 			        <select name="voivodeship">

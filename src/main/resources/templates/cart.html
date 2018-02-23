@@ -114,13 +114,13 @@
 				        <th>Proceed</th>
 				        <th>Remove from cart</th>
 			        </tr>
-			        <tr th:each="order: ${orders}">
+			        <tr class="cartOrderId" th:each="order: ${orders}">
 			        	<td th:text="${order.id}"></td>
 			        	<td><img th:src="${order.product.mainImage}" height="100"></img></td>
 			        	<td th:text="${order.product.name}"></td>
-			        	<td th:text="${#numbers.formatDecimal(order.product.price, 0, 2)+' PLN'}"></td>
+			        	<td class="cartPrice" th:text="${#numbers.formatDecimal(order.product.price, 0, 2)+' PLN'}"></td>
 			        	<form th:action="@{/confirmOrder}" method="post" >
-			        	<td><input id="number" name="quantity" type="number" min="1" th:value="${order.quantity}"/></td>
+			        	<td><input id="number" class="cartQuantity" name="quantity" type="number" min="1" max="10" th:value="${order.quantity}"/></td>
 					    <td>
     						<input type="hidden" name="price" th:value="${order.product.price}"/>
     						<input type="hidden" name="id" th:value="${order.id}"/>
@@ -134,8 +134,22 @@
     					</td>
     					</form>
 			        </tr>
-		        	</table>
+		    </table>
+			
 			</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container product_section_container">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-right">
+					<div class="product_sorting_container product_sorting_container_bottom clearfix">
+						<span class="showing_results"><span id="orderCounter"></span></span>
+						<span class="showing_results"><span id="cartSum"></span></span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

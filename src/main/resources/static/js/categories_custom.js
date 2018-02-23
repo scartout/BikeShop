@@ -56,7 +56,11 @@ jQuery(document).ready(function($)
 	initPriceSlider();
 	initCheckboxes();
 	productItemCounter();
+	orderCounter();
+	cartSum();
+	orderSum();
 	
+
 	/*
 	 
 	 1a. Custom functions
@@ -64,14 +68,56 @@ jQuery(document).ready(function($)
 	 */
 	
 	 function productItemCounter(){
-		var counter = $('.product_image').length;
-		if (counter!=1){
-		document.getElementById("productItemCounter").innerHTML = counter+" products";
-		}
-		else {
-			document.getElementById("productItemCounter").innerHTML = counter+" product";
-		}
+		if($('.product_image').length)
+	    {
+			var counter = $('.product_image').length;
+			if (counter!=1){
+			document.getElementById("productItemCounter").innerHTML = counter+" products";
+			}
+			else {
+				document.getElementById("productItemCounter").innerHTML = counter+" product";
+			}
+	    }
 	}
+	 
+	 function orderCounter(){
+		if($('.cartOrderId').length)
+		{
+			var counter = $('.cartOrderId').length;
+			if (counter!=1){
+				document.getElementById("orderCounter").innerHTML = counter+" items";
+			}
+			else {
+				document.getElementById("orderCounter").innerHTML = counter+" item";
+			}
+		}
+	 }
+	 
+	 function cartSum(){
+			if($('.cartPrice').length)
+			{
+				var orderSum = 0;
+				$('.cartPrice').each(function()
+				{
+					orderSum += parseFloat($(this).text().replace(' PLN',""));//*parseFloat($('.cartQuantity').text());
+				});
+
+				document.getElementById("cartSum").innerHTML = "Total: "+orderSum+" PLN";	
+			}
+		 }
+	 
+	 function orderSum(){
+		if($('.totalPrice').length)
+		{
+			var orderSum = 0;
+			$('.totalPrice').each(function()
+			{
+				orderSum += parseFloat($(this).text().replace(' PLN',""));
+			});
+
+			document.getElementById("orderSum").innerHTML = "Total: "+orderSum+" PLN";	
+		}
+	 }
 
 	/* 
 

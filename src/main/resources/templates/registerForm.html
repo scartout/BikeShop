@@ -107,11 +107,11 @@
 			<div class="user_review_container d-flex flex-column flex-sm-row">
 				<form class="form-signin" action="#" method="post" th:action="@{/register}">
 		        	<h5 class="form-signin-heading">Register</h5>
-			        <p>Login:<input placeholder="Login" required="required" pattern=".{3,}" title="Login must be at least 3 characters" type="text" name="username" /></p>
-			        <p>Password: <input placeholder="Password" required="required" pattern=".{6,}" title="Password must be at least 6 characters" type="password" name="password" /></p>
+			        <p>Login:<input placeholder="Login" required="required" pattern="[^!@#$%^*+-=]{3,}" title="Login must be at least 3 characters" type="text" name="username" /></p>
+			        <p>Password: <input placeholder="Password" required="required" pattern="[^!@#$%^*+-=]{6,}" title="Password must be at least 6 characters" type="password" name="password" /></p>
 			        <p>E-mail: <input placeholder="E-mail" required="required" type="email" name="email" /></p>
-			        <p>First name: <input placeholder="First name" required="required" type="text" name="firstName" /></p>
-			        <p>Last name: <input placeholder="Last name" required="required" type="text" name="lastName" /></p>
+			        <p>First name: <input placeholder="First name" required="required" pattern="([A-Z]{1})[a-z][^!@#$%^*+-=]{2,}" type="text" name="firstName" /></p>
+			        <p>Last name: <input placeholder="Last name" required="required" pattern="([A-Z]{1})[a-z][^!@#$%^*+-=]{2,}" type="text" name="lastName" /></p>
 			        <p>City: <input placeholder="City" required="required" type="text" name="city" /></p>
 			        <p>Voivodeship: 
 			        <select name="voivodeship">

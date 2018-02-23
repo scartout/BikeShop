@@ -117,13 +117,13 @@
 				        <th>Shipping date</th>
 				        <th>Complete date</th>
 			        </tr>
-			        <tr th:each="order: ${orders}">
+			        <tr class="cartOrderId" th:each="order: ${orders}">
 			        	<td th:text="${order.id}"></td>
 			        	<td><img th:src="${order.product.mainImage}" height="100"></img></td>
 			        	<td th:text="${order.product.name}"></td>
 			        	<td th:text="${order.quantity}"></td>
 			        	<td th:text="${#numbers.formatDecimal(order.product.price, 0, 2)+' PLN'}"></td>
-			        	<td th:text="${#numbers.formatDecimal(order.total, 0, 2)+' PLN'}"></td>
+			        	<td class="totalPrice" th:text="${#numbers.formatDecimal(order.total, 0, 2)+' PLN'}"></td>
 			        	<td th:text="${#dates.format(order.orderDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
 					    <div th:if="${order.approvalDate}">
    							<td th:text="${#dates.format(order.approvalDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
@@ -146,6 +146,19 @@
 			        </tr>
 		        	</table>
 			</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container product_section_container">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-right">
+					<div class="product_sorting_container product_sorting_container_bottom clearfix">
+						<span class="showing_results"><span id="orderCounter"></span></span>
+						<span class="showing_results"><span id="orderSum"></span></span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
