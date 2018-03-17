@@ -813,10 +813,11 @@ section
 }
 .logo_container a span
 {
-	color: #fe4c50;
+	color: #d63949;
 }
 .red_button
 {
+	color: #FFFFFF;
 	display: -webkit-inline-box;
 	display: -moz-inline-box;
 	display: -ms-inline-flexbox;
@@ -838,6 +839,7 @@ section
 .red_button:hover
 {
 	background: #FE7C7F !important;
+	color: #f7f300;
 }
 .red_button a
 {
@@ -1715,4 +1717,31 @@ section
 .footer_social ul li a:hover
 {
 	color: #fe4c50;
+}
+
+/***********
+11. Custom
+***********/
+
+.cartQuantity
+{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 40px;
+	height: 100%;
+	border: solid 1px #e5e5e5;
+	text-align: center;
+	margin-left: 20px;
+}
+
+.tableStyle
+{
+	text-align: center;
+	text-indent: 3px;
 }

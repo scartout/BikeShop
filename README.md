@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 1.0.5
+Version 1.0.6
 
 
 ## How to use:
@@ -40,6 +40,7 @@ BikeShop has been being implemented an example of this kind of portals.
 - JPA
 - Bootstrap
 - JavaScript
+- JQuery
 - ITextPDF
 - SHA
 - HTTPS

@@ -88,7 +88,7 @@
 								<li class="checkout">
 									<a th:href="@{/cart}">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items" th:text="${session.countOrders}"></span>
+										<span id="checkout_items" class="checkout_items" th:text="${session.countOrders}">0</span>
 									</a>
 								</li>
 							</ul>
@@ -157,9 +157,9 @@
 					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 						<span>Quantity:</span>
 						<form th:action="@{/addtocart}" method="post">
-						<div class="quantity_selector">
-							<input id="quantity_value" name="quantity" min="1" max="10" value="1" type="number"/>
-						</div>
+						
+							<input class="quantity_selector" name="quantity" min="1" max="10" value="1" type="number"/>
+						
 						  <input type="hidden" name="productId" th:value="${product.id}"/>
 						  <input class="red_button add_to_cart_button" type="submit" value="Add to cart"></input>
 						</form>

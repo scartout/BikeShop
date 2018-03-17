@@ -56,12 +56,13 @@ public class OrderController {
     }
     
     @GetMapping(path = "/cart", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getCarts(Model model) {
+    public String getCarts(HttpServletRequest request, Model model) {
     	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	String username = userDetails.getUsername();
     	User user = userRepo.findByUsername(username);
     	List <Order> orders = orderRepo.findByUserAndOrderDateIsNull(user);
     	model.addAttribute("orders", orders);
+    	orderCounter(request);
         return "cart";
     }
     

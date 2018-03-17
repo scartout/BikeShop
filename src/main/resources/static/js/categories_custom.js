@@ -59,7 +59,6 @@ jQuery(document).ready(function($)
 	orderCounter();
 	cartSum();
 	orderSum();
-	
 
 	/*
 	 

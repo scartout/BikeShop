@@ -818,6 +818,7 @@ section
 }
 .red_button
 {
+	color: #FFFFFF;
 	display: -webkit-inline-box;
 	display: -moz-inline-box;
 	display: -ms-inline-flexbox;
@@ -839,9 +840,11 @@ section
 .red_button:hover
 {
 	background: #FE7C7F !important;
+	color: #f7f300;
 }
 .red_button a
 {
+	color: #FFFFFF;
 	display: block;
 	color: #FFFFFF;
 	text-transform: uppercase;
@@ -1091,10 +1094,11 @@ section
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: 132px;
+	width: 40px;
 	height: 100%;
-	border: solid 1px #e5e5e5;
-	margin-left: 29px;
+	border: solid 2px #fe4c50;
+	text-align: center;
+	margin-left: 20px;
 }
 .quantity_selector span
 {

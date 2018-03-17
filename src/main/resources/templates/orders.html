@@ -86,7 +86,7 @@
 								<li class="checkout">
 									<a th:href="@{/cart}">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items" th:text="${session.countOrders}"></span>
+										<span id="checkout_items" class="checkout_items" th:text="${session.countOrders}">0</span>
 									</a>
 								</li>
 							</ul>
@@ -106,16 +106,16 @@
 			<div class="user_review_container d-flex flex-column flex-sm-row">
 				<table>
 			        <tr>
-				        <th>Order id</th>
-				        <th>Product</th>
-				        <th>Product name</th>
-				        <th>Quantity</th>
-				        <th>Price</th>
-				        <th>Total</th>
-				        <th>Order date</th>
-				        <th>Approval date</th>
-				        <th>Shipping date</th>
-				        <th>Complete date</th>
+				        <th class="tableStyle">Order id</th>
+				        <th class="tableStyle">Product</th>
+				        <th class="tableStyle">Product name</th>
+				        <th class="tableStyle">Quantity</th>
+				        <th class="tableStyle">Price</th>
+				        <th class="tableStyle">Total</th>
+				        <th class="tableStyle">Order date</th>
+				        <th class="tableStyle">Approval date</th>
+				        <th class="tableStyle">Shipping date</th>
+				        <th class="tableStyle">Complete date</th>
 			        </tr>
 			        <tr class="cartOrderId" th:each="order: ${orders}">
 			        	<td th:text="${order.id}"></td>
