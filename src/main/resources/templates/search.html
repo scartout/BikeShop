@@ -88,6 +88,10 @@
 									<a th:href="@{/cart}">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 										<span id="checkout_items" class="checkout_items" th:text="${session.countOrders}">0</span>
+										<script>
+										if ($("#checkout_items").is(':empty')){
+											$("#checkout_items").text(0);}
+										</script>
 									</a>
 								</li>
 							</ul>

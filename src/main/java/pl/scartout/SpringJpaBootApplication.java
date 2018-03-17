@@ -93,9 +93,9 @@ public class SpringJpaBootApplication{
         	Producer producer = producerRepo.findByName("Unibike");
         	Category category = categoryRepo.findByName("Cross/Trekking");
         	Product product3 = new Product(3L, "Unibike Viper", "Shimano Alivio Aluminium Bike", "Unibike Viper", 
-        			"S, M, L, XL, XLL",	2499.00, 23.00, "http://www.bikekatalog.pl/2012/ppg_fotki/foto_max/8_81733_28_02_12.jpg", 
-        			"http://st2.static.bikestats.pl/55/b5655-u7699_orig.jpg?1387525943", 
-        			"http://www.unibike.pl/images/cross/vipergts7.jpg", category, producer);
+        			"S, M, L, XL, XLL",	2499.00, 23.00, "http://sklep.k2rowery.pl/images/fotos/rowery/unibike/2017/cross/unibike_viper_gts_niebieski_2017.png", 
+        			"http://sklep.k2rowery.pl/images/fotos/rowery/unibike/2017/cross/unibike-viper-gts-2.jpg", 
+        			"http://sklep.k2rowery.pl/images/fotos/rowery/unibike/2017/cross/unibike-viper-gts-3.jpg", category, producer);
         	productRepo.save(product3);}
     
 	    if (productRepo.findByName("Crank Brothers M17") == null) {

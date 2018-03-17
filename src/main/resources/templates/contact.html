@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/contact_styles.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css"></link>
+<script src="js/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
@@ -89,6 +90,10 @@
 									<a th:href="@{/cart}">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 										<span id="checkout_items" class="checkout_items" th:text="${session.countOrders}">0</span>
+										<script>
+										if ($("#checkout_items").is(':empty')){
+											$("#checkout_items").text(0);}
+										</script>
 									</a>
 								</li>
 							</ul>
@@ -152,15 +157,14 @@
 				<div class="get_in_touch_contents">
 					<h1>Get In Touch With Us!</h1>
 					<p>Fill out the form below to recieve a free and confidential.</p>
-					<form action="post">
+					<form action="#" method="post">
 						<div>
 							<input id="input_name" class="form_input input_name input_ph" type="text" name="name" placeholder="Name" required="required" data-error="Name is required."></input>
-							<input id="input_email" class="form_input input_email input_ph" type="email" name="email" placeholder="Email" required="required" data-error="Valid email is required."></input>
-							<input id="input_website" class="form_input input_website input_ph" type="url" name="name" placeholder="Website" required="required" data-error="Name is required."></input>
-							<textarea id="input_message" class="input_ph input_message" name="message"  placeholder="Message" rows="3" required="required" data-error="Please, write us a message."></textarea>
+							<input id="input_email" class="form_input input_email input_ph" type="email" name="email" placeholder="E-mail" required="required" data-error="Valid email is required."></input>
+							<textarea id="input_message" class="input_ph input_message" name="message"  placeholder="Message" rows="5" required="required" data-error="Please, write us a message."></textarea>
 						</div>
 						<div>
-							<button id="review_submit" type="submit" class="red_button message_submit_btn trans_300" value="Submit">send message</button>
+							<button id="review_submit" type="submit" class="red_button message_submit_btn trans_300" value="Submit">Send message</button>
 						</div>
 					</form>
 				</div>
