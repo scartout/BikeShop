@@ -19,6 +19,8 @@
 
 <body>
 
+<script src="js/jquery-3.2.1.min.js"></script>
+
 <div class="super_container">
 
 	<!-- Header -->
@@ -132,15 +134,15 @@
 						<div class="col-lg-2 thumbnails_col order-lg-0 order-2">
 							<div class="single_product_thumbnails">
 								<ul>
-									<li><img th:src="${product.imageSecond}" alt="" th:attr="data-image=${product.imageSecond}"/></li>
-									<li><img th:src="${product.imageThird}" alt="" th:attr="data-image=${product.imageThird}"/></li>
-									<li class="active"><img th:src="${product.mainImage}" alt="" th:attr="data-image=${product.mainImage}"/></li>
+									<li><img th:src="${product.imageSecond}" alt="Product image" th:attr="data-image=${product.imageSecond}"/></li>
+									<li><img th:src="${product.imageThird}" alt="Product image" th:attr="data-image=${product.imageThird}"/></li>
+									<li class="active"><img th:src="${product.mainImage}" alt="Product image" th:attr="data-image=${product.mainImage}"/></li>
 								</ul>
 							</div>
 						</div>
 						<div class="col-lg-10 image_col order-lg-2 order-0">
 							<div class="single_product_image">
-								<div class="single_product_image_background"></div>
+								<div id="myImg" th:alt="${product.name}" class="single_product_image_background"></div>
 							</div>
 						</div>
 					</div>
@@ -174,6 +176,14 @@
 		</div>
 
 	</div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01"/>
+  <div id="caption"></div>
+</div>
 
 	<!-- Tabs -->
 
@@ -399,14 +409,14 @@
 
 </div>
 
-<script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
 <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-<script src="js/single_custom.js"></script>
+<script type="text/javascript" src="js/single_custom.js"></script>
+<script type="text/javascript" src="js/zoom_modal.js"></script>
 </body>
 
 </html>

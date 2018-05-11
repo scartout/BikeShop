@@ -12,6 +12,7 @@
 6. Init Star Rating
 7. Init Favorite
 8. Init Tabs
+9*. Custom clock
 
 
 
@@ -53,6 +54,9 @@ jQuery(document).ready(function($)
 	initStarRating();
 	initFavorite();
 	initTabs();
+	
+	
+
 	
 	/* 
 
@@ -202,7 +206,7 @@ jQuery(document).ready(function($)
 			});
 		}	
 	}
-
+	
 	/* 
 
 	5. Init Quantity
@@ -329,7 +333,13 @@ jQuery(document).ready(function($)
 	var myVar = setInterval(myTimer, 1000);
 	function myTimer() {
 	    var d = new Date();
-	    document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+	    $("#clock") = d.toLocaleTimeString();
+	}
+	
+	var span = document.getElementsByClassName("close")[0];
+
+	span.onclick = function() { 
+	    modal.style.display = "none";
 	}
 	
 });
