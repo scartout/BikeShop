@@ -49,6 +49,7 @@ jQuery(document).ready(function($)
 		setHeader();
 	});
 
+	initClock();
 	initMenu();
 	initFavorite();
 	initFixProductBorder();
@@ -59,6 +60,7 @@ jQuery(document).ready(function($)
 	orderCounter();
 	cartSum();
 	orderSum();
+	hideSpinner();
 
 	/*
 	 
@@ -401,10 +403,12 @@ jQuery(document).ready(function($)
 	        {
 	        	$(this).on('click', function()
 	        	{
+	        		showSpinner();
 	        		$('.type_sorting_text').text($(this).text());
 	        		var option = $(this).attr('data-isotope-option');
 	        		option = JSON.parse( option );
     				$('.product-grid').isotope( option );
+    				hideSpinner();
 	        	});
 	        });
 
@@ -413,16 +417,19 @@ jQuery(document).ready(function($)
 	        {
 	        	$(this).on('click', function()
 	        	{
+	        		showSpinner();
 	        		var numSortingText = $(this).text();
 					var numFilter = ':nth-child(-n+' + 3 * numSortingText + ')';
 	        		$('.num_sorting_text').text($(this).text());
     				$('.product-grid').isotope({filter: numFilter });
+    				hideSpinner();
 	        	});
 	        });	
 
 	        // Filter based on the price range slider
 	        filterButton.on('click', function()
 	        {
+	        	showSpinner();
 	        	$('.product-grid').isotope({
 		            filter: function()
 		            {
@@ -439,7 +446,7 @@ jQuery(document).ready(function($)
 		                queue: false
 		            }
 		        });
-	        	
+	        	hideSpinner();
 	        });
 	        
     	}
@@ -525,10 +532,31 @@ jQuery(document).ready(function($)
 	
 	*/
 
-	var myVar = setInterval(myTimer, 1000);
-	function myTimer() {
-	    var d = new Date();
-	    document.getElementById("clock").innerHTML = d.toLocaleTimeString();
-	}
+    function initClock(){
+		var myVar = setInterval(myTimer, 1000);
+		function myTimer() {
+		    var d = new Date();
+		    document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+		}
+    }
+    
+	/*
 
+	10. Hide spinner and curtain
+	
+	*/
+    
+	function hideSpinner(){
+		setTimeout(function(){ $('#loader-wrapper').hide();}, 500);	 
+	}
+	
+	/*
+	
+	11. Show spinner and curtain
+
+	*/
+	
+	function showSpinner(){
+		$('#loader-wrapper').show();	 
+	}
 });

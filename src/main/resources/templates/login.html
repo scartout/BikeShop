@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_styles.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_responsive.css"></link>
+<link rel="stylesheet" type="text/css" href="styles/styles.css"></link>
 </head>
 
 <body>
@@ -25,11 +26,17 @@
 	<header class="header trans_300">
 
 		<!-- Top Navigation -->
+		
+		<div id="loader-wrapper">
+		    <div id="loader"></div> 
+		</div>
 
 		<div class="top_nav">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6"></div>
+					<div class="col-md-6">
+						<div id="clock"></div>
+					</div>
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
 							<ul class="top_nav_menu">
@@ -72,7 +79,6 @@
 						<div class="logo_container">
 							<a th:href="@{/}">Bike<span>Shop<img src="images/bike.png" height="42" width="42"/></span></a>
 						</div>
-						<div id="clock"></div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
 								<li><a th:href="@{/products?id=1}">Race</a></li>
@@ -110,12 +116,18 @@
 		<div class="row">
 			<div class="col product_section clearfix">
 			<div class="user_review_container d-flex flex-column flex-sm-row">
-				<form class="form-signin" action="#" method="post" th:action="@{/login}" th:object="${user}">
-		        	<h5 class="form-signin-heading">Sign in</h5>
-			        <p>Login:<input placeholder="Login" required="required" pattern=".{3,}" title="Login must be at least 3 characters" type="text" th:field="*{username}" /></p>
-	        		<p>Password: <input placeholder="Password" required="required" pattern=".{6,}" title="Password must be at least 6 characters" type="password" th:field="*{password}" /></p>
-		        	<button class="filter_button" type="submit" value="Submit"><span>Sign in</span></button>
-	    		</form>
+				<div class="col-md-12 col-sm-12">
+					<form class="form-signin" action="#" method="post" th:action="@{/login}" th:object="${user}">
+			        	<h5 class="form-signin-heading">Sign in</h5>
+			        	<div class="col-md-5 col-sm-12">	
+				        	<p>Login:</p>
+				        	<input class="fullWidth" placeholder="Login" required="required" pattern=".{3,}" title="Login must be at least 3 characters" type="text" th:field="*{username}" />
+		        			<p>Password:</p>
+		        			<input class="fullWidth" placeholder="Password" required="required" pattern=".{6,}" title="Password must be at least 6 characters" type="password" th:field="*{password}" />
+			        		<button class="fullWidth filter_button" type="submit" value="Submit"><span>Sign in</span></button>
+			        	</div>
+		    		</form>
+		    	</div>
 			</div>
 			</div>
 		</div>

@@ -27,6 +27,7 @@ COLOR PALETTE
 8. Benefit
 9. Newsletter
 10. Footer
+11. Custom
 
 
 
@@ -1744,4 +1745,7 @@ section
 {
 	text-align: center;
 	text-indent: 3px;
+}
+.fullWidth{
+	width: 100%!important;
 }

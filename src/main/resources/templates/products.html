@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_styles.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_responsive.css"></link>
+<link rel="stylesheet" type="text/css" href="styles/styles.css"></link>
 <script src="js/jquery-3.2.1.min.js"></script>
 </head>
 
@@ -27,10 +28,16 @@
 
 		<!-- Top Navigation -->
 
+		<div id="loader-wrapper">
+		    <div id="loader"></div> 
+		</div>
+		
 		<div class="top_nav">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6"></div>
+					<div class="col-md-6">
+						<div id="clock"></div>
+					</div>							
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
 							<ul class="top_nav_menu">
@@ -73,7 +80,6 @@
 						<div class="logo_container">
 							<a th:href="@{/}">Bike<span>Shop<img src="images/bike.png" height="42" width="42"/></span></a>
 						</div>
-						<div id="clock"></div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
 								<li><a th:href="@{/products?id=1}">Race</a></li>

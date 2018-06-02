@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_styles.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_responsive.css"></link>
+<link rel="stylesheet" type="text/css" href="styles/styles.css"></link>
 </head>
 
 <body>
@@ -25,11 +26,17 @@
 	<header class="header trans_300">
 
 		<!-- Top Navigation -->
+		
+		<div id="loader-wrapper">
+		    <div id="loader"></div> 
+		</div>
 
 		<div class="top_nav">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6"></div>
+					<div class="col-md-6">
+						<div id="clock"></div>
+					</div>
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
 							<ul class="top_nav_menu">
@@ -72,7 +79,6 @@
 						<div class="logo_container">
 							<a th:href="@{/}">Bike<span>Shop<img src="images/bike.png" height="42" width="42"/></span></a>
 						</div>
-						<div id="clock"></div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
 								<li><a th:href="@{/products?id=1}">Race</a></li>
@@ -109,17 +115,25 @@
 	<div class="container product_section_container">
 		<div class="row">
 			<div class="col product_section clearfix">
-			<div class="user_review_container d-flex flex-column flex-sm-row">
-	    		<form class="form-signin" action="#" th:action="@{/productnew}">
-		        	<button class="filter_button" type="submit" value="Product"><span>New product</span></button>
-	    		</form>
-	    		<form class="form-signin" action="#" th:action="@{/productlist}">
-		        	<button class="filter_button" type="submit" value="Product"><span>Edit product</span></button>
-	    		</form>
-	    		<form class="form-signin" action="#" th:action="@{/ordersedit}">
-		        	<button class="filter_button" type="submit" value="Product"><span>Orders confirmation</span></button>
-	    		</form>
-			</div>
+				<div class="col-md-12 col-sm-12">
+					<div class="user_review_container d-flex flex-column flex-sm-row">
+					<div class="col-md-4 col-sm-12">
+			    		<form class="form-signin" action="#" th:action="@{/productnew}">
+				        	<button class="fullWidth filter_button" type="submit" value="Product"><span>New product</span></button>
+			    		</form>
+		    		</div>
+		    		<div class="col-md-4 col-sm-12">
+			    		<form class="form-signin" action="#" th:action="@{/productlist}">
+				        	<button class="fullWidth filter_button" type="submit" value="Product"><span>Edit product</span></button>
+			    		</form>
+		    		</div>
+		    		<div class="col-md-4 col-sm-12">
+			    		<form class="form-signin" action="#" th:action="@{/ordersedit}">
+				        	<button class="fullWidth filter_button" type="submit" value="Product"><span>Orders confirmation</span></button>
+			    		</form>
+					</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -128,16 +142,20 @@
 		<div class="row">
 			<div class="col product_section clearfix">
 			<div class="user_review_container d-flex flex-column flex-sm-row">
-				<form class="form-signin" action="#" method="post" th:action="@{/addProducer}">
-		        	<h5 class="form-signin-heading">Add producer</h5>
-			        <p>Producer name:<input placeholder="Producer name" required="required" type="text" name="name" /></p>
-		        	<button class="filter_button" type="submit" value="Submit"><span>Add producer</span></button>
-	    		</form>
-	    		<form class="form-signin" action="#" method="post" th:action="@{/addCategory}">
-		        	<h5 class="form-signin-heading">Add category</h5>
-			        <p>Category name:<input placeholder="Category name" required="required" type="text" name="name" /></p>
-		        	<button class="filter_button" type="submit" value="Submit"><span>Add category</span></button>
-	    		</form>
+				<div class="col-md-6 col-sm-12">
+					<form class="form-signin" action="#" method="post" th:action="@{/addProducer}">
+			        	<h5 class="form-signin-heading">Add producer</h5>
+				        <input class="fullWidth" placeholder="Producer name" required="required" type="text" name="name" />
+			        	<button class="fullWidth filter_button" type="submit" value="Submit"><span>Add producer</span></button>
+		    		</form>
+	    		</div>
+	    		<div class="col-md-6 col-sm-12">
+		    		<form class="form-signin" action="#" method="post" th:action="@{/addCategory}">
+			        	<h5 class="form-signin-heading">Add category</h5>
+				        <input class="fullWidth" placeholder="Category name" required="required" type="text" name="name" />
+			        	<button class="fullWidth filter_button" type="submit" value="Submit"><span>Add category</span></button>
+		    		</form>
+	    		</div>
 			</div>
 			</div>
 		</div>

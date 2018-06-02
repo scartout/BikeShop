@@ -12,7 +12,9 @@
 6. Init Star Rating
 7. Init Favorite
 8. Init Tabs
-9*. Custom clock
+9. Custom clock
+10. Hide spinner and curtain
+11. Init modal
 
 
 
@@ -48,15 +50,15 @@ jQuery(document).ready(function($)
 		setHeader();
 	});
 
+	initClock();
 	initMenu();
 	initThumbnail();
 	initQuantity();
 	initStarRating();
 	initFavorite();
-	initTabs();
-	
-	
-
+	initTabs();	
+	initModal();
+	hideSpinner();
 	
 	/* 
 
@@ -323,23 +325,43 @@ jQuery(document).ready(function($)
 			});
 		}
 	}
-
+	
 	/*
 	
 	9. Custom clock
 	
 	*/
 	
-	var myVar = setInterval(myTimer, 1000);
-	function myTimer() {
-	    var d = new Date();
-	    $("#clock") = d.toLocaleTimeString();
+    function initClock(){
+		var myVar = setInterval(myTimer, 1000);
+		function myTimer() {
+		    var d = new Date();
+		    document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+		}
+    }
+    
+    /*
+    
+	10. Hide spinner and curtain
+	
+	*/
+    
+	function hideSpinner(){
+		setTimeout(function(){ $('#loader-wrapper').hide();}, 500);	 
 	}
 	
-	var span = document.getElementsByClassName("close")[0];
-
-	span.onclick = function() { 
-	    modal.style.display = "none";
+	/*
+	 
+	11. Init modal
+	
+	*/
+	
+	function initModal(){
+		var span = document.getElementsByClassName("close")[0];
+	
+		span.onclick = function() { 
+		    modal.style.display = "none";
+		}
 	}
 	
 });

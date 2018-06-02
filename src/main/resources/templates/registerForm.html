@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_styles.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_responsive.css"></link>
+<link rel="stylesheet" type="text/css" href="styles/styles.css"></link>
 </head>
 
 <body>
@@ -25,11 +26,17 @@
 	<header class="header trans_300">
 
 		<!-- Top Navigation -->
+		
+		<div id="loader-wrapper">
+		    <div id="loader"></div> 
+		</div>
 
 		<div class="top_nav">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6"></div>
+					<div class="col-md-6">
+						<div id="clock"></div>
+					</div>
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
 							<ul class="top_nav_menu">
@@ -72,7 +79,6 @@
 						<div class="logo_container">
 							<a th:href="@{/}">Bike<span>Shop<img src="images/bike.png" height="42" width="42"/></span></a>
 						</div>
-						<div id="clock"></div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
 								<li><a th:href="@{/products?id=1}">Race</a></li>
@@ -110,16 +116,18 @@
 		<div class="row">
 			<div class="col product_section clearfix">
 			<div class="user_review_container d-flex flex-column flex-sm-row">
+			<div class="col-md-12 col-sm-12">
 				<form class="form-signin" action="#" method="post" th:action="@{/register}">
+				<div class="col-md-5 col-sm-12">
 		        	<h5 class="form-signin-heading">Register</h5>
-			        <p>Login:<input placeholder="Login" required="required" pattern="[^!@#$%^*+-=]{3,}" title="Login must be at least 3 characters" type="text" name="username" /></p>
-			        <p>Password: <input placeholder="Password" required="required" pattern="[^!@#$%^*+-=]{6,}" title="Password must be at least 6 characters" type="password" name="password" /></p>
-			        <p>E-mail: <input placeholder="E-mail" required="required" type="email" name="email" /></p>
-			        <p>First name: <input placeholder="First name" required="required" pattern="([A-Z]{1})[a-z][^!@#$%^*+-=]{2,}" type="text" name="firstName" /></p>
-			        <p>Last name: <input placeholder="Last name" required="required" pattern="([A-Z]{1})[a-z][^!@#$%^*+-=]{2,}" type="text" name="lastName" /></p>
-			        <p>City: <input placeholder="City" required="required" type="text" name="city" /></p>
+			        <p>Login:<input class="fullWidth" placeholder="Login" required="required" pattern="[^!@#$%^*+-=]{3,}" title="Login must be at least 3 characters" type="text" name="username" /></p>
+			        <p>Password: <input class="fullWidth" placeholder="Password" required="required" pattern="[^!@#$%^*+-=]{6,}" title="Password must be at least 6 characters" type="password" name="password" /></p>
+			        <p>E-mail: <input class="fullWidth" placeholder="E-mail" required="required" type="email" name="email" /></p>
+			        <p>First name: <input class="fullWidth" placeholder="First name" required="required" pattern="([A-Z]{1})[a-z][^!@#$%^*+-=]{2,}" type="text" name="firstName" /></p>
+			        <p>Last name: <input class="fullWidth" placeholder="Last name" required="required" pattern="([A-Z]{1})[a-z][^!@#$%^*+-=]{2,}" type="text" name="lastName" /></p>
+			        <p>City: <input class="fullWidth" placeholder="City" required="required" type="text" name="city" /></p>
 			        <p>Voivodeship: 
-			        <select name="voivodeship">
+			        <select class="fullWidth" name="voivodeship">
 			      		<option selected="selected" value="Other">Other</option>
 		                <option value="Dolnośląskie">Dolnośląskie</option>
 		                <option value="Kujawsko-Pomorskie">Kujawsko-Pomorskie</option>
@@ -139,7 +147,7 @@
 		                <option value="Zachodniopomorskie">Zachodniopomorskie</option>
 		            </select></p>
 		            <p>Country:
-					<select name="country">
+					<select class="fullWidth" name="country">
 					    <option value="Afghanistan">Afghanistan</option>
 					    <option value="&Aring;land Islands">&Aring;land Islands</option>
 					    <option value="Albania">Albania</option>
@@ -388,15 +396,17 @@
 					    <option value="Zimbabwe">Zimbabwe</option>
 					</select>
 					</p>
-					<p>Postcode: <input placeholder="Postcode" required="required" type="text" name="postcode" /></p>
-			        <p>Street: <input placeholder="Street" required="required" type="text" name="street" /></p>
-			        <p>Street number: <input placeholder="Street number" required="required" type="text" name="streetNumber" /></p>
-			        <p>Local number: <input placeholder="Local number" type="text" name="localNumber" /></p>			        
-			        <p>Phone number 1: <input placeholder="Phone number 1" required="required" type="text" name="phoneNumberFirst" /></p>
-			        <p>Phone number 2: <input placeholder="Phone number 2" type="text" name="phoneNumberSecond" /></p>
-			        <p>Fax: <input placeholder="Fax" type="text" name="fax" /></p>
-		        	<button class="filter_button" type="submit" value="Submit"><span>Register</span></button>
+					<p>Postcode: <input class="fullWidth" placeholder="Postcode" required="required" type="text" name="postcode" /></p>
+			        <p>Street: <input class="fullWidth" placeholder="Street" required="required" type="text" name="street" /></p>
+			        <p>Street number: <input class="fullWidth" placeholder="Street number" required="required" type="text" name="streetNumber" /></p>
+			        <p>Local number: <input class="fullWidth" placeholder="Local number" type="text" name="localNumber" /></p>			        
+			        <p>Phone number 1: <input class="fullWidth" placeholder="Phone number 1" required="required" type="text" name="phoneNumberFirst" /></p>
+			        <p>Phone number 2: <input class="fullWidth" placeholder="Phone number 2" type="text" name="phoneNumberSecond" /></p>
+			        <p>Fax: <input class="fullWidth" placeholder="Fax" type="text" name="fax" /></p>
+		        	<button class="fullWidth filter_button" type="submit" value="Submit"><span>Register</span></button>
+	    		</div>
 	    		</form>
+			</div>
 			</div>
 			</div>
 		</div>
