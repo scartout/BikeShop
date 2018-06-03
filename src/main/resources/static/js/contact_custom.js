@@ -43,6 +43,8 @@ jQuery(document).ready(function($)
 
 	initMenu();
 	initGoogleMap();
+	initClock();
+	hideSpinner();
 
 	function setHeader()
 	{
@@ -139,7 +141,6 @@ jQuery(document).ready(function($)
 	function openMenu()
 	{
 		menu.addClass('active');
-		// menu.css('right', "0");
 		fsOverlay.css('pointer-events', "auto");
 		menuActive = true;
 	}
@@ -158,7 +159,6 @@ jQuery(document).ready(function($)
     	{
     		center: myLatlng,
 	       	zoom: 14,
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			draggable: true,
 			scrollwheel: true,
 			zoomControl: true,
@@ -166,10 +166,14 @@ jQuery(document).ready(function($)
 			{
 				position: google.maps.ControlPosition.RIGHT_CENTER
 			},
-			mapTypeControl: false,
+			mapTypeControl: true,
+	        mapTypeControlOptions: {
+	            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+	            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain']
+	        },
 			scaleControl: true,
 			streetViewControl: true,
-			rotateControl: false,
+			rotateControl: true,
 			fullscreenControl: true,
 			styles:
 			[
@@ -355,5 +359,17 @@ jQuery(document).ready(function($)
 				map.setCenter(myLatlng);
 			}, 1400);
 		});
+	}
+	
+    function initClock(){
+		var myVar = setInterval(myTimer, 1000);
+		function myTimer() {
+		    var d = new Date();
+		    document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+		}
+    }
+	
+	function hideSpinner(){
+		setTimeout(function(){ $('#loader-wrapper').hide();}, 500);	 
 	}
 });

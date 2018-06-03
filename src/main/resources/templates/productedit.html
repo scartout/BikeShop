@@ -20,247 +20,62 @@
 
 <div class="super_container">
 
-	<!-- Header -->
-
-	<header class="header trans_300">
-
-		<!-- Top Navigation -->
-		
-		<div id="loader-wrapper">
-		    <div id="loader"></div> 
-		</div>
-
-		<div class="top_nav">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<div id="clock"></div>
-					</div>
-					<div class="col-md-6 text-right">
-						<div class="top_nav_right">
-							<ul class="top_nav_menu">
-
-								<!-- My Account -->
-								
-								<li class="account">
-									<a href="#">
-										My Account
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="account_selection">
-										<li th:switch="${session.isEmpty()}">
-	  									<p th:case="true">
-											<li><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-											<li><a th:href="@{/register}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
-										</p>
-  										<p th:case="false">
-  											<form action="logmeout" th:action="@{/logout}" method="post" name="someForm">
-											</form>
-											<li><a href="#" onclick="document.someForm.submit();"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a></li>
-    										<li><a th:href="@{/settings}"><i class="fa fa-sign-out" aria-hidden="true"></i>Settings</a></li>
-    									</p>
-    									</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Main Navigation -->
-
-		<div class="main_nav_container">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 text-right">
-						<div class="logo_container">
-							<a th:href="@{/}">Bike<span>Shop<img src="images/bike.png" height="42" width="42"/></span></a>
-						</div>
-						<nav class="navbar">
-							<ul class="navbar_menu">
-								<li><a th:href="@{/products?id=1}">Race</a></li>
-								<li><a th:href="@{/products?id=2}">MTB</a></li>
-								<li><a th:href="@{/products?id=3}">Cross</a></li>
-								<li><a th:href="@{/products?id=4}">City</a></li>
-								<li><a th:href="@{/products?id=5}">Accesories</a></li>
-								<li><a th:href="@{/contact}">Contact</a></li>
-							</ul>
-							<ul class="navbar_user">
-								<li><a th:href="@{/search}"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-								<li><a th:href="@{/orders}"><i class="fa fa-truck" aria-hidden="true"></i></a></li>
-								<li class="checkout">
-									<a th:href="@{/cart}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items" th:text="${session.countOrders}">0</span>
-										<script>
-										if ($("#checkout_items").is(':empty')){
-											$("#checkout_items").text(0);}
-										</script>
-									</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</header>
-
-	<div class="fs_menu_overlay"></div>
+	<div th:include="fragments/partials :: header"></div>
 
 	<div class="container product_section_container">
 		<div class="row">
 			<div class="col product_section clearfix">
 			<div class="user_review_container d-flex flex-column flex-sm-row">
-			<form class="form-signin" action="#" method="post" th:action="@{/updateProduct}">
-		        	<h5 class="form-signin-heading">Add product</h5>
-			        <p>Name: <input placeholder="Name" required="required" type="text" name="name" th:value="${product.name}"/></p>
-			        <p>Description short: <input placeholder="Description short" required="required" type="text" name="descriptionShort" th:value="${product.descriptionShort}"/></p>
-			        <p>Description long: <input placeholder="Description short:" required="required" type="text" name="descriptionLong" th:value="${product.descriptionLong}"/></p>
-			        <p>Size information: <input placeholder="M, S, L, XL, XLL" required="required" type="text" name="descriptionSize" th:value="${product.descriptionSize}"/></p>
-			        <p>Price: <input placeholder="Price" required="required" type="number" name="price" min="0" step="0.01" th:value="${product.price}"/></p>
-			        <p>Vat [%]: <input placeholder="e.g. 23%" required="required" type="number" name="vat" min="0" max="99.99" step="0.01" th:value="${product.vat}"/></p>
-			        <p>Main image: <input placeholder="Main image:" required="required" type="text" name="mainImage" th:value="${product.mainImage}"/></p>
-			        <p>Image 2: <input placeholder="Image 2:" type="text" name="imageSecond" th:value="${product.imageSecond}"/></p>
-			        <p>Image 3: <input placeholder="Image 3:" type="text" name="imageThird" th:value="${product.imageThird}"/></p>
-			        <input type="hidden" name="id" th:value="${product.id}"/>
-			        <p>Category: 
-			        <select name="categoryName">
-			        	<div th:each="category: ${categories}">
-  							<div th:switch="${category.name}"> 
-  							<p th:case="${product.category.name}">
-  								<option selected="selected" th:text="*{category.name}"></option>
-  							</p>	
-  							<p th:case="*">
-								<option th:text="*{category.name}"></option>
-							</p>
+			<div class="col-md-12 col-sm-12">
+				<form class="form-signin" action="#" method="post" th:action="@{/updateProduct}">
+					<div class="col-md-12 col-sm-12">
+			        	<h5 class="form-signin-heading">Add product</h5>
+				        <p>Name: <input class="fullWidth" placeholder="Name" required="required" type="text" name="name" th:value="${product.name}"/></p>
+				        <p>Description short: <input class="fullWidth" placeholder="Description short" required="required" type="text" name="descriptionShort" th:value="${product.descriptionShort}"/></p>
+				        <p>Description long: <input class="fullWidth" placeholder="Description short:" required="required" type="text" name="descriptionLong" th:value="${product.descriptionLong}"/></p>
+				        <p>Size information: <input class="fullWidth" placeholder="M, S, L, XL, XLL" required="required" type="text" name="descriptionSize" th:value="${product.descriptionSize}"/></p>
+				        <p>Price: <input class="fullWidth" placeholder="Price" required="required" type="number" name="price" min="0" step="0.01" th:value="${product.price}"/></p>
+				        <p>Vat [%]: <input class="fullWidth" placeholder="e.g. 23%" required="required" type="number" name="vat" min="0" max="99.99" step="0.01" th:value="${product.vat}"/></p>
+				        <p>Main image: <input class="fullWidth" placeholder="Main image:" required="required" type="text" name="mainImage" th:value="${product.mainImage}"/></p>
+				        <p>Image 2: <input class="fullWidth" placeholder="Image 2:" type="text" name="imageSecond" th:value="${product.imageSecond}"/></p>
+				        <p>Image 3: <input class="fullWidth" placeholder="Image 3:" type="text" name="imageThird" th:value="${product.imageThird}"/></p>
+				        <input type="hidden" name="id" th:value="${product.id}"/>
+				        <p>Category: 
+				        <select class="fullWidth" name="categoryName">
+				        	<div th:each="category: ${categories}">
+	  							<div th:switch="${category.name}"> 
+	  							<p th:case="${product.category.name}">
+	  								<option selected="selected" th:text="*{category.name}"></option>
+	  							</p>	
+	  							<p th:case="*">
+									<option th:text="*{category.name}"></option>
+								</p>
+								</div>
 							</div>
-						</div>
-					</select></p>
-			        <p>Producer: 
-			        <select name="producerName">
-			        	<div th:each="producer: ${producers}">
-  							<div th:switch="${producer.name}"> 
-  							<p th:case="${product.producer.name}">
-  								<option selected="selected" th:text="*{producer.name}"></option>
-  							</p>	
-  							<p th:case="*">
-								<option th:text="*{producer.name}"></option>
-							</p>
+						</select></p>
+				        <p>Producer: 
+				        <select class="fullWidth" name="producerName">
+				        	<div th:each="producer: ${producers}">
+	  							<div th:switch="${producer.name}"> 
+	  							<p th:case="${product.producer.name}">
+	  								<option selected="selected" th:text="*{producer.name}"></option>
+	  							</p>	
+	  							<p th:case="*">
+									<option th:text="*{producer.name}"></option>
+								</p>
+								</div>
 							</div>
-						</div>
-					</select></p>
-		        	<button class="filter_button" type="submit" value="Submit"><span>Update</span></button>
-	    		</form>
+						</select></p>
+			        	<button class="fullWidth filter_button" type="submit" value="Submit"><span>Update</span></button>
+		    		</div>
+		    	</form>
+	    	</div>	
 			</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="benefit">
-		<div class="container">
-			<div class="row benefit_row">
-				<div class="col-lg-3 benefit_col">
-					<div class="benefit_item d-flex flex-row align-items-center">
-						<div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
-						<div class="benefit_content">
-							<h6>free shipping</h6>
-							<p>Suffered Alteration in Some Form</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 benefit_col">
-					<div class="benefit_item d-flex flex-row align-items-center">
-						<div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
-						<div class="benefit_content">
-							<h6>6 year guarantee</h6>
-							<p>Don't forget any more</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 benefit_col">
-					<div class="benefit_item d-flex flex-row align-items-center">
-						<div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
-						<div class="benefit_content">
-							<h6>90 days return</h6>
-							<p>Making it Look Like Readable</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 benefit_col">
-					<div class="benefit_item d-flex flex-row align-items-center">
-						<div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
-						<div class="benefit_content">
-							<h6>quick delivery</h6>
-							<p>up to 30 days waiting</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Newsletter -->
-
-	<div class="newsletter">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
-						<h4>Newsletter</h4>
-						<p>Subscribe to our newsletter and be up to date</p>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-						<form action="subscribe" th:action="@{/subscribe}" method="post">
-							<input id="newsletter_email" name="email" type="email" placeholder="Your email" required="required" data-error="Valid email is required."></input>
-							<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Footer -->
-
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
-						<ul class="footer_nav">
-							<li><a href="#">Blog</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">Contact us</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
-						<ul>
-							<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="footer_nav_container">
-						<div class="cr">©2018 All Rights Reserved. Template by <a href="#">Colorlib</a></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<div th:include="fragments/partials :: footer"></div>
 
 </div>
 
