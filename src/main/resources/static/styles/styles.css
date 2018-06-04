@@ -1,12 +1,110 @@
+/*********************************
+1. Zoom modal
+*********************************/
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    padding-top: 5%; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 95%;
+    max-height: 95%;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 100%;
+    max-width: 80%;
+    text-align: center;
+    color: #ccc;
+    padding: 5px 0;
+    height: 10%;
+}
+
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+/*********************************
+2. Clock
+*********************************/
+
 #clock{
 	line-height: 50px;
 	color: #b5aec4;
 }
+
+/*********************************
+3. Spinner and curtain
+*********************************/
+
 #loader-wrapper {
 	background-color: #000;
 	opacity: 0.8;
     position: fixed;
-    top: 0;
+    top: auto;
     left: 0;
     width: 100%;
     height: 100%;
@@ -76,3 +174,40 @@
         transform: rotate(360deg);
     }
 }
+
+/*********************************
+4. Privacy policy modal
+*********************************/
+
+.policy-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.policy-modal-content {
+	overflow: auto;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 60%
+}
+.policy-modal-close {
+    color: #aaa;
+    text-align: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.policy-modal-close:hover,
+.policy-modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+} 
