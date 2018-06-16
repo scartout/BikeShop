@@ -6,7 +6,7 @@
 	<groupId>pl.scartout</groupId>
 	<artifactId>BikeShop</artifactId>
 	<description>Developed by Pawel Dudek</description>
-	<version>1.2.1</version>
+	<version>1.2.2</version>
 
 	<name>BikeShop</name>
 
@@ -129,6 +129,35 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+		      <groupId>com.samaxes.maven</groupId>
+		      <artifactId>minify-maven-plugin</artifactId>
+		      <version>1.7.6</version>
+		      <executions>
+		        <execution>
+		          <id>default-minify</id>
+		          <configuration>
+		            <charset>UTF-8</charset>
+					<webappSourceDir>${basedir}/src/main/resources/static</webappSourceDir>
+			        <webappTargetDir>${basedir}/src/main/resources/static/minified</webappTargetDir>
+		            <cssSourceDir>styles</cssSourceDir>
+	                <cssSourceFiles>
+	                    <cssSourceFile>styles.css</cssSourceFile>
+	                </cssSourceFiles>
+	                <cssFinalFile>styles.css</cssFinalFile>
+	                <jsSourceDir>js</jsSourceDir>
+	                <jsSourceFiles>
+	                    <jsSourceFile>zoom_modal.js</jsSourceFile>
+	                </jsSourceFiles>
+	                <jsFinalFile>zoom_modal.js</jsFinalFile>
+		            <jsEngine>CLOSURE</jsEngine>
+		          </configuration>
+		          <goals>
+		            <goal>minify</goal>
+		          </goals>
+		        </execution>
+		      </executions>
+		    </plugin>
 		</plugins>
 	</build>
 	

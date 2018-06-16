@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_styles.css"></link>
 <link rel="stylesheet" type="text/css" href="styles/categories_responsive.css"></link>
-<link rel="stylesheet" type="text/css" href="styles/styles.css"></link>
+<link rel="stylesheet" type="text/css" href="minified/styles/styles.min.css"></link>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
 			        </tr>
 			        <tr class="cartOrderId" th:each="order: ${orders}">
 			        	<td th:text="${order.id}"></td>
-			        	<td><img th:src="${order.product.mainImage}" height="100"></img></td>
+			        	<td><img th:src="${order.product.mainImage}" height="100" onerror="this.onerror=null;this.src='images/noimage.png'"></img></td>
 			        	<td th:text="${order.product.name}"></td>
 			        	<td class="cartPrice" th:text="${#numbers.formatDecimal(order.product.price, 0, 2)+' PLN'}"></td>
 			        	<form th:action="@{/confirmOrder}" method="post" >

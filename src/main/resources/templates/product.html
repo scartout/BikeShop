@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css"/>
 <link rel="stylesheet" type="text/css" href="styles/single_styles.css"/>
 <link rel="stylesheet" type="text/css" href="styles/single_responsive.css"/>
-<link rel="stylesheet" type="text/css" href="styles/styles.css"></link>
+<link rel="stylesheet" type="text/css" href="minified/styles/styles.min.css"></link>
 </head>
 
 <body>
@@ -51,15 +51,17 @@
 						<div class="col-lg-2 thumbnails_col order-lg-0 order-2">
 							<div class="single_product_thumbnails">
 								<ul>
-									<li><img th:src="${product.imageSecond}" alt="Product image" th:attr="data-image=${product.imageSecond}"/></li>
-									<li><img th:src="${product.imageThird}" alt="Product image" th:attr="data-image=${product.imageThird}"/></li>
-									<li class="active"><img th:src="${product.mainImage}" alt="Product image" th:attr="data-image=${product.mainImage}"/></li>
+									<li><img th:src="${product.imageSecond}" onerror="this.onerror=null;this.src='images/noimage.png'" alt="Product image" th:attr="data-image=${product.imageSecond}"/></li>
+									<li><img th:src="${product.imageThird}" onerror="this.onerror=null;this.src='images/noimage.png'" alt="Product image" th:attr="data-image=${product.imageThird}"/></li>
+									<li class="active"><img th:src="${product.mainImage}" onerror="this.onerror=null;this.src='images/noimage.png'" alt="Product image" th:attr="data-image=${product.mainImage}"/></li>
 								</ul>
 							</div>
 						</div>
 						<div class="col-lg-10 image_col order-lg-2 order-0">
 							<div class="single_product_image">
-								<div id="myImg" th:alt="${product.name}" class="single_product_image_background"></div>
+								<div class="single_product_image_background">
+								<img id="myImg" th:alt="${product.name}"></img>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -98,7 +100,7 @@
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <span class="close">&times;</span>
-  <img class="modal-content" id="img01"/>
+  <img id="img01" class="modal-content"/>
   <div id="caption"></div>
 </div>
 
@@ -233,7 +235,7 @@
 <script src="plugins/easing/easing.js"></script>
 <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script type="text/javascript" src="js/single_custom.js"></script>
-<script type="text/javascript" src="js/zoom_modal.js"></script>
+<script type="text/javascript" src="minified/js/zoom_modal.js"></script>
 </body>
 
 </html>

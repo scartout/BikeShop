@@ -65,7 +65,7 @@
 								<li><a id="policy_button" href="#">Privacy policy</a></li>
 							</ul>
 							<ul class="navbar_user">
-								<li><a th:href="@{/search}"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+								<li><i id="search_toggle" onclick="$('#search_section').fadeToggle('slow', 'linear')" class="fa fa-search" aria-hidden="true"></i></li>
 								<li><a th:href="@{/orders}"><i class="fa fa-truck" aria-hidden="true"></i></a></li>
 								<li class="checkout">
 									<a th:href="@{/cart}">
@@ -73,7 +73,6 @@
 										<span id="checkout_items" class="checkout_items" th:text="${session.countOrders}">0</span>
 										<script>
 										if ($("#checkout_items").is(':empty')){
-											console.log('sdad');
 											$("#checkout_items").text(0);
 										}
 										</script>
@@ -506,12 +505,12 @@
 				<!-- Breadcrumbs -->
 
 				<div class="breadcrumbs d-flex flex-row align-items-center">
-					<ul>
+					<div id="search_section" class="col-lg-12">
 						<form th:action="@{/search}">
-							<li><input name="string" type="text"></input></li>
-							<li><button class="filter_button" type="submit" value="Search"><span>Search</span></button></li>
+							<input id="search_bar" name="string" type="text"></input>
+							<button id="search_button" type="submit" value="Search"><span><i class="fa fa-search"></i></span></button>
 						</form>
-					</ul>
+					</div>
 				</div>
 
 				<!-- Sidebar -->
@@ -594,7 +593,7 @@
 										<div class="product-item women">
 											<div class="product product_filter">
 												<div class="product_image">
-													<img th:src="${product.mainImage}" alt=""></img>
+													<img th:src="${product.mainImage}" onerror="this.onerror=null;this.src='images/noimage.png'" alt="No image" ></img>
 												</div>
 												<div class="favorite"></div>
 												<div class="product_info">

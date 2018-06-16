@@ -595,5 +595,4 @@ jQuery(document).ready(function($)
 		}
 	}
 	
-	
 });
