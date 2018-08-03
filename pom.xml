@@ -6,7 +6,7 @@
 	<groupId>pl.scartout</groupId>
 	<artifactId>BikeShop</artifactId>
 	<description>Developed by Pawel Dudek</description>
-	<version>1.2.2</version>
+	<version>1.2.3</version>
 
 	<name>BikeShop</name>
 
@@ -121,6 +121,11 @@
       		<version>${jaxb-api.version}</version>
       		<scope>runtime</scope>
    		</dependency>
+   		
+		<dependency>
+		    <groupId>org.thymeleaf.extras</groupId>
+		    <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+		</dependency>
 
 	</dependencies>
 	<build>

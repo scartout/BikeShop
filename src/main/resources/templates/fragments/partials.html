@@ -28,12 +28,14 @@
 										<i class="fa fa-angle-down"></i>
 									</a>
 									<ul class="account_selection">
+									<div sec:authorize="!isAuthenticated()">
 										<li><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
 										<li><a th:href="@{/register}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
- 										<form action="logmeout" th:action="@{/logout}" method="post" name="someForm">
-										</form>
-										<li><a href="#" onclick="document.someForm.submit();"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a></li>
+ 									</div>
+ 									<div sec:authorize="isAuthenticated()">
+ 										<form action="logmeout" th:action="@{/logout}" method="post" name="someForm"></form>										<li><a href="#" onclick="document.someForm.submit();"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a></li>
    										<li><a th:href="@{/settings}"><i class="fa fa-sign-out" aria-hidden="true"></i>Settings</a></li>
+									</div>
 									</ul>
 								</li>
 							</ul>
