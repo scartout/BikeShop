@@ -31,6 +31,7 @@
 					<div class="col-md-12 col-sm-12">
 			        	<h5 class="form-signin-heading">Add product</h5>
 				        <p>Name: <input class="fullWidth" placeholder="Name" required="required" type="text" name="name" th:value="${product.name}"/></p>
+				        <p>SKU: <input class="fullWidth" placeholder="SKU" required="required" type="text" name="sku" th:value="${product.sku}"/></p>
 				        <p>Description short: <input class="fullWidth" placeholder="Description short" required="required" type="text" name="descriptionShort" th:value="${product.descriptionShort}"/></p>
 				        <p>Description long: <input class="fullWidth" placeholder="Description short:" required="required" type="text" name="descriptionLong" th:value="${product.descriptionLong}"/></p>
 				        <p>Size information: <input class="fullWidth" placeholder="M, S, L, XL, XLL" required="required" type="text" name="descriptionSize" th:value="${product.descriptionSize}"/></p>
@@ -53,15 +54,15 @@
 								</div>
 							</div>
 						</select></p>
-				        <p>Producer: 
-				        <select class="fullWidth" name="producerName">
-				        	<div th:each="producer: ${producers}">
-	  							<div th:switch="${producer.name}"> 
-	  							<p th:case="${product.producer.name}">
-	  								<option selected="selected" th:text="*{producer.name}"></option>
+				        <p>Manufacturer: 
+				        <select class="fullWidth" name="manufacturerName">
+				        	<div th:each="manufacturer: ${manufacturers}">
+	  							<div th:switch="${manufacturer.name}"> 
+	  							<p th:case="${product.manufacturer.name}">
+	  								<option selected="selected" th:text="*{manufacturer.name}"></option>
 	  							</p>	
 	  							<p th:case="*">
-									<option th:text="*{producer.name}"></option>
+									<option th:text="*{manufacturer.name}"></option>
 								</p>
 								</div>
 							</div>

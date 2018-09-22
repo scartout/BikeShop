@@ -17,10 +17,10 @@ import javax.validation.ConstraintViolationException;
 import org.junit.runners.MethodSorters;
 
 import pl.scartout.model.Category;
-import pl.scartout.model.Producer;
+import pl.scartout.model.Manufacturer;
 import pl.scartout.model.Product;
 import pl.scartout.repo.CategoryRepo;
-import pl.scartout.repo.ProducerRepo;
+import pl.scartout.repo.ManufacturerRepo;
 import pl.scartout.repo.ProductRepo;
 
 @RunWith(SpringRunner.class)
@@ -31,7 +31,7 @@ public class ProductRepoTest {
 	@Autowired
 	ProductRepo productRepo;
 	@Autowired
-	ProducerRepo producerRepo;
+	ManufacturerRepo manufacturerRepo;
 	@Autowired
 	CategoryRepo categoryRepo;
 
@@ -41,23 +41,23 @@ public class ProductRepoTest {
 	static Product product3;
 	static Category category1;
 	static Category category2;
-	static Producer producer1;
+	static Manufacturer producer1;
 	
 	@BeforeClass
 	public static void before() {
 		category1 = new Category(1L, "Road");
 		category2 = new Category(2L, "MTB");
-		producer1 = new Producer(1L, "Canyon");
+		producer1 = new Manufacturer(1L, "Canyon");
 		productNull = new Product();
-		product1 = new Product(1L, "Canyon Endurace 7.0 Al", "Shimano 105 Aluminium Bike", "Canyon Endurace 7.0 Al", 
+		product1 = new Product(1L, "SKU-TEST-999999999", "Canyon Endurace 7.0 Al", "Shimano 105 Aluminium Bike", "Canyon Endurace 7.0 Al", 
     			"S, M, L, XL, XLL",	4999.00, 23.00, "http://cdn.mos.bikeradar.imdserve.com/images/bikes-and-gear/bikes/road/1450354270219-ob3hv3e725rn-630-80.jpg", 
     			"https://i.pinimg.com/736x/11/4e/11/114e115a0a8005449d1ea616dbfc19f5--search-wheels.jpg", 
     			"http://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/2/2017/06/Canyon-Endurace-AL-7.0.jpg", category1, producer1);
-		product2 = new Product(2L, "Rose Pro SL 105", "Shimano 105 Aluminium Bike", "Rose Pro SL 105", 
+		product2 = new Product(2L, "SKU-TEST-999999999", "Rose Pro SL 105", "Shimano 105 Aluminium Bike", "Rose Pro SL 105", 
     			"S, M, L, XL, XLL",	4899.00, 23.00, "https://media1.rosebikes.de/drehmomente/2147244_6p5l46zavw_800_580/data/spinpict/004.jpg", 
     			"http://road.cc/sites/default/files/styles/main_width/public/rose-pro-sl-105.jpg?itok=atfFenQP", 
     			"https://media1.rosebikes.de/drehmomente/2147837_gmwy8kteux_800_580/data/spinpict/004.jpg", category1, producer1);
-		product3 = new Product(3L, "Unibike Viper", "Shimano Alivio Aluminium Bike", "Unibike Viper", 
+		product3 = new Product(3L, "SKU-TEST-999999999", "Unibike Viper", "Shimano Alivio Aluminium Bike", "Unibike Viper", 
     			"S, M, L, XL, XLL",	2499.00, 23.00, "http://www.bikekatalog.pl/2012/ppg_fotki/foto_max/8_81733_28_02_12.jpg", 
     			"http://st2.static.bikestats.pl/55/b5655-u7699_orig.jpg?1387525943", 
     			"http://www.unibike.pl/images/cross/vipergts7.jpg", category2, producer1);
@@ -72,7 +72,7 @@ public class ProductRepoTest {
 	public void t2shouldSave() {
 		categoryRepo.save(category1);
 		categoryRepo.save(category2);
-		producerRepo.save(producer1);
+		manufacturerRepo.save(producer1);
     	productRepo.save(product1);
     	productRepo.save(product2);
     	productRepo.save(product3);
@@ -120,7 +120,7 @@ public class ProductRepoTest {
 	
 	@Test
 	public void t8update() {
-    	productRepo.updateProduct(1L, "Canyon Endurace 7.0 Al", "Shimano 105 Aluminium Bike", "Canyon Endurace 7.0 Al", 
+    	productRepo.updateProduct(1L, "SKU-TEST-999999999", "Canyon Endurace 7.0 Al", "Shimano 105 Aluminium Bike", "Canyon Endurace 7.0 Al", 
     	"S, M, L, XL, XLL",	4899.00, 23.00, 3982.93, "http://cdn.mos.bikeradar.imdserve.com/images/bikes-and-gear/bikes/road/1450354270219-ob3hv3e725rn-630-80.jpg", 
     	"https://i.pinimg.com/736x/11/4e/11/114e115a0a8005449d1ea616dbfc19f5--search-wheels.jpg", 
     	"http://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/2/2017/06/Canyon-Endurace-AL-7.0.jpg", category1, producer1);

@@ -13,40 +13,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import pl.scartout.model.Producer;
+import pl.scartout.model.Manufacturer;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ProducerRepoTest {
+public class ManufacturerRepoTest {
 
 	@Autowired
-	ProducerRepo producerRepo;
+	ManufacturerRepo manufacturerRepo;
 	
-	static Producer producerNull;
-	static Producer producer;
+	static Manufacturer producerNull;
+	static Manufacturer manufacturer;
 	
 	@BeforeClass
 	public static void before() {
-		producerNull = new Producer();
-		producer = new Producer(1L, "Rose");
+		producerNull = new Manufacturer();
+		manufacturer = new Manufacturer(1L, "Rose");
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void t1shouldNotCreateWithValidation() {
-		producerRepo.save(producerNull);
+		manufacturerRepo.save(producerNull);
 	}
 	
 	@Test
 	public void t2shouldSave() {
-		producerRepo.save(producer);
+		manufacturerRepo.save(manufacturer);
 	}
 	
 	@Test
 	public void t3shouldFindByName() {
-		Producer producer = producerRepo.findByName("Rose");
-		assertThat(producer.getId()).isEqualTo(1L);
-		assertThat(producer.getName()).isEqualTo("Rose");
+		Manufacturer manufacturer = manufacturerRepo.findByName("Rose");
+		assertThat(manufacturer.getId()).isEqualTo(1L);
+		assertThat(manufacturer.getName()).isEqualTo("Rose");
 	}
 
 }

@@ -18,31 +18,31 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 	@XmlRootElement
 	@Entity
-	@Table(name = "producers")
-	public final class Producer implements Serializable {
+	@Table(name = "manufacturers")
+	public final class Manufacturer implements Serializable {
 	    private static final long serialVersionUID = 1L;
 	    
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "producer_id")
+	    @Column(name = "manufacturer_id")
 	    private Long id;
 	    @NotNull
 	    @Column(name = "name", nullable = false)
 	    private String name;
-	    @OneToMany(mappedBy = "producer", 
+	    @OneToMany(mappedBy = "manufacturer", 
 	    		fetch = FetchType.EAGER,
 	    		cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
 	    		orphanRemoval = true)
 	    private List<Product> products = new ArrayList<>();
 	    
-	    public Producer() {}
+	    public Manufacturer() {}
 
-		public Producer(String name) {
+		public Manufacturer(String name) {
 			super();
 			this.name = name;
 		}
 		
-		public Producer(Long id, String name) {
+		public Manufacturer(Long id, String name) {
 			super();
 			this.id = id;
 			this.name = name;
@@ -74,7 +74,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 		@Override
 		public String toString() {
-			return "Producer - " + id + " - " + name;
+			return "Manufacturer - " + id + " - " + name;
 		}
 
 		@Override
@@ -95,7 +95,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 				return false;
 			if (getClass() != obj.getClass())
 				return false;
-			Producer other = (Producer) obj;
+			Manufacturer other = (Manufacturer) obj;
 			if (id == null) {
 				if (other.id != null)
 					return false;

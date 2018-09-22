@@ -170,7 +170,7 @@
     }
 }
 /*********************************
-4. Privacy policy modal
+5. Privacy policy modal
 *********************************/
 .policy-modal {
     display: none;
@@ -183,8 +183,7 @@
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
-.policy-modal-content {
-	overflow: auto;
+.policy-modal .policy-modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -192,20 +191,24 @@
     width: 80%;
     height: 60%
 }
-.policy-modal-close {
+.policy-modal .policy-modal-close {
     color: #aaa;
     text-align: right;
     font-size: 28px;
     font-weight: bold;
 }
-.policy-modal-close:hover,
-.policy-modal-close:focus {
+.policy-modal .policy-modal-close:hover,
+.policy-modal .policy-modal-close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
+.policy-modal .help-content{
+	overflow: auto;
+	height: 95%;
+}
 /*********************************
-5. Search bar
+6. Search bar
 *********************************/
 #search_section{
 	display: none;
@@ -223,4 +226,10 @@
 	border: none;
 	background: transparent;
 	cursor: pointer;
+}
+/*********************************
+7. Spinner and curtain
+*********************************/
+.btn_table{
+	transform: translate(0, -50%);
 }

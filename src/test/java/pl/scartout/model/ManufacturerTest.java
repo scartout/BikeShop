@@ -9,28 +9,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-import pl.scartout.model.Producer;
+import pl.scartout.model.Manufacturer;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProducerTest {
+public class ManufacturerTest {
 
 	@Test
 	public void create() {
-		Producer producer = new Producer();
+		Manufacturer manufacturer = new Manufacturer();
 	}
 	
 	@Test
 	public void equalsContract() {
-	    EqualsVerifier.forClass(Producer.class).verify();
+	    EqualsVerifier.forClass(Manufacturer.class).verify();
 	}
 	
 	@Test
 	public void verifyToString() {
-		Producer producer = new Producer();
-		producer.setId(9999999L);
-		producer.setName("Rose");
-		assertThat(producer.toString()).isEqualTo("Producer - 9999999 - Rose");
+		Manufacturer manufacturer = new Manufacturer();
+		manufacturer.setId(9999999L);
+		manufacturer.setName("Rose");
+		assertThat(manufacturer.toString()).isEqualTo("Manufacturer - 9999999 - Rose");
 	}
 	
 }

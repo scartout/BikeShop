@@ -31,6 +31,7 @@
 					<div class="col-md-12 col-sm-12">
 			        	<h5 class="form-signin-heading">Add product</h5>
 				        <p>Name: <input class="fullWidth" placeholder="Name" required="required" type="text" name="name" /></p>
+				        <p>SKU: <input class="fullWidth" placeholder="SKU" required="required" type="text" name="sku" /></p>
 				        <p>Description short: <input class="fullWidth" placeholder="Description short" required="required" type="text" name="descriptionShort" /></p>
 				        <p>Description long: <input class="fullWidth" placeholder="Description short:" required="required" type="text" name="descriptionLong" /></p>
 				        <p>Size information: <input class="fullWidth" placeholder="M, S, L, XL, XLL" required="required" type="text" name="descriptionSize" /></p>
@@ -45,10 +46,10 @@
 	  							<option th:text="*{category.name}"></option>
 	  						</p>
 						</select></p>
-				        <p>Producer: 
-				        <select class="fullWidth" name="producerName">
-				        	<p th:each="producer: ${producers}">
-	  							<option th:text="*{producer.name}"></option>
+				        <p>Manufacturer: 
+				        <select class="fullWidth" name="manufacturerName">
+				        	<p th:each="manufacturer: ${manufacturers}">
+	  							<option th:text="*{manufacturer.name}"></option>
 							</p>
 						</select></p>
 			        	<button class="fullWidth filter_button" type="submit" value="Submit"><span>Add</span></button>

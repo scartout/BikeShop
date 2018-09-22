@@ -25,49 +25,54 @@
 	<div class="container product_section_container">
 		<div class="row">
 			<div class="col product_section clearfix">
-			<div class="user_review_container d-flex flex-column flex-sm-row">
-				<table>
-			        <tr>
-				        <th class="tableStyle">Order id</th>
-				        <th class="tableStyle">Product</th>
-				        <th class="tableStyle">Product name</th>
-				        <th class="tableStyle">Quantity</th>
-				        <th class="tableStyle">Price</th>
-				        <th class="tableStyle">Total</th>
-				        <th class="tableStyle">Order date</th>
-				        <th class="tableStyle">Approval date</th>
-				        <th class="tableStyle">Shipping date</th>
-				        <th class="tableStyle">Complete date</th>
-			        </tr>
-			        <tr class="cartOrderId" th:each="order: ${orders}">
-			        	<td th:text="${order.id}"></td>
-			        	<td><img th:src="${order.product.mainImage}" onerror="this.onerror=null;this.src='images/noimage.png'" height="100"></img></td>
-			        	<td th:text="${order.product.name}"></td>
-			        	<td th:text="${order.quantity}"></td>
-			        	<td th:text="${#numbers.formatDecimal(order.product.price, 0, 2)+' PLN'}"></td>
-			        	<td class="totalPrice" th:text="${#numbers.formatDecimal(order.total, 0, 2)+' PLN'}"></td>
-			        	<td th:text="${#dates.format(order.orderDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
-					    <div th:if="${order.approvalDate}">
-   							<td th:text="${#dates.format(order.approvalDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
-						</div>
-						<div th:unless="${order.approvalDate}">
-					    <td></td>
-    					</div>
-    					<div th:if="${order.shippingDate}">
-   							<td th:text="${#dates.format(order.shippingDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
-						</div>
-						<div th:unless="${order.shippingDate}">
-							<td></td>
-						</div>
-    					<div th:if="${order.completeDate}">
-    						<td th:text="${#dates.format(order.completeDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
-						</div>
-						<div th:unless="${order.completeDate}">
-							<td></td>
-						</div>
-			        </tr>
-		        	</table>
-			</div>
+				<div class="user_review_container d-flex flex-column flex-sm-row">
+					<div th:if="${!orders.isEmpty()}">
+						<table>
+					        <tr>
+						        <th class="tableStyle">Order id</th>
+						        <th class="tableStyle">Product</th>
+						        <th class="tableStyle">Product name</th>
+						        <th class="tableStyle">Quantity</th>
+						        <th class="tableStyle">Price</th>
+						        <th class="tableStyle">Total</th>
+						        <th class="tableStyle">Order date</th>
+						        <th class="tableStyle">Approval date</th>
+						        <th class="tableStyle">Shipping date</th>
+						        <th class="tableStyle">Complete date</th>
+					        </tr>
+					        <tr class="cartOrderId" th:each="order: ${orders}">
+					        	<td th:text="${order.id}"></td>
+					        	<td><img th:src="${order.product.mainImage}" onerror="this.onerror=null;this.src='images/noimage.png'" height="100"></img></td>
+					        	<td th:text="${order.product.name}"></td>
+					        	<td th:text="${order.quantity}"></td>
+					        	<td th:text="${#numbers.formatDecimal(order.product.price, 0, 2)+' PLN'}"></td>
+					        	<td class="totalPrice" th:text="${#numbers.formatDecimal(order.total, 0, 2)+' PLN'}"></td>
+					        	<td th:text="${#dates.format(order.orderDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
+							    <div th:if="${order.approvalDate}">
+		   							<td th:text="${#dates.format(order.approvalDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
+								</div>
+								<div th:unless="${order.approvalDate}">
+							    <td></td>
+		    					</div>
+		    					<div th:if="${order.shippingDate}">
+		   							<td th:text="${#dates.format(order.shippingDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
+								</div>
+								<div th:unless="${order.shippingDate}">
+									<td></td>
+								</div>
+		    					<div th:if="${order.completeDate}">
+		    						<td th:text="${#dates.format(order.completeDate, 'dd.MM.yyyy HH:mm:ss')}"></td>
+								</div>
+								<div th:unless="${order.completeDate}">
+									<td></td>
+								</div>
+					        </tr>
+			        	</table>
+		        	</div>
+		        	<div th:if="${orders.isEmpty()}">
+						<h4>You have no orders</h4>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

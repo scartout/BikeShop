@@ -5,20 +5,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import pl.scartout.model.Category;
-import pl.scartout.model.Producer;
+import pl.scartout.model.Manufacturer;
 import pl.scartout.repo.CategoryRepo;
-import pl.scartout.repo.ProducerRepo;
+import pl.scartout.repo.ManufacturerRepo;
 	 
 @Controller
 public class AdminController {
     
 	private CategoryRepo categoryRepo;
-	private ProducerRepo producerRepo;
+	private ManufacturerRepo manufacturerRepo;
     
     @Autowired
-    public AdminController(CategoryRepo categoryRepo, ProducerRepo producerRepo) {
+    public AdminController(CategoryRepo categoryRepo, ManufacturerRepo manufacturerRepo) {
         this.categoryRepo = categoryRepo;
-        this.producerRepo= producerRepo;
+        this.manufacturerRepo= manufacturerRepo;
     }
 	
     @RequestMapping("/admin")
@@ -33,10 +33,10 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 	
-	@PostMapping("/addProducer")
-	public String addProducer(@RequestParam String name) {
-		Producer producer = new Producer(name);
-		producerRepo.save(producer);
+	@PostMapping("/addManufacturer")
+	public String addManufacturer(@RequestParam String name) {
+		Manufacturer manufacturer = new Manufacturer(name);
+		manufacturerRepo.save(manufacturer);
 		return "redirect:/admin";
 	}
 	

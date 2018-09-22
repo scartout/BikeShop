@@ -29,7 +29,7 @@
 				<table>
 			        <tr>
 				        <th class="tableStyle">Id</th>
-				        <th class="tableStyle">Producer</th>
+				        <th class="tableStyle">Manufacturer</th>
 				        <th class="tableStyle">Name</th>
 				        <th class="tableStyle">Price</th>
 				        <th class="tableStyle">Price net</th>
@@ -39,7 +39,7 @@
 			        </tr>
 			        <tr th:each="product: ${products}">
 			        	<td th:text="${product.id}"></td>
-			        	<td th:text="${product.producer.name}"></td>
+			        	<td th:text="${product.manufacturer.name}"></td>
 			        	<td th:text="${product.name}"></td>
 					    <td th:text="${product.price}"></td>
 					    <td th:text="${product.priceNet}"></td>
@@ -47,7 +47,7 @@
 					    <td th:text="${product.category.name}"></td>
 					    <td><form action="completeitem" th:action="@{/productedit}" method="get" >
     						<input type="hidden" name="id" th:attr="value=${product.id}"/>
-    						<button class="filter_button" type="submit" value="Edit"><span>Edit</span></button>
+    						<button class="filter_button btn_table" type="submit" value="Edit"><span>Edit</span></button>
     					</form></td>
 			        </tr>
 		        	</table>

@@ -18,7 +18,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Preconditions;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -33,6 +32,8 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "product_id")
 	    private Long id;
+	    @Column(name = "sku", unique = true)
+	    private String sku;
 	    @NotNull
 	    @Column(name = "name", nullable = false)
 	    private String name;
@@ -47,21 +48,23 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    private Double price;
 	    @Column(name = "price_net")
 	    private Double priceNet;
+	    @Column(name = "vat")
 	    private Double vat;
+	    @Column(name = "image_main")
 	    private String mainImage;
+	    @Column(name = "image_second")
 	    private String imageSecond;
+	    @Column(name = "image_third")
 	    private String imageThird;
+	    @Column(name = "date_added")
 	    private Date dateAdded;
-	    @JsonIgnore
 	    @ManyToOne
 	    @JoinColumn(name = "category_id")
 	    private Category category;
-	    @JsonIgnore
 	    @ManyToOne
-	    @JoinColumn(name = "producer_id")
-	    private Producer producer;
+	    @JoinColumn(name = "manufacturer_id")
+	    private Manufacturer manufacturer;
 	    @LazyCollection(LazyCollectionOption.FALSE)
-	    @JsonIgnore
 	    @OneToMany(mappedBy = "product",
 	    		cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
 	    		orphanRemoval = true)
@@ -69,7 +72,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    
 	    public Product() {}
 
-		public Product(String name, String descriptionShort, String descriptionLong, String descriptionSize,
+		public Product(String sku, String name, String descriptionShort, String descriptionLong, String descriptionSize,
 				Double price, Double vat, String mainImage, String imageSecond, String imageThird) {
 			Preconditions.checkArgument(price>=0, "Price cannot be negative");
 			Preconditions.checkArgument(vat>=0, "Price cannot be negative");
@@ -78,6 +81,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 			countPriceNet = Math.round(countPriceNet*100.0)/100.0;
 			Preconditions.checkState(countPriceNet>0, "Price net cannot be negative");
 			Preconditions.checkState(countPriceNet<=price, "Price net cannot be greater than price gross");
+			this.sku = sku;
 			this.name = name;
 			this.descriptionShort = descriptionShort;
 			this.descriptionLong = descriptionLong;
@@ -91,9 +95,9 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.dateAdded = new Date();
 		}
 
-		public Product(Long id, String name, String descriptionShort, String descriptionLong, String descriptionSize,
+		public Product(Long id, String sku, String name, String descriptionShort, String descriptionLong, String descriptionSize,
 				Double price, Double vat, String mainImage, String imageSecond, String imageThird,
-				Category category, Producer producer) {
+				Category category, Manufacturer manufacturer) {
 			Preconditions.checkArgument(price>=0, "Price cannot be negative");
 			Preconditions.checkArgument(vat>=0, "Price cannot be negative");
 			Preconditions.checkArgument(vat<=100, "Price cannot be greater than 99.99");
@@ -102,6 +106,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 			Preconditions.checkState(countPriceNet>0, "Price net cannot be negative");
 			Preconditions.checkState(countPriceNet<=price, "Price net cannot be greater than price gross");
 			this.id = id;
+			this.sku = sku;
 			this.name = name;
 			this.descriptionShort = descriptionShort;
 			this.descriptionLong = descriptionLong;
@@ -114,7 +119,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.imageThird = imageThird;
 			this.dateAdded = new Date();
 			this.category = category;
-			this.producer = producer;
+			this.manufacturer = manufacturer;
 		}
 
 		public Long getId() {
@@ -123,6 +128,14 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 		public void setId(Long id) {
 			this.id = id;
+		}
+
+		public String getSku() {
+			return sku;
+		}
+
+		public void setSku(String sku) {
+			this.sku = sku;
 		}
 
 		public String getName() {
@@ -221,12 +234,12 @@ import org.hibernate.annotations.LazyCollectionOption;
 			this.category = category;
 		}
 
-		public Producer getProducer() {
-			return producer;
+		public Manufacturer getManufacturer() {
+			return manufacturer;
 		}
 
-		public void setProducer(Producer producer) {
-			this.producer = producer;
+		public void setManufacturer(Manufacturer manufacturer) {
+			this.manufacturer = manufacturer;
 		}
 
 		public List<Comment> getComments() {
@@ -256,10 +269,11 @@ import org.hibernate.annotations.LazyCollectionOption;
 			result = prime * result + ((imageSecond == null) ? 0 : imageSecond.hashCode());
 			result = prime * result + ((imageThird == null) ? 0 : imageThird.hashCode());
 			result = prime * result + ((mainImage == null) ? 0 : mainImage.hashCode());
+			result = prime * result + ((manufacturer == null) ? 0 : manufacturer.hashCode());
 			result = prime * result + ((name == null) ? 0 : name.hashCode());
 			result = prime * result + ((price == null) ? 0 : price.hashCode());
 			result = prime * result + ((priceNet == null) ? 0 : priceNet.hashCode());
-			result = prime * result + ((producer == null) ? 0 : producer.hashCode());
+			result = prime * result + ((sku == null) ? 0 : sku.hashCode());
 			result = prime * result + ((vat == null) ? 0 : vat.hashCode());
 			return result;
 		}
@@ -323,6 +337,11 @@ import org.hibernate.annotations.LazyCollectionOption;
 					return false;
 			} else if (!mainImage.equals(other.mainImage))
 				return false;
+			if (manufacturer == null) {
+				if (other.manufacturer != null)
+					return false;
+			} else if (!manufacturer.equals(other.manufacturer))
+				return false;
 			if (name == null) {
 				if (other.name != null)
 					return false;
@@ -338,10 +357,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 					return false;
 			} else if (!priceNet.equals(other.priceNet))
 				return false;
-			if (producer == null) {
-				if (other.producer != null)
+			if (sku == null) {
+				if (other.sku != null)
 					return false;
-			} else if (!producer.equals(other.producer))
+			} else if (!sku.equals(other.sku))
 				return false;
 			if (vat == null) {
 				if (other.vat != null)
