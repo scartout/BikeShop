@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Preconditions;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -51,13 +52,16 @@ import org.hibernate.annotations.LazyCollectionOption;
 	    private String imageSecond;
 	    private String imageThird;
 	    private Date dateAdded;
+	    @JsonIgnore
 	    @ManyToOne
 	    @JoinColumn(name = "category_id")
 	    private Category category;
+	    @JsonIgnore
 	    @ManyToOne
 	    @JoinColumn(name = "producer_id")
 	    private Producer producer;
 	    @LazyCollection(LazyCollectionOption.FALSE)
+	    @JsonIgnore
 	    @OneToMany(mappedBy = "product",
 	    		cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
 	    		orphanRemoval = true)

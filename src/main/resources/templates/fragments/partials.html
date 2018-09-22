@@ -603,12 +603,12 @@
 													<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 1, 2)+' PLN'}"></div>
 												</div>
 											</div>
-											<form th:action="@{/addtocart}" method="post">
+											<!--<form th:action="@{/addtocart}" method="post">
 												<input type="hidden" name="quantity" value="1"/>
 												<input type="hidden" name="productId" th:value="${product.id}"/>
 						 						<input class="red_button add_to_cart_button" type="submit" value="Add to cart"></input>
-											</form>
-											<!--<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>-->
+											</form>-->
+											<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
 										</div>
 										
 									</p>
