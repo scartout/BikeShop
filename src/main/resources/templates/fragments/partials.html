@@ -393,7 +393,9 @@
  			</div>
 		  </div>
 		</div>
-	
+		
+		<a href="#" class="btn btn-default scroll_top"><i class="fa fa-angle-double-up" style="font-size:36px"></i></a>
+		
 	</header>
 	
 	<div class="fs_menu_overlay"></div>
@@ -597,12 +599,12 @@
 										<div class="product-item women">
 											<div class="product product_filter">
 												<div class="product_image">
-													<img th:src="${product.mainImage}" onerror="this.onerror=null;this.src='images/noimage.png'" alt="No image" ></img>
+													<a th:href="@{product?id=}+${product.id}"><img th:src="${product.mainImage}" onerror="this.onerror=null;this.src='images/noimage.png'" alt="No image" ></img></a>
 												</div>
 												<div class="favorite"></div>
 												<div class="product_info">
 													<h6 class="product_name"><a th:href="@{product?id=}+${product.id}"><p th:text="${product.name}"/></a></h6>
-													<div class="product_price" th:text="${#numbers.formatDecimal(product.price, 1, 2)+' PLN'}"></div>
+													<a th:href="@{product?id=}+${product.id}"><div class="product_price" th:text="${#numbers.formatDecimal(product.price, 1, 2)+' PLN'}"></div></a>
 												</div>
 											</div>
 											<form th:action="@{/addtocart}" method="post">

@@ -182,6 +182,10 @@
 										</div>
 									</div>
 								</div>
+								
+								<div th:if="${comments.isEmpty()}">
+									<h4>No reviews. Add yours first!</h4>
+								</div>
 
 							</div>
 
@@ -209,7 +213,7 @@
 											<input type="hidden" th:value="${product.id}" name="productId" />
 										</div>
 										<div class="text-left text-sm-right">
-											<button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
+											<button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">Submit</button>
 										</div>
 									</form>
 								</div>
@@ -235,8 +239,8 @@
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-<script type="text/javascript" src="js/single_custom.js"></script>
-<script type="text/javascript" src="minified/js/zoom_modal.js"></script>
+<script src="js/single_custom.js"></script>
+<script src="minified/js/util.js"></script>
 </body>
 
 </html>

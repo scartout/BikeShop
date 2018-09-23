@@ -12,12 +12,7 @@
 6. Init Star Rating
 7. Init Favorite
 8. Init Tabs
-9. Custom clock
-10. Hide spinner and curtain
-11. Init modal
-12. Init modal privacy policy
-
-
+9. Hide spinner and curtain
 
 ******************************/
 
@@ -51,15 +46,12 @@ jQuery(document).ready(function($)
 		setHeader();
 	});
 
-	initClock();
 	initMenu();
 	initThumbnail();
 	initQuantity();
 	initStarRating();
 	initFavorite();
-	initTabs();	
-	initModal();
-	initModalPolicy();
+	initTabs();
 	hideSpinner();
 	
 	/* 
@@ -330,77 +322,15 @@ jQuery(document).ready(function($)
 			});
 		}
 	}
-	
-	/*
-	
-	9. Custom clock
-	
-	*/
-	
-    function initClock(){
-		var myVar = setInterval(myTimer, 1000);
-		function myTimer() {
-		    var d = new Date();
-		    document.getElementById("clock").innerHTML = d.toLocaleTimeString();
-		}
-    }
     
     /*
     
-	10. Hide spinner and curtain
+	9. Hide spinner and curtain
 	
 	*/
     
 	function hideSpinner(){
 		setTimeout(function(){ $('#loader-wrapper').hide();}, 500);	 
-	}
-	
-	/*
-	 
-	11. Init modal
-	
-	*/
-	
-	function initModal(){
-		var span = document.getElementsByClassName("close")[0];
-	
-		span.onclick = function() { 
-		    modal.style.display = "none";
-		}
-	}
-	
-	/*
-	 
-	12. Init privacy policy modal
-	 
-	*/
-	
-	function initModalPolicy(){
-		// Get the modal
-		var modal = document.getElementById('policy_modal');
-
-		// Get the button that opens the modal
-		var btn = document.getElementById("policy_button");
-
-		// Get the span element that closes the modal
-		var span = document.getElementsByClassName("policy-modal-close")[0];
-
-		// When the user clicks on the button, open the modal
-		btn.onclick = function() {
-		    modal.style.display = "block";
-		}
-
-		// When the user clicks on span (x), close the modal
-		span.onclick = function() {
-		    modal.style.display = "none";
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-		    if (event.target == modal) {
-		        modal.style.display = "none";
-		    }
-		}
 	}
 	
 });

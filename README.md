@@ -1,7 +1,7 @@
 # BikeShop - developed by Pawel Dudek
 
 ©2018
-Version 1.3.0
+Version 1.3.1
 
 
 ## How to use:
@@ -22,7 +22,7 @@ Version 1.3.0
 3. Run products.py
 
 
-## Invoices:
+## Invoices downloading:
 
 Invoices default folder is "C:/Users/{Current User}/Desktop". You might change it in pl.scartout.controller.OrderController.java class (constant INVOICE_FOLDER).
 
@@ -35,7 +35,7 @@ BikeShop has been being implemented an example of this kind of portals.
 ## Technologies used:
 
 - Spring, Spring Boot, Spring Security, Hibernate, JPA
-- HTML, CSS, Bootstrap, Thymeleaf, JavaScript, JQuery
+- JavaScript, JQuery, HTML, CSS, Bootstrap, Thymeleaf
 - Python
 - ITextPDF
 - Maven
